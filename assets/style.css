@@ -8,6 +8,9 @@
 .tangerine {
     font-family: "Tangerine", cursive;
 }
+.didot {
+    font-family: Didot, serif;
+}
 
 /* Font color Class */
 .blueFont {
@@ -124,3 +127,17 @@
     font-family: Didot, serif;
 }
 
+/* second html page
+styling */
+
+/* Main title styling */
+.functionsTitle {
+    color: #4E629C;
+    font-size: 4em;
+}
+
+/* Example images styling */
+.exampleImage {
+    width: 9em;
+    height: 16em;
+}
