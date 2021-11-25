@@ -19,6 +19,11 @@
     border-radius: 3px;
 }
 
+/* Carousel background style */
+.blueBackground {
+    background-color: #4E629C;
+}
+
 /* Carousel caption styling */
 .carousel-caption {
     background-color: #4E629C;
@@ -44,7 +49,7 @@
     width: 80%;
 }
 
-/* Margins for informatiçons list */
+/* Margins for informations list */
 .listMargin {
     margin-top: 1em;
     font-family: Didot, serif;
@@ -63,3 +68,59 @@
     width: 16em;
     height: 4em;
 }
+
+.nav-masthead {
+    background-color: #4E629C;
+}
+/* nav elements styling */
+.nav-masthead .nav-link {
+    padding: 2em;
+    font-weight: 700;
+    color: white;
+    background-color: transparent;
+    }
+
+/* font color on hover */
+.nav-link:hover {
+    color: #E8D5A3;
+}
+
+/* Modal header styling */
+.modal-title {
+    color: white;
+    font-size: 2em;
+}
+
+/* Modal closing button styling */
+.modalCross {
+    border: none;
+    width: 2em;
+    height: 2em;
+}
+
+/* Modal Images styling */
+.modalImage {
+    width: 100%;
+    height: 70%;
+}
+
+/* Modal categories buttons styling */
+.categoryButton {
+    margin-top: 0.5em;
+    width: 8em;
+    Height: 2.5em;
+    color: white;
+    font-family: Didot, serif;
+}
+
+.orModal {
+    border-top: 3px double #4E629C;
+    border-bottom: 3px double #4E629C;
+    font-family: Didot, serif;
+}
+
+.closeModal {
+    border: none;
+    font-family: Didot, serif;
+}
+
