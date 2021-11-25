@@ -1,0 +1,65 @@
+/* Logo Style */
+.logo {
+    width: 80%;
+    height: 80%;
+}
+
+/* Font Class */
+.tangerine {
+    font-family: "Tangerine", cursive;
+}
+
+/* Font color Class */
+.blueFont {
+    color: #4E629C;
+}
+
+/* Rounded borders class */
+.rounded{
+    border-radius: 3px;
+}
+
+/* Carousel caption styling */
+.carousel-caption {
+    background-color: #4E629C;
+    border-radius: 3px;
+    opacity: 0.9;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0,);
+}
+
+/* Inner caption text styling */
+.carousel-caption h5 {
+    color: white;
+    font-family: "Tangerine", cursive;
+    font-size: 2.5em;
+}
+.carousel-caption p {
+    font-family: Didot, serif;
+    font-size: 0.8em;
+}
+
+/* Carousel image size */
+.slideImage {
+    height: 400px;
+    width: 80%;
+}
+
+/* Margins for informatiçons list */
+.listMargin {
+    margin-top: 1em;
+    font-family: Didot, serif;
+}
+
+/* Borders class */
+.border {
+    border: 1px solid black;
+}
+
+/* Account creation button styling */
+.accountButton {
+    background-color: #4E629C;
+    font-family: Didot, serif;
+    color: white;
+    width: 16em;
+    height: 4em;
+}
