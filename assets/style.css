@@ -69,21 +69,19 @@
     height: 4em;
 }
 
-.nav-masthead {
-    background-color: #4E629C;
-}
 /* nav elements styling */
-.nav-masthead .nav-link {
-    padding: 2em;
+.nav-link {
+    margin-left: 1em;
+    margin-right: 1em;
     font-weight: 700;
-    color: white;
-    background-color: transparent;
+    color: white !important;
     }
 
 /* font color on hover */
 .nav-link:hover {
-    color: #E8D5A3;
+    color: #E8D5A3 !important;
 }
+
 
 /* Modal header styling */
 .modal-title {
@@ -113,12 +111,14 @@
     font-family: Didot, serif;
 }
 
+/* "Or" writing in modal styling */
 .orModal {
     border-top: 3px double #4E629C;
     border-bottom: 3px double #4E629C;
     font-family: Didot, serif;
 }
 
+/* "Close" button in modal styling */
 .closeModal {
     border: none;
     font-family: Didot, serif;
