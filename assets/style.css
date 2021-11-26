@@ -131,7 +131,7 @@
 styling */
 
 /* Main title styling */
-.functionsTitle {
+.pageTitle {
     color: #4E629C;
     font-size: 4em;
 }
@@ -140,4 +140,38 @@ styling */
 .exampleImage {
     width: 9em;
     height: 16em;
+}
+
+/* Prices image styling */
+.pricesImage {
+    width: 100%;
+    height: 18em;
+}
+
+/* Pricing col styling */
+.pricingCol {
+    background-color: #E8D5A3;
+    color: #4E629C;
+}
+
+/* Subscription border */
+.subBorder {
+    border-top: 2px solid #4E629C;
+}
+
+/* Pricing button styling */
+.priceButton {
+    background-color: #4E629C;
+    color: white;
+}
+
+/* Commissions table styling */
+table,
+th,
+td {
+    border: 1px solid;
+}
+
+table {
+    margin: 0 auto;
 }
