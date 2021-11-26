@@ -184,3 +184,11 @@ styling */
     width: 100%;
     height: 40%;
 }
+
+/* Account creation
+page styling */
+
+/* Diagonal text on title */
+.diagonalP {
+    rotate: 350deg;
+}
