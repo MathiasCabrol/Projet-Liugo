@@ -226,13 +226,15 @@ confirmed styling */
 
 /* subscriptionFinalisation 
 styling */
+
+/* Drag & Drop styling */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 .drag-area{
     display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #4E629C;
+    align-items: center;
+    justify-content: center;
+    background: #4E629C;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
