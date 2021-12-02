@@ -192,3 +192,34 @@ page styling */
 .diagonalP {
     rotate: 350deg;
 }
+
+/* Account creation
+confirmed styling */
+
+/* Création du bouton au-dessus de l'image */
+.backgroundImage {
+    position: relative;
+}
+.imageButton {
+    position: absolute;
+    top: 860px;
+    left: 540px;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-name: animatedButton;
+}
+/* Animation du bouton */
+@keyframes animatedButton {
+    from {
+        width: 12em;
+        Height: 2.5em;
+    }
+    50% {
+        width: 12.5em;
+        height: 3em;
+    }
+    to {
+        width: 12em;
+        Height: 2.5em;
+    }
+}
