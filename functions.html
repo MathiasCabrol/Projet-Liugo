@@ -130,6 +130,47 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     <button class="btn btn-outline-light accountButton border rounded shadow" type="button" data-toggle="modal" data-target="#accountModal">Créer un compte</button>
             <!-- Closing btn col -->
                 </div>
+                <!-- Account creation modal -->
+                <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header blueBackground">
+                          <h5 class="modal-title tangerine" id="modalLabel">Faites votre choix :</h5>
+                          <button type="button" class="close modalCross btn-secondary btn-outline-light rounded" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Oppening modal-body container -->
+                          <div class="container-fluid">
+                              <!-- Opening modal-body row -->
+                              <div class="row justify-content-between">
+                                  <!-- Opening Hotel choice col -->
+                                <div class="col-5 text-center">
+                                    <img class="modalImage rounded" src="assets/img/hotelDoor.jpg" alt="Hotel room door">
+                                    <button type="button" class="btn blueBackground categoryButton btn-outline-light">Hôtel</button>
+                                <!-- Closing Hotel choice col -->
+                                </div>
+                                <!-- oppening "or" col -->
+                                <div class="col-2 text-center align-self-center">
+                                    <p class="orModal">Ou</p>
+                                <!-- Closing "or" col -->
+                                </div>
+                                <!-- Opening services choice -->
+                                <div class="col-5 text-center">
+                                    <img class="modalImage rounded" src="assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
+                                    <button type="button" class="btn blueBackground categoryButton btn-outline-light">Prestataire</button>
+                                <!-- Closing services choice -->
+                              </div>
+                          </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer mt-3 blueBackground rounded">
+                          <button type="button" class="btn btn-secondary btn-outline-light closeModal" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             <!-- Closing presentation div row -->   
             </div>
         <!-- Closing container -->
