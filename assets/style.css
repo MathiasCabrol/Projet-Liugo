@@ -283,3 +283,9 @@ styling */
     object-fit: cover;
     border-radius: 5px;
   }
+/* Badge de test puissance du mot de passe */
+.displayBadge {
+    border-radius: 3px;
+    color: white;
+    width: 90%;
+}
