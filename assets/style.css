@@ -289,3 +289,7 @@ styling */
     color: white;
     width: 90%;
 }
+/* Création de changement dynamique de la navbar */
+a .active {
+    color: #E8D5A3 !important;
+}

@@ -14,18 +14,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
 <link href="assets/style.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-         <!-- Openning logo container -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
-                <img class="logo" src="assets/marque/Logo_Liugo.png" alt="Logo Liugo">
-            </div>
-        <!--Closing row logo-->    
-        </div>
-    <!--Closing container-->    
-    </div>
-    </header>
+    <?php include 'header.php' ?>
     <section>
         <!-- Form container -->
         <div class="container">
@@ -63,47 +52,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
             </div>
 
     </section>
-    <footer class="blueBackground text-center text-white">
-        <!-- Footer container -->
-        <div class="container p-4 pb-0 mt-4">
-          <!-- Social media -->
-          <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <i class="fab fa-facebook"></i>
-            </a>
-      
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <i class="fab fa-twitter"></i>
-            </a>
-      
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-                <i class="fab fa-instagram"></i>
-            </a>
-      
-            <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.linkedin.com/in/mathias-cabrol-2911b4198/" role="button">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-      
-            <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://github.com/MathiasCabrol" role="button">
-                <i class="fab fa-github"></i>
-            </a>
-          </section>
-          <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-      
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2021 Copyright:
-          <a class="text-white" href="">LIUGO Corp.</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
+    <?php include 'footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
