@@ -14,21 +14,21 @@ let timeout;
 
 // traversing the DOM and getting the input and span using their IDs
 
-let password = document.getElementById('passwordInput')
-let strengthBadge = document.getElementById('StrengthDisp')
+let password = document.getElementById("passwordInput")
+let strengthBadge = document.getElementById("StrengthDisp")
 
 function StrengthChecker(PasswordParameter){
     // We then change the badge's color and text based on the password strength
 
     if(strongPassword.test(PasswordParameter)) {
         strengthBadge.style.backgroundColor = "green"
-        strengthBadge.textContent = 'Fort'
+        strengthBadge.textContent = "Fort"
     } else if(mediumPassword.test(PasswordParameter)){
-        strengthBadge.style.backgroundColor = 'blue'
-        strengthBadge.textContent = 'Moyen'
+        strengthBadge.style.backgroundColor = "blue"
+        strengthBadge.textContent = "Moyen"
     } else{
-        strengthBadge.style.backgroundColor = 'red'
-        strengthBadge.textContent = 'Faible'
+        strengthBadge.style.backgroundColor = "red"
+        strengthBadge.textContent = "Faible"
     }
 }
 
@@ -46,7 +46,7 @@ passwordInput.addEventListener("input", () => {
 
     //The badge is hidden by default, so we show it
 
-    strengthBadge.style.display= 'block'
+    strengthBadge.style.display= "block"
     clearTimeout(timeout);
 
     //We then call the StrengChecker function as a callback then pass the typed password to it
@@ -56,9 +56,9 @@ passwordInput.addEventListener("input", () => {
     //Incase a user clears the text, the badge is hidden again
 
     if(password.value.length !== 0){
-        strengthBadge.style.display != 'block'
+        strengthBadge.style.display != "block"
     } else{
-        strengthBadge.style.display = 'none'
+        strengthBadge.style.display = "none"
     }
 });
 

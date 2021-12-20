@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de connexion</title>
+    <title>Account finalisation</title>
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Google fonts -->
@@ -12,12 +12,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/style.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-   <?php
-   include 'header.php'
-   ?>
+    <?php include 'header.php' ?>
     <!-- Titre page -->
     <section>
         <div class="container">
@@ -29,26 +27,33 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
             </div>
         </div>
     </section>
-    <!-- Formulaire de connexion -->
+    <!-- Formulaire d'inscription -->
     <section>
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-10 text-center">
-                    <h2 class="tangerine">De retour ? Connectez-vous.</h2>
+                <div class="col-12 text-center">
+                <h2 class="tangerine">Voici les informations complémentaires à renseigner</h2>
                 </div>
-                <div class="col-7 col-md-3 col-lg-3">
+                <div class="col-7 col-md-3 col-lg-3 mt-5">
                     <form>
-                        <label class="mt-3">Adresse E-mail</label><br>
-                        <input type="text" id="mailInput"></input>
-                        <label class="mt-3">Mot de passe</label>
-                        <input type="text" id="passwordInput"></input>
+                        <label>Secteur d'activité</label><br>
+                        <input type="text" id="sectorInput"></input>
+                        <label class="mt-3">Téléphone</label>
+                        <input type="text" id="phoneInput"></input>
+                        <label class="mt-3">Numéro de SIRET</label>
+                        <input type="text" id="siretInput"></input>
+                        <p class="didot">Téléchargez votre justificatif</p>
+                        <div class="drag-area">
+                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <header>Glisser & déposer pour insérer</header>
+                            <span>OU</span>
+                            <button>Explorateur de fichiers</button>
+                            <input id="fileInput" type="file" hidden>
+                        </div>
                         <div class="col-12 text-center">
                         <button type="submit" class="btn btn-outline-light priceButton border rounded shadow mt-3">Confirmer</button>
                         </div>
                     </form>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <img class="rounded" src="assets/img/welcome-sign-g19613aaa4_640.jpg" alt="Signe de bienvenue avec décor de jungle">
                 </div>
             </div>
         </div>
@@ -63,5 +68,5 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <!-- My Javascript -->
-<script src="assets/script.js"></script>
+<script src="assets/javascript/drag.js"></script>
 </html>

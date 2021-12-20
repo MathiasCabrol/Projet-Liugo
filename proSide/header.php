@@ -1,3 +1,8 @@
+<?php
+      // On recupere l'URL de la page pour ensuite affecter class = "active" aux liens de nav
+      $page = $_SERVER['REQUEST_URI'];
+      $page = str_replace("/Liugo/", "",$page);
+?>
 <header>
         <!-- Navbar creation -->
         <nav class="navbar navbar-expand-lg navbar-dark blueBackground">
@@ -6,17 +11,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav my-2">
-                <li class="nav-item active">
-                  <a class="nav-link" href="homepage.php">Accueil</a>
+                <li class="nav-item">
+                  <a class="nav-link<?= $page == "homepage.php" ? ' active' : '' ?>" href="homepage.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="functions.php">Fonctionnalités</a>
+                  <a class="nav-link<?= $page == "functions.php" ? ' active' : '' ?>" href="functions.php">Fonctionnalités</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="prices.php">Tarifs</a>
+                  <a class="nav-link<?= $page == "prices.php" ? ' active' : '' ?>" href="prices.php">Tarifs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="proAccountCreation.php">Mon compte</a>
+                    <a class="nav-link<?= $page == "proAccountCreation.php" ? ' active' : '' ?>" href="proAccountCreation.php">Mon compte</a>
                 </li>
               </ul>
             </div>

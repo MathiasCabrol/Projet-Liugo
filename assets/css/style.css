@@ -197,17 +197,25 @@ page styling */
 confirmed styling */
 
 /* Création du bouton au-dessus de l'image */
-.backgroundImage {
+.container-fluid {
     position: relative;
 }
+.laptopImage {
+    width: 80%;
+    height: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .imageButton {
-    position: absolute;
-    top: 860px;
-    left: 540px;
     animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-name: animatedButton;
+    position: absolute;
+    top: 90%;
+    left: 42.5%;
 }
+    
 /* Animation du bouton */
 @keyframes animatedButton {
     from {
@@ -290,6 +298,7 @@ styling */
     width: 90%;
 }
 /* Création de changement dynamique de la navbar */
-a .active {
+.active {
     color: #E8D5A3 !important;
+    text-decoration: underline;
 }

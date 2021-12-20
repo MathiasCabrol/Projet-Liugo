@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/style.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
   <?php
@@ -20,16 +20,18 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
   ?>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8 text-center">
+            <div class="col-10 col-md-8 col-lg-8  text-center">
                 <h1 class="pageTitle tangerine mt-5">Dernière étape avant de rejoindre l'aventure !</h1>
                 <p class="didot">Nous avons bien enregistrée votre demande.</p>
-                <hr class="mt-5" style="width:740px; color:#4E629C; height:5px;">
-                <div class="backgroundImg">
-                    <img class="mt-5 rounded" src="assets/img/desk-gf4ea73706_640.jpg">
-                    <button class="imageButton btn btn-outline-light priceButton border rounded shadow">Finaliser le compte</button>
-                </div>
+                <hr class="mt-5" style="width:100%; color:#4E629C; height:5px;">
             </div>
         </div>
+    </div>
+    <div class="container-fluid mt-5">
+        <img class="laptopImage rounded" src="assets/img/desk-gf4ea73706_640.jpg">
+        <button class="imageButton btn btn-outline-light priceButton border rounded shadow">Finaliser le compte</button>
+    </div>
+    <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-10 col-md-6 col-lg-6 text-center pricingCol rounded">
                 <h2 class="tangerine mt-5">Vous faites partie de la communauté Liugo !</h2>
