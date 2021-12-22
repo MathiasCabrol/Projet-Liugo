@@ -11,16 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <?php include 'header.php' ?>
+    <?php include '../proSide/header.php' ?>
     <section>
         <!-- Form container -->
         <div class="container">
             <div class="col-12">
                 <!-- Landing image -->
-                <img class="landingImage" src="assets/img/camera-g5215acf9d_640.jpg">
+                <img class="landingImage" src="../assets/img/camera-g5215acf9d_640.jpg">
             </div>
             <!-- Form row -->
             <div class="row justify-content-center">
@@ -52,7 +52,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
             </div>
 
     </section>
-    <?php include 'footer.php' ?>
+    <?php include '../proSide/footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

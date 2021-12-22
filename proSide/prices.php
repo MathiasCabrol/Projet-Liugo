@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'header.php' ?>
@@ -32,7 +32,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 <!-- Hotel side prices col -->
                 <div class="col-10 col-md-5 col-lg-5 border rounded shadow mx-md-3 text-center mt-5">
                     <h2 class="tangerine mt-4"><i class="fas fa-tag mx-2"></i>Etablissements Hôteliers</h2>
-                    <img class="pricesImage mt-4 rounded" src="assets/img/hotel-webFormat.jpg">
+                    <img class="pricesImage mt-4 rounded" src="../assets/img/hotel-webFormat.jpg">
                     <p class="didot my-4">Afin de vous prouver l'éfficacité de notre plateforme. Vous aurez accès à une période d'essai de 1 mois pendant laquelle vous pourrez commencer à faire profiter vos clients de nos services. une fois ce délai dépassé, vous pourrez souscrire notre abonnement afin de couvrir les frais d'entretien de la plateforme.</p>
                     <!-- Inner hotel prices row -->
                     <div class="row justify-content-center">
@@ -50,7 +50,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 </div>
                 <div class="col-10 col-md-5 col-lg-5 border rounded shadow mx-md-3 text-center mt-5">
                     <h2 class="tangerine mt-4"><i class="fas fa-tags mx-2"></i></i>Prestataires de service</h2>
-                    <img class="pricesImage mt-4 rounded" src="assets/img/Services-pricingPage.jpg">
+                    <img class="pricesImage mt-4 rounded" src="../assets/img/Services-pricingPage.jpg">
                     <p class="didot my-4">Vous pourrez profiter de l'ensemble de notre plateforme gratuitement. Une légère commisssion afin de couvrir les frais de service sera appliquée uniquement en cas de réservation de la part de nos clients. Vous pouvez également optez pour nos différents package vous permettant d'optimiser votre visibilité dans un second temps.</p>  
                  <!-- Inner hotel prices row -->
                  <div class="row justify-content-center">
@@ -114,7 +114,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                           <div class="row justify-content-between">
                               <!-- Opening Hotel choice col -->
                             <div class="col-5 text-center">
-                                <img class="modalImage rounded" src="assets/img/hotelDoor.jpg" alt="Hotel room door">
+                                <img class="modalImage rounded" src="../assets/img/hotelDoor.jpg" alt="Hotel room door">
                                 <button type="button" class="btn blueBackground categoryButton btn-outline-light">Hôtel</button>
                             <!-- Closing Hotel choice col -->
                             </div>
@@ -125,7 +125,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                             </div>
                             <!-- Opening services choice -->
                             <div class="col-5 text-center">
-                                <img class="modalImage rounded" src="assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
+                                <img class="modalImage rounded" src="../assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
                                 <button type="button" class="btn blueBackground categoryButton btn-outline-light">Prestataire</button>
                             <!-- Closing services choice -->
                           </div>

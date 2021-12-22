@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
    <?php
@@ -48,7 +48,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     </form>
                 </div>
                 <div class="col-12 text-center mt-4">
-                    <img class="rounded" src="assets/img/welcome-sign-g19613aaa4_640.jpg" alt="Signe de bienvenue avec décor de jungle">
+                    <img class="rounded" src="../assets/img/welcome-sign-g19613aaa4_640.jpg" alt="Signe de bienvenue avec décor de jungle">
                 </div>
             </div>
         </div>

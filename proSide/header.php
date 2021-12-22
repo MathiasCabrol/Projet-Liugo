@@ -1,7 +1,7 @@
 <?php
       // On recupere l'URL de la page pour ensuite affecter class = "active" aux liens de nav
       $page = $_SERVER['REQUEST_URI'];
-      $page = str_replace("/Liugo/", "",$page);
+      $page = str_replace("/Liugo\/proSide/", "",$page);
 ?>
 <header>
         <!-- Navbar creation -->
@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
-                <img class="logo" src="assets/marque/Logo_Liugo.png" alt="Logo Liugo">
+                <img class="logo" src="../assets/marque/Logo_Liugo.png" alt="Logo Liugo">
             </div>
         <!--Closing row logo-->    
         </div>

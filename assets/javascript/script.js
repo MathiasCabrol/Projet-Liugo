@@ -80,6 +80,8 @@ function regexTest(inputFull, regex, errorMessage) {
         p.innerText = errorMessage
         //Changement de couleur.
         p.style.color = "red"
-    } 
+    } else {
+        p.innerText = ""
+    }
     inputFull.insertAdjacentElement("afterend", p)
 }

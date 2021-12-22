@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'header.php' ?>
@@ -32,11 +32,11 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     <div class="row justify-content-center mt-5">
                         <!-- First image inner col -->
                         <div class="col-5">
-                            <img class="exampleImage" src="assets/img/Exemple1.png" alt="Account welcome page example">
+                            <img class="exampleImage" src="../assets/img/Exemple1.png" alt="Account welcome page example">
                         </div>
                         <!-- Second image inner col -->
                         <div class="col-5">
-                            <img class="exampleImage" src="assets/img/Exemple2.png" alt="Account welcome page example number two">
+                            <img class="exampleImage" src="../assets/img/Exemple2.png" alt="Account welcome page example number two">
                         </div>
                     <!-- Closing inner row -->
                     </div>
@@ -55,11 +55,11 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     <div class="row justify-content-center mt-5">
                         <!-- First image inner col -->
                         <div class="col-5">
-                            <img class="exampleImage" src="assets/img/Exemple3.png" alt="Account welcome page example">
+                            <img class="exampleImage" src="../assets/img/Exemple3.png" alt="Account welcome page example">
                         </div>
                         <!-- Second image inner col -->
                         <div class="col-5">
-                            <img class="exampleImage" src="assets/img/Exemple4.png" alt="Account welcome page example number two">
+                            <img class="exampleImage" src="../assets/img/Exemple4.png" alt="Account welcome page example number two">
                         </div>
                     <!-- Closing inner row -->
                     </div>
@@ -82,13 +82,13 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 <!-- First vid col -->
                 <div class="col-10 col-md-6 col-lg-6 mt-5">
                     <video width="100%" height="100%" controls>
-                        <source src="assets/video/Seoul - 21985.mp4">
+                        <source src="../assets/video/Seoul - 21985.mp4">
                     </video>
                 </div>
             <!-- Second vid col -->
                 <div class="col-10 col-md-6 col-lg-6 mt-5">
                     <video width="100%" height="100%" controls>
-                        <source src="assets/video/Scuba Diving - 699.mp4">
+                        <source src="../assets/video/Scuba Diving - 699.mp4">
                     </video>
                 </div>
                   <!-- Account creation button -->
@@ -113,7 +113,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                               <div class="row justify-content-between">
                                   <!-- Opening Hotel choice col -->
                                 <div class="col-5 text-center">
-                                    <img class="modalImage rounded" src="assets/img/hotelDoor.jpg" alt="Hotel room door">
+                                    <img class="modalImage rounded" src="../assets/img/hotelDoor.jpg" alt="Hotel room door">
                                     <button type="button" class="btn blueBackground categoryButton btn-outline-light">Hôtel</button>
                                 <!-- Closing Hotel choice col -->
                                 </div>
@@ -124,7 +124,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                                 </div>
                                 <!-- Opening services choice -->
                                 <div class="col-5 text-center">
-                                    <img class="modalImage rounded" src="assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
+                                    <img class="modalImage rounded" src="../assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
                                     <button type="button" class="btn blueBackground categoryButton btn-outline-light">Prestataire</button>
                                 <!-- Closing services choice -->
                               </div>

@@ -12,7 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
+
 </head>
 <body>
   <?php
@@ -28,7 +29,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
         </div>
     </div>
     <div class="container-fluid mt-5">
-        <img class="laptopImage rounded" src="assets/img/desk-gf4ea73706_640.jpg">
+        <img class="laptopImage rounded" src="../assets/img/desk-gf4ea73706_640.jpg">
         <button class="imageButton btn btn-outline-light priceButton border rounded shadow">Finaliser le compte</button>
     </div>
     <div class="container">
@@ -37,7 +38,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 <h2 class="tangerine mt-5">Vous faites partie de la communauté Liugo !</h2>
                 <p class="didot mt-5">Vous recevrez prochainement un e-mail de confirmation. Afin de pouvoir accéder à votre espace et commencer à personnaliser votre page d'accueil et les services proposés, nous avons besoin de plus d'informations.</p>
                 <p class="didot">Dans l'attente de la complétion de vos informations, vous pouvez dès maintenant découvrir les différentes fonctionnalités proposées</p>
-                <a href="functions.html"><button href="functions.html" type="button" class="btn btn-outline-light priceButton border rounded shadow mb-4">Découvrir</button></a>
+                <a href="functions.php"><button href="functions.php" type="button" class="btn btn-outline-light priceButton border rounded shadow mb-4">Découvrir</button></a>
             </div>
         </div> 
     </div>

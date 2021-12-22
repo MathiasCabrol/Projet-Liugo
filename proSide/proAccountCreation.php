@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'header.php' ?>
@@ -40,7 +40,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                         <label class="mt-3">Mot de passe</label>
                         <input type="text" id="passwordInput"></input>
                         <div id="StrengthDisp" class="mt-2 w-100 text-center badge displayBadge"></div>
-                        <p class="didot mt-3">Vous avez déja un compte ? <a href="connexionPage.html">Connectez vous</a></p>
+                        <p class="didot mt-3">Vous avez déja un compte ? <a href="connexionPage.php">Connectez vous</a></p>
                         <div class="col-12 text-center">
                         <button type="submit" class="btn btn-outline-light priceButton border rounded shadow mt-3">Confirmer</button>
                         </div>
@@ -59,5 +59,5 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <!-- My Javascript -->
-<script src="assets/javascript/script.js"></script>
+<script src="../assets/javascript/script.js"></script>
 </html>

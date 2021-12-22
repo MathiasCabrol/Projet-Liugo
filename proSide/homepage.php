@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href="assets/css/style.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'header.php' ?>
@@ -24,7 +24,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     <div id="welcomeCarouselControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner py-3">
                           <div class="carousel-item active">
-                            <img class="d-block w-100 rounded slideImage" src="assets/img/slide_accueil/hands.jpg" alt="First slide">
+                            <img class="d-block w-100 rounded slideImage" src="../assets/img/slide_accueil/hands.jpg" alt="First slide">
                             <!-- Carousel caption -->
                             <div class="carousel-caption">
                                 <h5>Concept</h5>
@@ -35,7 +35,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                               </div>
                           </div>
                           <div class="carousel-item">
-                            <img class="d-block w-100 rounded slideImage" src="assets/img/slide_accueil/diary.jpg" alt="Second slide">
+                            <img class="d-block w-100 rounded slideImage" src="../assets/img/slide_accueil/diary.jpg" alt="Second slide">
                             <!-- Carousel caption -->
                             <div class="carousel-caption">
                                 <h5>Gérez votre planning</h5>
@@ -44,7 +44,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                               </div>
                           </div>
                           <div class="carousel-item">
-                            <img class="d-block w-100 rounded slideImage" src="assets/img/slide_accueil/mountain.jpg" alt="Third slide">
+                            <img class="d-block w-100 rounded slideImage" src="../assets/img/slide_accueil/mountain.jpg" alt="Third slide">
                             <!-- Carousel caption -->
                             <div class="carousel-caption">
                                 <h5>Augmentez votre visibilité</h5>
@@ -118,7 +118,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                               <div class="row justify-content-between">
                                   <!-- Opening Hotel choice col -->
                                 <div class="col-5 text-center">
-                                    <img class="modalImage rounded" src="assets/img/hotelDoor.jpg" alt="Hotel room door">
+                                    <img class="modalImage rounded" src="../assets/img/hotelDoor.jpg" alt="Hotel room door">
                                     <button type="button" class="btn blueBackground categoryButton btn-outline-light">Hôtel</button>
                                 <!-- Closing Hotel choice col -->
                                 </div>
@@ -129,7 +129,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                                 </div>
                                 <!-- Opening services choice -->
                                 <div class="col-5 text-center">
-                                    <img class="modalImage rounded" src="assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
+                                    <img class="modalImage rounded" src="../assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
                                     <button type="button" class="btn blueBackground categoryButton btn-outline-light">Prestataire</button>
                                 <!-- Closing services choice -->
                               </div>
