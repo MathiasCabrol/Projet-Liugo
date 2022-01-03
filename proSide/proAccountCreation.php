@@ -1,3 +1,8 @@
+<?php
+if(isset($_POST['confirmer'])){
+    include 'proAccountCreationVerif.php';
+}
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -32,17 +37,17 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-7 col-md-3 col-lg-3">
-                    <form>
+                    <form method="post" action="<?= isset($_POST['confirmer']) && count($errorList) == 0 ? 'accountCreationConfirmed.php' : '' ?>">
                         <label>Nom de l'établissement</label><br>
-                        <input type="text" id="nameInput"></input>
+                        <input type="text" id="nameInput" name="name"></input>
                         <label class="mt-3">Adresse E-mail</label>
-                        <input type="text" id="mailInput"></input>
+                        <input type="text" id="mailInput" name="mail"></input>
                         <label class="mt-3">Mot de passe</label>
-                        <input type="text" id="passwordInput"></input>
+                        <input type="password" id="passwordInput" name="password"></input>
                         <div id="StrengthDisp" class="mt-2 w-100 text-center badge displayBadge"></div>
                         <p class="didot mt-3">Vous avez déja un compte ? <a href="connexionPage.php">Connectez vous</a></p>
                         <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-outline-light priceButton border rounded shadow mt-3">Confirmer</button>
+                        <input type="submit" value="confirmer" class="btn btn-outline-light priceButton border rounded shadow mt-3">
                         </div>
                     </form>
                 </div>

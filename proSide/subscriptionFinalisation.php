@@ -50,7 +50,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                         <label class="mt-3">Numéro de SIRET</label>
                         <input type="text" id="siretInput" name="siretInput"></input>
                         <p class="didot">Téléchargez votre justificatif</p>
-                        <div class="drag-area">
+                        <div class="drag-area" draggable="true">
                             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                             <header>Glisser & déposer pour insérer</header>
                             <span>OU</span>
