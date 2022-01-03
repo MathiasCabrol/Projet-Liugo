@@ -323,13 +323,13 @@ styling */
 }
 .hotelBody {
     background-image: url(../img/clouds_background.jpeg);
-    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .hotelSeparation {
     height: 0px;
     border: none;
     border-top: 2px solid #E8D5A3;
-    width: 50%;
+    width: 100%;
     text-align: left;
     margin-left: 0;
     opacity: 1;
@@ -387,4 +387,44 @@ styling */
   }
 .formLabel {
     display: block;
+}
+.confirmationButton {
+    border: none;
+    background-color: #E8D5A3;
+    color: white;
+    width: 15%;
+    height: 40px;
+    border-radius: 3px;
+}
+.exampleButton {
+    border: none;
+    background-color: #E8D5A3;
+    color: white;
+    width: 30%;
+    height: 40px;
+    border-radius: 3px;
+}
+.primaryModalImage {
+    width: 80%;
+    height: 300px;
+    border-radius: 3px;
+}
+.secondaryModalImage {
+    width: 80%;
+    height: 150px;
+    border-radius: 3px;
+}
+.exploreButton {
+    position: absolute;
+    top: 60%;
+    right: 16%;
+}
+.discoverButton {
+    position: absolute;
+    top: 80%;
+    left: 16%;
+}
+.modalSmallp {
+    font-size: 10px;
+    font-style: italic;
 }

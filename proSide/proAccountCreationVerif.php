@@ -9,8 +9,8 @@ $errorList = [];
 
 //Définition des erreurs du champ 'name'
 
-if(!empty($_POST['name'])){ 
-    if(!preg_match($nameRegex, $_POST['name'])){
+if (!empty($_POST['name'])) {
+    if (!preg_match($nameRegex, $_POST['name'])) {
         $errorList['name'] = 'Merci d\'entrer un nom composé d\'une majuscule, de lettres caractères accentués, tirets et/ou apostrophes.';
     } else {
         $name = htmlspecialchars($_POST['name']);
@@ -21,8 +21,8 @@ if(!empty($_POST['name'])){
 
 //Définition des erreurs du champ 'mail'
 
-if(!empty($_POST['mail'])){ 
-    if(!preg_match($mailRegex, $_POST['mail'])){
+if (!empty($_POST['mail'])) {
+    if (!preg_match($mailRegex, $_POST['mail'])) {
         $errorList['mail'] = 'Merci d\'entrer une adresse e-mail avec un format valide.';
     } else {
         $mail = htmlspecialchars($_POST['mail']);
@@ -33,8 +33,8 @@ if(!empty($_POST['mail'])){
 
 //Définition des erreurs du champ 'password'
 
-if(!empty($_POST['password'])){ 
-    if(!preg_match($siretRegex, $_POST['password'])){
+if (!empty($_POST['password'])) {
+    if (!preg_match($siretRegex, $_POST['password'])) {
         $errorList['password'] = 'Merci d\'entrer un mot de passe suffisament fort (Un caractère spécial, une majuscule, au minimum 6 caractères).';
     } else {
         $password = htmlspecialchars($_POST['password']);

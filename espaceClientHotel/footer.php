@@ -1,4 +1,4 @@
-<footer class="blueBackground text-center text-white">
+<footer class="sandBackground text-center text-white">
   <!-- Footer container -->
   <div class="container p-4 pb-0 mt-5">
     <!-- Social media -->
