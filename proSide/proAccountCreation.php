@@ -59,5 +59,5 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <!-- My Javascript -->
-<script src="../assets/javascript/script.js"></script>
+<script src="../assets/javascript/form1Verif.js"></script>
 </html>

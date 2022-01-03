@@ -1,3 +1,10 @@
+<?php
+if(isset($_POST['confirm']) && $_POST['confirm'] == "confirmer"){
+include 'finalSubscriptionVerif.php';
+} else {
+    $confirmationError = 'Merci d\'entrer une valeur de bouton valide';
+}
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -35,23 +42,23 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 <h2 class="tangerine">Voici les informations complémentaires à renseigner</h2>
                 </div>
                 <div class="col-7 col-md-3 col-lg-3 mt-5">
-                    <form>
+                    <form method="post" enctype="multipart/form-data" action="<?= !empty($_POST['confirm']) && count($errorList) == 0 ? 'accountCreationConfirmed.php' : '' ?>">
                         <label>Secteur d'activité</label><br>
-                        <input type="text" id="sectorInput"></input>
+                        <input type="text" id="sectorInput" name="sectorInput"></input>
                         <label class="mt-3">Téléphone</label>
-                        <input type="text" id="phoneInput"></input>
+                        <input type="text" id="phoneInput" name="phoneInput"></input>
                         <label class="mt-3">Numéro de SIRET</label>
-                        <input type="text" id="siretInput"></input>
+                        <input type="text" id="siretInput" name="siretInput"></input>
                         <p class="didot">Téléchargez votre justificatif</p>
                         <div class="drag-area">
                             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                             <header>Glisser & déposer pour insérer</header>
                             <span>OU</span>
                             <button>Explorateur de fichiers</button>
-                            <input id="fileInput" type="file" hidden>
+                            <input id="fileInput" name="fileInput" type="file" hidden>
                         </div>
                         <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-outline-light priceButton border rounded shadow mt-3">Confirmer</button>
+                        <input type="submit" value="confirmer" name="confirm" class="btn btn-outline-light priceButton border rounded shadow mt-3">
                         </div>
                     </form>
                 </div>
@@ -69,4 +76,5 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
     crossorigin="anonymous"></script>
     <!-- My Javascript -->
 <script src="../assets/javascript/drag.js"></script>
+<script src="../assets/javascript/form2Verif.js"></script>
 </html>
