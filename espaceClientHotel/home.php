@@ -11,7 +11,9 @@
 </head>
 
 <body class="hotelBody">
+    <!-- Including hotel side navbar -->
     <?php include 'navbar.php'; ?>
+    <!-- Title and intro -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
@@ -23,7 +25,7 @@
                 <p>À vous de jouer ! Mettez en avant votre établissement à votre façon via des textes entièrement personalisables. Vous pouvez également modifier toutes les images affichées lors de la connexion de vos cients.</p>
                 <p>Attention, cette page est visible publiquement sur votre page d'accueil lors du scan de votre QR code.</p>
                 <button type="button" class="exampleButton btn-outline-light" data-toggle="modal" data-target="#customerViewModal">Exemple vue utilisateur</button>
-                <!-- Modal -->
+                <!-- Example modal -->
                 <div class="modal fade" id="customerViewModal" tabindex="-1" role="dialog" aria-labelledby="customerViewModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -61,8 +63,10 @@
                 </div>
                 <hr class="hotelSeparation mt-5">
             </div>
+            <!-- Example Hôtel title -->
             <div class="col-12 text-center mb-5">
                 <h2 class="tangerine hotelSub">Hotel du Cap-Ferret<sup>****</sup></h2>
+                <!-- Form with personalised content -->
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt">Ma photo d'accueil</span>

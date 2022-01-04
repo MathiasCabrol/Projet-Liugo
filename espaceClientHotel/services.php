@@ -12,6 +12,7 @@
 
 <body class="hotelBody">
     <?php include 'navbar.php' ?>
+    <!-- Page title and intro -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
@@ -24,8 +25,10 @@
             </div>
             <hr class="hotelSeparation mt-5">
             <div class="col-12 text-center">
+                <!-- Button linked to showExample.js file -->
                 <button id="showExample" class="showExampleButton btn btn-outline-light mt-4">Exemple de service</button>
             </div>
+            <!-- Service creation example, shown only if button clicked -->
             <div class="col-12 col-md-5 text-center exampleCol hiddenCol mt-5">
                 <p class="mt-2 exampleTitle">Exemple de création d'un service</p>
                 <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage">
@@ -51,6 +54,37 @@
                 </div>
             </div>
         </div>
+        <!-- Creation of the first service -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-5 text-center formCol mt-5">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input type="text" name="[serviceTitle]" placeholder="Hôtel du Cap-Ferret" class="mt-5">
+                    <div class="drop-zone mt-5">
+                        <span class="drop-zone__prompt text-black">Photo du service</span>
+                        <input type="file" name="[servicePhoto]" class="drop-zone__input">
+                    </div>
+                    <div class="presta">
+                <div class="row justify-content-center">
+                    <div class="col-10 text-center mt-2 innerExampleCol">
+                        <input type="text" name="[serviceName]" class="mt-2" placeholder="Nom du service">
+                        <input type="text" name="[serviceHour]" class="mt-2" placeholder="horaires">
+                        <input type="text" name="[servicePrice]" class="mt-2" placeholder="tarifs">
+                        <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
+                        <input class="my-2 showInput" type="radio" name="[button]" value="Oui"><span>Oui</span>
+                        <input class="my-2 hideInput" type="radio" name="[button]" value="non"><span>Non</span>
+                        <div class="buttonContainer hiddenInput">
+                        <input type="text" name="[buttonName]" placeholder="nom du bouton" class="mt-2">
+                        <label>Fichier à télécharger au clic</label>
+                        <input type="file" name="[buttonFile]" class="my-2">
+                        </div>
+                    </div>
+                <!-- Closing the "presta" div for JS use -->
+                </div>
+                </div>
+                <button type="button" id="addPresta" class="exampleButton btn btn-outline-light my-4">Ajouter une prestation</button>
+                </form> 
+            </div>
+        </div>
     </div>
 
     <?php include 'footer.php' ?>
@@ -58,6 +92,8 @@
 <!-- My script -->
 <script src="../assets/javascript/dragZone.js"></script>
 <script src="../assets/javascript/showExample.js"></script>
+<script src="../assets/javascript/checkbox.js"></script>
+<script src="../assets/javascript/addService.js"></script>
 <!-- Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

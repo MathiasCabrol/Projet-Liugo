@@ -438,6 +438,11 @@ styling */
     border: 1px solid black;
     border-radius: 3px;
 }
+.formCol {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
 .hiddenCol {
     display: none;
 }
@@ -472,4 +477,10 @@ styling */
     color: white;
     border-radius: 3px;
     height: 3em;
+}
+.radioQuestion {
+    margin-bottom: 0.5em;
+}
+.hiddenInput {
+    display: none;
 }
