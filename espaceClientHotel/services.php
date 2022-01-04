@@ -1,3 +1,8 @@
+<?php
+if(isset($_POST['saveChanges'])){
+    var_dump($_POST['serviceName']);
+}
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -55,48 +60,54 @@
             </div>
         </div>
         <!-- Creation of the first service -->
-        <div class="row justify-content-center formRow">
-            <div class="col-12 col-md-5 text-center categoryCol1 formCol mt-5 mx-3">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input type="text" name="[serviceTitle]" placeholder="Hôtel du Cap-Ferret" class="mt-5">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="row justify-content-center formRow">
+                <div class="col-12 col-md-5 text-center categoryCol1 formCol mt-5 mx-3">
+                    <input type="text" name="serviceTitle[]" placeholder="Restauration" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
-                        <input type="file" name="[servicePhoto]" class="drop-zone__input">
+                        <input type="file" name="servicePhoto[]" class="drop-zone__input">
                     </div>
-            <!-- Div services à laquelle sont append les éléements crées dans le DOM en JS -->
-            <div class="services">
-            <!-- Div clonée dans le JS -->
-            <div class="presta1">
-                <div class="row justify-content-center">
-                    <div class="col-10 text-center mt-2 innerExampleCol">
-                        <input type="text" name="[serviceName]" class="mt-2" placeholder="Nom du service">
-                        <input type="text" name="[serviceHour]" class="mt-2" placeholder="horaires">
-                        <input type="text" name="[servicePrice]" class="mt-2" placeholder="tarifs">
-                        <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
-                        <input class="my-2 showInput" type="radio" name="[button]" value="Oui"><span>Oui</span>
-                        <input class="my-2 hideInput" type="radio" name="[button]" value="non"><span>Non</span>
-                        <div class="buttonContainer hiddenInput">
-                        <input type="text" name="[buttonName]" placeholder="nom du bouton" class="mt-2">
-                        <label>Fichier à télécharger au clic</label>
-                        <input type="file" name="[buttonFile]" class="my-2">
-                        </div>  
+                    <!-- Div services à laquelle sont append les éléements crées dans le DOM en JS -->
+                    <div class="services">
+                        <!-- Div clonée dans le JS -->
+                        <div class="presta1">
+                            <div class="row justify-content-center">
+                                <div class="col-10 text-center mt-2 innerExampleCol">
+                                    <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
+                                    <input type="text" name="serviceHour[]" class="mt-2" placeholder="horaires">
+                                    <input type="text" name="servicePrice[]" class="mt-2" placeholder="tarifs">
+                                    <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
+                                    <input class="my-2 showInput" type="radio" value="Oui"><span>Oui</span>
+                                    <input class="my-2 hideInput" type="radio" value="non"><span>Non</span>
+                                    <div class="buttonContainer hiddenInput">
+                                        <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
+                                        <label>Fichier à télécharger au clic</label>
+                                        <input type="file" name="buttonFile[]" class="my-2">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Closing the "presta" div for JS use -->
+                        </div>
+                        <!-- CLosing services div -->
                     </div>
+                    <button type="button" class="exampleButton btn btn-outline-light addPresta mt-4">Ajouter une prestation</button>
+                    <button type="button" class="deleteButton btn btn-outline-light deletePresta my-4">Supprimer la dernière prestation</button>
                 </div>
-                <!-- Closing the "presta" div for JS use -->
             </div>
-            <!-- CLosing services div -->
-            </div>
-                <button type="button" class="exampleButton btn btn-outline-light addPresta mt-4">Ajouter une prestation</button>
-                <button type="button" class="deleteButton btn btn-outline-light deletePresta my-4">Supprimer la dernière prestation</button>
-                </form> 
-            </div>
-        </div>
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-            <button id="addCategory" type="button" class="showExampleButton btn btn-outline-light mt-4 mx-3">Ajouter une catégorie</button>
-            <button id="deleteCategory" type="button" class="deleteCategoryButton btn btn-outline-light mt-4 mx-3">Supprimer catégorie</button>
+                <button id="addCategory" type="button" class="showExampleButton btn btn-outline-light mt-4 mx-3">Ajouter une catégorie</button>
+                <button id="deleteCategory" type="button" class="deleteCategoryButton btn btn-outline-light mt-4 mx-3">Supprimer catégorie</button>
             </div>
         </div>
+        <hr class="hotelSeparation mt-5">
+        <div class="row justify-content-center mt-5">
+                <div class="col-12 text-center">
+                    <input type="submit" name="saveChanges" class="saveButton btn btn-outline-light" value="Sauvegarder">
+                </div>
+            </div>
+        </form>
     </div>
 
     <?php include 'footer.php' ?>
