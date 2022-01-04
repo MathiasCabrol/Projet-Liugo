@@ -313,6 +313,7 @@ styling */
     color: #5256ad !important;
     text-decoration: underline;
 }
+/* Hotel side homepage styling */
 .hotelTitle {
     color: #E8D5A3;
     font-size: 24px;
@@ -427,4 +428,48 @@ styling */
 .modalSmallp {
     font-size: 10px;
     font-style: italic;
+}
+/* Specific hotel side services page perks */
+.exampleTitle {
+    font-size: 20px;
+}
+.exampleCol {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.hiddenCol {
+    display: none;
+}
+.innerExampleCol {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.innerExampleCol:hover {
+    background-color: #E8D5A3;
+    color: white;
+}
+.exampleImage {
+    width: 400px;
+    height: 300px;
+    border-radius: 3px;
+}
+.exampleTitle {
+    font-size: 24px;
+    font-weight: 400;
+}
+.exampleButton {
+    border: none;
+    background-color: #5256ad;
+    color: white;
+    width: 12em;
+}
+.showExampleButton {
+    width: 12em;
+    border: none;
+    background-color: #E8D5A3;
+    color: white;
+    border-radius: 3px;
+    height: 3em;
 }

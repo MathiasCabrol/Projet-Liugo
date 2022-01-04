@@ -17,10 +17,38 @@
             <div class="col-12 text-center">
                 <h1 class="hotelTitle mt-5 ">Mes Services</h1>
             </div>
-            <div class="col-12 col-md-8 col-lg-8 text-center mt-5 mb-5 hotelIntro">
+            <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">
                 <p>Vous trouverez sur cette page la totalité des services que vous pouvez proposer à vos clients.</p>
                 <p>Ils auront la possibilité de les réserver directement sur la page de votre établissement.</p>
-                <p>Ajoutez des photos, des descriptions, tarifs et plus encore !.</p>
+                <p>Ajoutez des photos, des descriptions, tarifs et plus encore !</p>
+            </div>
+            <hr class="hotelSeparation mt-5">
+            <div class="col-12 text-center">
+                <button id="showExample" class="showExampleButton btn btn-outline-light mt-4">Exemple de service</button>
+            </div>
+            <div class="col-12 col-md-5 text-center exampleCol hiddenCol mt-5">
+                <p class="mt-2 exampleTitle">Exemple de création d'un service</p>
+                <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage">
+                <div class="row justify-content-center">
+                    <div class="col-10 text-center mt-2 innerExampleCol">
+                        <p class="tangerine mt-2 exampleTitle">Petit-Déjeuner</p>
+                        <p>De 7h00 à 10h30</p>
+                        <p>10€/enfant - 18€/adulte</p>
+                    </div>
+                    <div class="col-10 text-center mt-2 innerExampleCol">
+                        <p class="tangerine mt-2 exampleTitle">Déjeuner</p>
+                        <p>De 12h00 à 14h30</p>
+                        <p>Menu du jour à 25€/adulte - 15€/enfant</p>
+                        <p>Possibilté de choix à la carte</p>
+                        <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
+                    </div>
+                    <div class="col-10 text-center mt-2 innerExampleCol mb-2">
+                        <p class="tangerine mt-2 exampleTitle">Diner</p>
+                        <p>De 19h00 à 23h00</p>
+                        <p>Choix à la carte</p>
+                        <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -29,6 +57,7 @@
 </body>
 <!-- My script -->
 <script src="../assets/javascript/dragZone.js"></script>
+<script src="../assets/javascript/showExample.js"></script>
 <!-- Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
