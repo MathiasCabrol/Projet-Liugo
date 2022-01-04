@@ -55,15 +55,18 @@
             </div>
         </div>
         <!-- Creation of the first service -->
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-5 text-center formCol mt-5">
+        <div class="row justify-content-center formRow">
+            <div class="col-12 col-md-5 text-center categoryCol1 formCol mt-5 mx-3">
                 <form action="" method="post" enctype="multipart/form-data">
                     <input type="text" name="[serviceTitle]" placeholder="Hôtel du Cap-Ferret" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
                         <input type="file" name="[servicePhoto]" class="drop-zone__input">
                     </div>
-                    <div class="presta">
+            <!-- Div services à laquelle sont append les éléements crées dans le DOM en JS -->
+            <div class="services">
+            <!-- Div clonée dans le JS -->
+            <div class="presta1">
                 <div class="row justify-content-center">
                     <div class="col-10 text-center mt-2 innerExampleCol">
                         <input type="text" name="[serviceName]" class="mt-2" placeholder="Nom du service">
@@ -76,13 +79,22 @@
                         <input type="text" name="[buttonName]" placeholder="nom du bouton" class="mt-2">
                         <label>Fichier à télécharger au clic</label>
                         <input type="file" name="[buttonFile]" class="my-2">
-                        </div>
+                        </div>  
                     </div>
+                </div>
                 <!-- Closing the "presta" div for JS use -->
-                </div>
-                </div>
-                <button type="button" id="addPresta" class="exampleButton btn btn-outline-light my-4">Ajouter une prestation</button>
+            </div>
+            <!-- CLosing services div -->
+            </div>
+                <button type="button" class="exampleButton btn btn-outline-light addPresta mt-4">Ajouter une prestation</button>
+                <button type="button" class="deleteButton btn btn-outline-light deletePresta my-4">Supprimer la dernière prestation</button>
                 </form> 
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+            <button id="addCategory" type="button" class="showExampleButton btn btn-outline-light mt-4 mx-3">Ajouter une catégorie</button>
+            <button id="deleteCategory" type="button" class="deleteCategoryButton btn btn-outline-light mt-4 mx-3">Supprimer catégorie</button>
             </div>
         </div>
     </div>
@@ -90,10 +102,16 @@
     <?php include 'footer.php' ?>
 </body>
 <!-- My script -->
+<!-- Drag & drop -->
 <script src="../assets/javascript/dragZone.js"></script>
+<!-- Linked to showExample button on top of the page -->
 <script src="../assets/javascript/showExample.js"></script>
+<!-- Linked to radio inputs in the form -->
 <script src="../assets/javascript/checkbox.js"></script>
+<!-- Cloning presta nodes on request -->
 <script src="../assets/javascript/addService.js"></script>
+<!-- Cloning category node on request -->
+<script src="../assets/javascript/addCategory.js"></script>
 <!-- Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
