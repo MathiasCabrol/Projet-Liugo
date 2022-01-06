@@ -78,8 +78,8 @@ if(isset($_POST['saveChanges'])){
                                     <input type="text" name="serviceHour[]" class="mt-2" placeholder="horaires">
                                     <input type="text" name="servicePrice[]" class="mt-2" placeholder="tarifs">
                                     <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
-                                    <input class="my-2 showInput" type="radio" value="Oui"><span>Oui</span>
-                                    <input class="my-2 hideInput" type="radio" value="non"><span>Non</span>
+                                    <input class="my-2 showInput" type="radio" name="buttonQuestion" value="Oui"><span>Oui</span>
+                                    <input class="my-2 hideInput" type="radio" name="buttonQuestion" value="non"><span>Non</span>
                                     <div class="buttonContainer hiddenInput">
                                         <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
                                         <label>Fichier à télécharger au clic</label>

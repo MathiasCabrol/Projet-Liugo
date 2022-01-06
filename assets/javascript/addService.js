@@ -7,10 +7,12 @@ document.querySelector(".addPresta").addEventListener("click", () => {
     let createdDiv = div.cloneNode(true)
     createdDiv.classList.remove("presta1")
     createdDiv.classList.add("presta" + i)
+    createdDiv.querySelector(".showInput").setAttribute('name', 'buttonQuestion' + i)
     createdDiv.querySelector(".showInput").addEventListener("click", () => {
         const buttonContainer = createdDiv.querySelector(".buttonContainer")
         buttonContainer.classList.remove("hiddenInput")
     })
+    createdDiv.querySelector(".hideInput").setAttribute('name', 'buttonQuestion' + i)
     createdDiv.querySelector(".hideInput").addEventListener("click", () => {
         const buttonContainer = createdDiv.querySelector(".buttonContainer")
         buttonContainer.classList.add("hiddenInput")

@@ -7,6 +7,8 @@ addCategory.addEventListener("click", () => {
     j++
     createdCategory.classList.add("categoryCol" + j)
     const div = createdCategory.querySelector(".presta1")
+    let numberOfCreatedDiv = createdCategory.querySelectorAll("[class*=presta]")
+    let createdi = numberOfCreatedDiv.length
     div.querySelector(".showInput").addEventListener("click", () => {
         const buttonContainer = div.querySelector(".buttonContainer")
         buttonContainer.classList.remove("hiddenInput")
@@ -15,14 +17,13 @@ addCategory.addEventListener("click", () => {
         const buttonContainer = div.querySelector(".buttonContainer")
         buttonContainer.classList.add("hiddenInput")
     })
-    let i = 1
 createdCategory.querySelector(".addPresta").addEventListener("click", () => {
     const serviceDiv = createdCategory.querySelector(".services")
-    if(i < 5){
-    i++
+    if(createdi < 5){
+    createdi++
     let createdDiv = div.cloneNode(true)
     createdDiv.classList.remove("presta1")
-    createdDiv.classList.add("presta" + i)
+    createdDiv.classList.add("presta" + createdi)
     createdDiv.querySelector(".showInput").addEventListener("click", () => {
         const buttonContainer = createdDiv.querySelector(".buttonContainer")
         buttonContainer.classList.remove("hiddenInput")
@@ -37,17 +38,18 @@ createdCategory.querySelector(".addPresta").addEventListener("click", () => {
     }
 })
 createdCategory.querySelector(".deletePresta").addEventListener("click", () => {
-    if(i > 1){
-    const lastCreatedDiv = createdCategory.querySelector(".presta" + i)
+    if(createdi > 1){
+    const lastCreatedDiv = createdCategory.querySelector(".presta" + createdi)
     const serviceDiv = createdCategory.querySelector(".services")
     serviceDiv.removeChild(lastCreatedDiv)
-    i--
+    createdi--
     } else {
         alert("Vous ne pouvez pas supprimer le dernier service.")
     }
 })
     mainRow.append(createdCategory)
 })
+
 deleteCategory.addEventListener("click", () => {
     if(j > 1){
         const lastCreatedCategory = document.querySelector(".categoryCol" + j)
