@@ -10,7 +10,7 @@ $page = $_SERVER['REQUEST_URI'];
         <button class="navbar-toggler mx-2" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon white"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav my-2">
                 <li class="nav-item">
                     <a class="nav-link hotelLink<?= $page == "/Liugo/espaceClientHotel/home.php" ? ' hotelActive' : '' ?>" href="home.php">Mon Établissement</a>
@@ -21,7 +21,12 @@ $page = $_SERVER['REQUEST_URI'];
                 <li class="nav-item">
                     <a class="nav-link hotelLink<?= $page == "/Liugo/espaceClientHotel/bookings.php" ? ' hotelActive' : '' ?>" href="bookings.php">Mes réservations</a>
                 </li>
-            </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link hotelLink<?= $page == "/Liugo/espaceClientHotel/account.php" ? ' hotelActive' : '' ?>" href="account.php">Mon compte</a>
+                    </li>
+                </ul>
+
         </div>
     </nav>
 </header>
