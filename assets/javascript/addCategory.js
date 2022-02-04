@@ -6,6 +6,12 @@ addCategory.addEventListener("click", () => {
     createdCategory.classList.remove("categoryCol1")
     j++
     createdCategory.classList.add("categoryCol" + j)
+    let createdServicesInput = createdCategory.querySelectorAll("input")
+    let createdServicesArray = Array.from(createdServicesInput)
+    createdServicesArray.forEach((item) => {
+    let oldName = item.name
+    item.setAttribute("name", j + oldName)
+    })
     const div = createdCategory.querySelector(".presta1")
     let numberOfCreatedDiv = createdCategory.querySelectorAll("[class*=presta]")
     let createdi = numberOfCreatedDiv.length

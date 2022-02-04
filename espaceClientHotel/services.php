@@ -36,7 +36,7 @@ if(isset($_POST['saveChanges'])){
             <!-- Service creation example, shown only if button clicked -->
             <div class="col-12 col-md-5 text-center exampleCol hiddenCol mt-5">
                 <p class="mt-2 exampleTitle">Exemple de création d'un service</p>
-                <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage">
+                <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage2">
                 <div class="row justify-content-center">
                     <div class="col-10 text-center mt-2 innerExampleCol">
                         <p class="tangerine mt-2 exampleTitle">Petit-Déjeuner</p>

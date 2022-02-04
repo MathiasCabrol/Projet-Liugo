@@ -138,8 +138,8 @@ styling */
 
 /* Example images styling */
 .exampleImage {
-    width: 9em;
-    height: 16em;
+    width: 100%;
+    height: 100%;
 }
 
 /* Prices image styling */
@@ -455,7 +455,7 @@ styling */
     background-color: #E8D5A3;
     color: white;
 }
-.exampleImage {
+.exampleImage2 {
     width: 400px;
     height: 300px;
     border-radius: 3px;
