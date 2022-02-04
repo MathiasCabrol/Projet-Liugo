@@ -1,17 +1,26 @@
+//Création incrément pour le nombre de catégories
 let j = 1
+//AJout d'une catégorie au clic
 addCategory.addEventListener("click", () => {
     const category = document.querySelector(".categoryCol1")
     const mainRow = document.querySelector(".formRow")
+    //Clonage de la première catégorie
     let createdCategory = category.cloneNode(true)
+    //Changement de la classe pour qu'elle corresponde au nombre de la catégorie
     createdCategory.classList.remove("categoryCol1")
     j++
     createdCategory.classList.add("categoryCol" + j)
+    //Sélection des ouveaux inputs créés lors du clonage
     let createdServicesInput = createdCategory.querySelectorAll("input")
+    //Transformation en tableau pour les parcourir
     let createdServicesArray = Array.from(createdServicesInput)
     createdServicesArray.forEach((item) => {
+    //Récupération de l'ancien attribut "name"    
     let oldName = item.name
+    //Ajout de l'incrément dans l'attribut name pour récupération des données _POST
     item.setAttribute("name", j + oldName)
     })
+    //Insertion et adaptation du code de addService.js dans le addEventListener
     const div = createdCategory.querySelector(".presta1")
     let numberOfCreatedDiv = createdCategory.querySelectorAll("[class*=presta]")
     let createdi = numberOfCreatedDiv.length
