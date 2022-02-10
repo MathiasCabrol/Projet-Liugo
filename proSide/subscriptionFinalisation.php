@@ -1,9 +1,5 @@
 <?php
-if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
-    include 'finalSubscriptionVerif.php';
-} else {
-    $confirmationError = 'Merci d\'entrer une valeur de bouton valide';
-}
+    require 'controller/finalSubscriptionVerif.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">

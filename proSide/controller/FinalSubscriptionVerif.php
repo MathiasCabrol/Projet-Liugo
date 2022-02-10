@@ -5,6 +5,8 @@ $siretRegex = '/^[0-9]{14}$/';
 
 //Création du tableau vide de listes d'erreurs
 
+if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
+
 $errorList = [];
 
 //Définition des erreurs du champ 'nom'
@@ -51,5 +53,9 @@ if(!empty($_POST['fileInput'])){
     }
 } else {
     $errorList['fileInput'] = 'Merci d\'insérer un fichier.';
+}
+
+} else {
+    $confirmationError = 'Merci d\'entrer une valeur de bouton valide';
 }
 ?>

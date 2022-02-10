@@ -4,6 +4,7 @@ let j = 1
 addCategory.addEventListener("click", () => {
     const category = document.querySelector(".categoryCol1")
     const mainRow = document.querySelector(".formRow")
+    if(j < 4){
     //Clonage de la première catégorie
     let createdCategory = category.cloneNode(true)
     //Changement de la classe pour qu'elle corresponde au nombre de la catégorie
@@ -24,6 +25,7 @@ addCategory.addEventListener("click", () => {
     const div = createdCategory.querySelector(".presta1")
     let numberOfCreatedDiv = createdCategory.querySelectorAll("[class*=presta]")
     let createdi = numberOfCreatedDiv.length
+
     div.querySelector(".showInput").addEventListener("click", () => {
         const buttonContainer = div.querySelector(".buttonContainer")
         buttonContainer.classList.remove("hiddenInput")
@@ -63,6 +65,9 @@ createdCategory.querySelector(".deletePresta").addEventListener("click", () => {
     }
 })
     mainRow.append(createdCategory)
+} else {
+    alert("Vous ne pouvez pas ajouter plus de 4 catégories.")
+}
 })
 
 deleteCategory.addEventListener("click", () => {

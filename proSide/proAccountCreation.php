@@ -1,7 +1,5 @@
 <?php
-if (isset($_POST['confirmer'])) {
-    include 'proAccountCreationVerif.php';
-}
+    require 'controller/proAccountCreationVerif.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
