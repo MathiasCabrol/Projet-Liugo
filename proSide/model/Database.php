@@ -2,6 +2,8 @@
 
 class Database {
 
+protected $db;
+
 public function __construct()
 {
     try {
