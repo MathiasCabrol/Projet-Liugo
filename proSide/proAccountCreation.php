@@ -1,6 +1,5 @@
 <?php
 require 'controller/proAccountCreationVerif.php';
-var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -76,6 +75,7 @@ var_dump($_POST);
                         </div>
                         <div id="StrengthDisp" class="mt-2 w-100 text-center badge displayBadge"></div>
                         <p class="didot mt-3">Vous avez déja un compte ? <a href="connexionPage.php">Connectez vous</a></p>
+                        <p><?= isset($errorList['account']) ? $errorList['account'] : "" ?></p>
                         <div class="col-12 text-center">
                             <input type="submit" name="inscription" value="confirmer" class="btn btn-outline-light priceButton border rounded shadow mt-3">
                         </div>
