@@ -522,3 +522,15 @@ styling */
     color: white;
     border-radius: 3px;
 }
+.inputIcons {
+    width: 100%;
+}
+
+.inputIcons input {
+    width: 90%;
+}
+
+.inputIcons i:hover {
+    color: #5256ad;
+    cursor: pointer;
+}

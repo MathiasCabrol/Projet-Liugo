@@ -1,5 +1,5 @@
 <?php
-    require 'controller/finalSubscriptionVerif.php';
+require 'controller/finalSubscriptionVerif.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
