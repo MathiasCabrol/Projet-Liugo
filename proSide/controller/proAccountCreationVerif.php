@@ -69,8 +69,13 @@ if (isset($_POST['inscription'])) {
                 //Si L'adresse e-mail ne correspond à aucun compte existant dans la bdd, insérer les données
                 if (!$checkAccountExists->check) {
                     $account->createAccount();
-                    //header('location: accountCreationConfirmed.php');
-                    //exit;
+                    $idObject = $account->getId();
+                    session_start();
+                    $_SESSION['login'] = $mail;
+                    $_SESSION['id'] = $idObject->id;
+                    $_SESSION['type'] = $_GET['type'];
+                    header('location: accountCreationConfirmed.php');
+                    exit;
                     //Sinon créer un message d'erreur
                 } else {
                     $errorList['account'] = 'Cette adresse e-mail est déja liée à un compte';

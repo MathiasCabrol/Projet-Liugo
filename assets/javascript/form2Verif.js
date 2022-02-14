@@ -1,26 +1,24 @@
 
-const siretRegex = /^[0-9]{14}$/
-//Regex Nom de l'établissement  
-const textRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\'\.]+$/
 //Regex format mail
 const phoneRegex = /^((([\+]([0-9])*[\.\-\s]?)[0-9]?)||(([0])[0-9]))([\.\-\s])?([0-9]{2}([\.\-\s])?){3}[0-9]{2}$/
+const adressRegex = /^([0-9])*[\s]?([Bb][is])?[\s]([A-Za-zÀ-ÖØ-öø-ÿ\s])*$/
+const postCodeRegex = /^[0-9]{5}$/
 
 //Messages d'erreur pour les champs
-const errorMessageText = "Merci d'entrer un secteur d'activités uniquement en lettres, il est possible d'utiliser des tirets, des underscores et des apostrophes."
 const errorMessagePhone = "Merci d'entrer un numéro de téléphone avec unnformat valide."
-const errorMessageSiret= "Merci d'entrer un Numéro de Siret au format valide (14 chiffres)."
-
-
-sectorInput.addEventListener("input", function () {
-    regexTest(this, textRegex, errorMessageText)
-})
+const errorMessageAddress = "Merci d'entrer une adresse valide"
+const errorMessagePostCode= "Merci d'entrer un code postal valide (5 chiffres)."
 
 phoneInput.addEventListener("input", function () {
     regexTest(this, phoneRegex, errorMessagePhone)
 })
 
-siretInput.addEventListener("input", function () {
-    regexTest(this, siretRegex, errorMessageSiret)
+addressInput.addEventListener("input", function () {
+    regexTest(this, adressRegex, errorMessageAddress)
+})
+
+postCodeInput.addEventListener("input", function () {
+    regexTest(this, postCodeRegex, errorMessagePostCode)
 })
 
 //Création de la fonction qui vérifie la saisie utilisateur et qui affiche le message correspondant.

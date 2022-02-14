@@ -24,6 +24,16 @@ class Account extends Database {
         return $numberOfAccounts;
     }
 
+    public function getId() {
+        $query = 'SELECT `id` FROM ' . $this->table . ' WHERE :email = `email` AND :password = `password`';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $queryStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $selectedId = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $selectedId;
+    }
+
     public function setName($newName) {
         $this->name = $newName;
     }

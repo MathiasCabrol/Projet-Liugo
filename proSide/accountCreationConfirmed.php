@@ -1,3 +1,8 @@
+<?php
+session_start();
+var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -30,7 +35,7 @@
     </div>
     <div class="container-fluid mt-5">
         <img class="laptopImage rounded" src="../assets/img/desk-gf4ea73706_640.jpg">
-        <button class="imageButton btn btn-outline-light priceButton border rounded shadow">Finaliser le compte</button>
+        <a href="subscriptionFinalisation.php" class="imageButton btn btn-outline-light priceButton border rounded shadow">Finaliser le compte</a>
     </div>
     <div class="container">
         <div class="row justify-content-center mt-5">

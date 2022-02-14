@@ -1,5 +1,8 @@
 <?php
 require 'controller/finalSubscriptionVerif.php';
+session_start();
+var_dump($_SESSION);
+var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -38,22 +41,26 @@ require 'controller/finalSubscriptionVerif.php';
                 <div class="col-12 text-center">
                     <h2 class="tangerine">Voici les informations complémentaires à renseigner</h2>
                 </div>
-                <div class="col-7 col-md-3 col-lg-3 mt-5">
+                <div class="col-7 col-md-4 col-lg-3 mt-5">
                     <form method="post" enctype="multipart/form-data" action="<?= !empty($_POST['confirm']) && count($errorList) == 0 ? 'accountCreationConfirmed.php' : '' ?>">
-                        <label>Secteur d'activité</label><br>
-                        <input type="text" id="sectorInput" name="sectorInput"></input>
-                        <label class="mt-3">Téléphone</label>
-                        <input type="text" id="phoneInput" name="phoneInput"></input>
-                        <label class="mt-3">Numéro de SIRET</label>
-                        <input type="text" id="siretInput" name="siretInput"></input>
-                        <p class="didot">Téléchargez votre justificatif</p>
-                        <div class="drag-area" draggable="true">
-                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                            <header>Glisser & déposer pour insérer</header>
-                            <span>OU</span>
-                            <button>Explorateur de fichiers</button>
-                            <input id="fileInput" name="fileInput" type="file" hidden>
-                        </div>
+                        <?php if ($_SESSION['type'] == 'presta') {
+                        ?>
+                            <label for="sectors">Secteur d'activité</label>
+                            <select class="w-100" name="sectors" id="sectors">
+                                <?php foreach($sectorList as $sector){
+                                    ?>
+                                <option value="<?= $sector->sector ?>"><?= $sector->sector ?></option>
+                                <?php } ?>
+                            </select>
+                        <?php } ?>
+                        <label for="phoneInput" class="mt-3">Téléphone</label>
+                        <input class="w-100" type="text" id="phoneInput" name="phoneInput"></input>
+                        <label for="address" class="mt-3">Adresse</label>
+                        <input class="w-100" type="text" id="addressInput" name="addressInput"></input>
+                        <label for="postCode" class="mt-3">Code postal</label>
+                        <input id="postCodeInput" class="w-100" type="text" id="postCodeInput" name="postCode"></input>
+                        <label for="city" class="mt-3">Ville</label>
+                        <input class="w-100" for="city" type="text" id="cityInput" name="city" readonly="true">
                         <div class="col-12 text-center">
                             <input type="submit" value="confirmer" name="confirm" class="btn btn-outline-light priceButton border rounded shadow mt-3">
                         </div>
@@ -70,7 +77,7 @@ require 'controller/finalSubscriptionVerif.php';
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!-- My Javascript -->
-<script src="../assets/javascript/drag.js"></script>
 <script src="../assets/javascript/form2Verif.js"></script>
+<script src="../assets/javascript/showCity.js"></script>
 
 </html>

@@ -1,7 +1,12 @@
 <?php
-$textRegex = '/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\'\.]+$/';
+
+require 'model/Database.php';
+require 'model/Sector.php';
+require 'model/City.php';
+
 $phoneRegex = '/^((([\+]([0-9])*[\.\-\s]?)[0-9]?)||(([0])[0-9]))([\.\-\s])?([0-9]{2}([\.\-\s])?){3}[0-9]{2}$/';
-$siretRegex = '/^[0-9]{14}$/';
+$adressRegex = '/^([0-9])*[\s]?([Bb][is])?[\s]([A-Za-zÀ-ÖØ-öø-ÿ\s])*$/';
+$postCodeRegex = '/^[0-9]{5}$/';
 
 //Création du tableau vide de listes d'erreurs
 
@@ -11,51 +16,50 @@ $errorList = [];
 
 //Définition des erreurs du champ 'nom'
 
-if(!empty($_POST['sectorInput'])){ 
-    if(!preg_match($textRegex, $_POST['sectorInput'])){
-        $errorList['sectorInput'] = 'Merci d\'entrer un secteur d\'activité composé d\'une majuscule, de lettres caractères accentués, tirets et/ou apostrophes.';
+if(!empty($_POST['phoneInput'])){ 
+    if(!preg_match($phoneRegex, $_POST['phoneInput'])){
+        $errorList['phoneInput'] = 'Merci d\'entrer un numéro de téléphone avec unnformat valide.';
     } else {
-        $sectorInput = htmlspecialchars($_POST['sectorInput']);
+        $phone = htmlspecialchars($_POST['phoneInput']);
     }
 } else {
-    $errorList['sectorInput'] = 'Veuillez d\'entrer un secteur d\'activité.';
+    $errorList['phoneInput'] = 'Veuillez entrer un numéro de téléphone.';
 }
 
 //Définition des erreurs du champ 'prénom'
 
-if(!empty($_POST['phoneInput'])){ 
-    if(!preg_match($phoneRegex, $_POST['phoneInput'])){
-        $errorList['phoneInput'] = 'Merci d\'entrer un numéro de téléphone avec un format valide.';
+if(!empty($_POST['addressInput'])){ 
+    if(!preg_match($adressRegex, $_POST['addressInput'])){
+        $errorList['addressInput'] = 'Merci d\'entrer une adresse valide.';
     } else {
-        $phoneInput = htmlspecialchars($_POST['phoneInput']);
+        $address = htmlspecialchars($_POST['addressInput']);
     }
 } else {
-    $errorList['phoneInput'] = 'Merci d\'entrer un numéro de téléphone.';
+    $errorList['addressInput'] = 'Merci d\'entrer une adresse';
 }
 
 //Définition des erreurs du champ 'date de naissance'
 
-if(!empty($_POST['siretInput'])){ 
-    if(!preg_match($siretRegex, $_POST['siretInput'])){
-        $errorList['siretInput'] = 'Merci d\'entrer un numéro de Siret avec un format valide.';
+if(!empty($_POST['postCodeInput'])){ 
+    if(!preg_match($postCodeRegex, $_POST['postCodeInput'])){
+        $errorList['postCodeInput'] = 'Merci d\'entrer un code postal valide (5 chiffres).';
     } else {
-        $siretInput = htmlspecialchars($_POST['siretInput']);
+        $siretInput = htmlspecialchars($_POST['postCodeInput']);
     }
 } else {
-    $errorList['siretInput'] = 'Merci d\'entrer un numéro de Siret.';
+    $errorList['postCodeInput'] = 'Merci d\'entrer un code postal.';
 }
-if(!empty($_POST['fileInput'])){
-    if (!in_array($extension, $valide))
-    { 
-        $errorList['fileInput'] = 'Merci d\'entrer un fichier au format valide (JPEG, JPG, PNG, PDF).';
-    } else {
-        $fileInput = htmlspecialchars($_POST['fileInput']);
-    }
-} else {
-    $errorList['fileInput'] = 'Merci d\'insérer un fichier.';
-}
+
+
+$city = new City;
+$postCodeCity = $city->getCorespondingCity();
+echo $postCodeCity->city;
 
 } else {
     $confirmationError = 'Merci d\'entrer une valeur de bouton valide';
 }
-?>
+
+$sector = new Sector;
+$sectorList = $sector->getSectors();
+
+
