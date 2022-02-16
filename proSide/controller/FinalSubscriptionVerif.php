@@ -88,14 +88,16 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
         $errorList['city'] = 'Merci d\'entrer une ville.';
     }
 
+        //Si il n'y a pas d'erreur, j'envois mes données
     if(count($errorList) == 0){
         $account = new Account;
+        //Vérification préalable du type de compte
         if($_SESSION['type'] == 'presta'){
             $account->setTable('partners');
             $account->setSector($sector);
         } else if ($_SESSION['type'] == 'hotel'){
             $account->setTable('hotels');
-            $header = 'espaceClientHotel/home.php';
+            $header = '../espaceClientHotel/home.php';
         }
         $account->setPhone($phone);
         $account->setAddress($address);
@@ -108,7 +110,7 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
                 $account->subscriptionFinalisationPartners();
             } else if($_SESSION['type'] == 'hotel'){
                 $account->subscriptionFinalisationHotels();
-                // header('Location: ' . $header);
+                header('Location: ' . $header);
             }
         } else {
             $errorList['account'] = 'Vous avez déja renseignées ces informations, merci de vous connecter.';

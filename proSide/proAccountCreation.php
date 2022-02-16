@@ -1,5 +1,6 @@
 <?php
 require 'controller/proAccountCreationVerif.php';
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">

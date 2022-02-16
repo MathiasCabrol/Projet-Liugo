@@ -1,12 +1,5 @@
 <?php
 require 'controller/finalSubscriptionVerif.php';
-
-var_dump($_SESSION);
-var_dump($_POST);
-if(isset($_POST['confirm'])){
-    var_dump($account->subscriptionFinalisationHotels());
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">

@@ -2,6 +2,12 @@
 require 'model/Database.php';
 require 'model/Account.php';
 
+session_start();
+if(isset($_GET['type'])){
+    $_SESSION['type'] = $_GET['type'];
+}
+
+
 $nameRegex = '/^[a-zA-ZÀ-ÖØ-öø-ÿ]*([\_\'\-]*[a-zA-ZÀ-ÖØ-öø-ÿ]*)?$/';
 $mailRegex = '/^[a-z0-9]([a-z0-9\-\_\.]*)[@]([a-z0-9\.]+)[\.]([a-z]){2,5}/i';
 $passwordRegex = '/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/';
@@ -70,10 +76,8 @@ if (isset($_POST['inscription'])) {
                 if (!$checkAccountExists->check) {
                     $account->createAccount();
                     $idObject = $account->getId();
-                    session_start();
                     $_SESSION['login'] = $mail;
                     $_SESSION['id'] = $idObject->id;
-                    $_SESSION['type'] = $_GET['type'];
                     header('location: accountCreationConfirmed.php');
                     exit;
                     //Sinon créer un message d'erreur

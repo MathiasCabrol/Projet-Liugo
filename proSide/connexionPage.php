@@ -1,3 +1,9 @@
+<?php
+require 'controller/connexionPage.php';
+var_dump($_SESSION);
+var_dump($_POST);
+?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -11,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
 
@@ -38,18 +44,27 @@
                     <h2 class="tangerine">De retour ? Connectez-vous.</h2>
                 </div>
                 <div class="col-7 col-md-3 col-lg-3">
-                    <form>
-                        <label class="mt-3">Adresse E-mail</label><br>
-                        <input type="text" id="mailInput"></input>
-                        <label class="mt-3">Mot de passe</label>
-                        <input type="text" id="passwordInput"></input>
+                    <form method="post" action="">
+                        <div class="inputIcons">
+                            <label class="mt-3">Adresse E-mail</label><br>
+                            <input type="text" id="mailInput" name="mailInput"></input>
+                            <label class="mt-3">Mot de passe</label>
+                            <div class="passwordIcon">
+                                <input type="password" id="passwordInput" name="passwordInput"></input>
+                                <i id="showPassword" class="fa-solid fa-eye"></i>
+                            </div>
+                        </div>
+                        <?php if(isset($errorMessage)){
+                            ?>
+                        <p class="errorMessage"><?= $errorMessage ?></p>
+                        <?php } ?>
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-outline-light priceButton border rounded shadow mt-3">Confirmer</button>
+                            <button type="submit" name="confirm" class="btn btn-outline-light priceButton border rounded shadow mt-3">Confirmer</button>
                         </div>
                     </form>
                 </div>
                 <div class="col-12 text-center mt-4">
-                    <img class="rounded" src="../assets/img/welcome-sign-g19613aaa4_640.jpg" alt="Signe de bienvenue avec décor de jungle">
+                    <img class="rounded connexionImage" src="../assets/img/welcome-sign-g19613aaa4_640.jpg" alt="Signe de bienvenue avec décor de jungle">
                 </div>
             </div>
         </div>
@@ -63,5 +78,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!-- My Javascript -->
 <script src="assets/javascript/script.js"></script>
+<script src="../assets/javascript/showPassword.js"></script>
 
 </html>

@@ -53,6 +53,15 @@ class Account extends Database {
         return $queryStatement->execute();
     }
 
+    public function getConnexionId():object {
+        $query = 'SELECT `id`, `password` FROM ' . $this->table . ' WHERE :email = `email`';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $connexionId = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $connexionId;
+    }
+
     public function checkIfPhoneIsNull():object {
         $query = 'SELECT COUNT(`id`) AS `result` FROM ' . $this->table . ' WHERE `phone` IS NULL AND `id` = :id;';
         $queryStatement = $this->db->prepare($query);

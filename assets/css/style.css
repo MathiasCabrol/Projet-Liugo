@@ -215,6 +215,19 @@ confirmed styling */
     top: 90%;
     left: 42.5%;
 }
+
+/* Connexion page */
+
+.connexionImage {
+    width: 60%;
+    height: auto;
+}
+
+.errorMessage { 
+    color: red;
+    font-size: 10px;
+    font-weight: thin;
+}
     
 /* Animation du bouton */
 @keyframes animatedButton {
