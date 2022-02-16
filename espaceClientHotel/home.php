@@ -1,5 +1,8 @@
 <?php
-session_start();
+require 'controller/homeController.php';
+var_dump($_FILES);
+var_dump($_FILES['homePhoto']);
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -84,7 +87,7 @@ session_start();
                         <span class="drop-zone__prompt">Photo de la section services</span>
                         <input type="file" name="servicePhoto" class="drop-zone__input">
                     </div>
-                    <input class="mt-5 confirmationButton btn-outline-light" type="submit" name="confirmer" value="Confirmer">
+                    <input class="mt-5 confirmationButton btn-outline-light" type="submit" name="confirm" value="Confirmer">
                 </form>
             </div>
         </div>
