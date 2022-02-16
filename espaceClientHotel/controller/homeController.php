@@ -1,5 +1,21 @@
 <?php session_start();
 
+/**
+ * Permet de rechercher une valeur partielle dans un tableau
+ * @return bool
+ */
+
+function array_partial_search( $array, $keyword ):bool {
+    foreach ( $array as $string ) {
+        if ( strpos( $string, $keyword ) !== false ) {
+            $check = true;
+        } else { 
+            $check = false;
+        }
+    }
+    return $check;
+}
+
 if (isset($_POST['confirm'])) {
     if (!is_dir('hotels/' . $_SESSION['login'] . '/')) {
         mkdir('hotels/' . $_SESSION['login'] . '/', 0777, true);
@@ -8,7 +24,7 @@ if (isset($_POST['confirm'])) {
     $path = 'hotels/' . $_SESSION['login'] . '/';
     $files = scandir($path);
     $files = array_diff(scandir($path), array('.', '..'));
-    var_dump($files);
+    var_dump(array_partial_search($files, 'homePhoto'));
     
 
     $temp = explode(".", $_FILES['homePhoto']['name']);
