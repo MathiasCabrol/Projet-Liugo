@@ -18,9 +18,9 @@ if(isset($_POST['confirm'])){
     if($passwordCheck){
         $account->setId($selectedAccount->id);
         $phoneCheck = $account->checkIfPhoneIsNull();
+        $_SESSION['login'] = htmlspecialchars($_POST['mailInput']);
+        $_SESSION['id'] = $selectedAccount->id;
         if($phoneCheck->result){ 
-            $_SESSION['login'] = htmlspecialchars($_POST['mailInput']);
-            $_SESSION['id'] = $selectedAccount->id;
             header('location: subscriptionFinalisation.php');
         } else {
             if($_SESSION['type'] == 'presta'){
