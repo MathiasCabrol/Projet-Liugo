@@ -3,6 +3,7 @@ if(isset($_POST['saveChanges'])){
     var_dump($_POST['serviceName']);
     var_dump($_POST);
     var_dump($_POST['serviceTitle']);
+    var_dump($_FILES);
 }
 ?>
 <!DOCTYPE html>
