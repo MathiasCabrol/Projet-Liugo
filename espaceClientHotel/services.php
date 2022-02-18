@@ -74,16 +74,16 @@ if(isset($_POST['saveChanges'])){
                     <!-- Div services à laquelle sont append les éléments crées dans le DOM en JS -->
                     <div class="services">
                         <!-- Div clonée dans le JS -->
-                        <div class="presta1">
+                        <div class="presta">
                             <div class="row justify-content-center">
                                 <div class="col-10 text-center mt-2 innerExampleCol">
                                     <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
                                     <input type="text" name="serviceHour[]" class="mt-2" placeholder="horaires">
                                     <input type="text" name="servicePrice[]" class="mt-2" placeholder="tarifs">
                                     <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
-                                    <input class="my-2 showInput" type="radio" name="buttonQuestion" value="1"><span>Oui</span>
+                                    <input class="my-2 showInput" type="radio" name="buttonQuestion" value="1" checked="checked"><span>Oui</span>
                                     <input class="my-2 hideInput" type="radio" name="buttonQuestion" value="0"><span>Non</span>
-                                    <div class="buttonContainer hiddenInput">
+                                    <div class="buttonContainer">
                                         <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
                                         <label>Fichier à télécharger au clic</label>
                                         <input type="file" name="buttonFile[]" class="my-2">

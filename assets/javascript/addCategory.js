@@ -23,7 +23,7 @@ document.addEventListener("click", event => {
                         <input type="text" name="servicePrice${j}[]" class="mt-2" placeholder="tarifs">
                         <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
                         <input class="my-2 showInput" type="radio" name="buttonQuestion1-${j}" value="1"><span>Oui</span>
-                        <input class="my-2 hideInput" type="radio" name="buttonQuestion1-${j}" value="0"><span>Non</span>
+                        <input class="my-2 hideInput" type="radio" name="buttonQuestion1-${j}" checked="checked" value="0"><span>Non</span>
                         <div class="buttonContainer hiddenInput">
                             <input type="text" name="buttonName${j}[]" placeholder="nom du bouton" class="mt-2">
                             <label>Fichier à télécharger au clic</label>
@@ -46,8 +46,6 @@ document.addEventListener("click", event => {
         return alert("Vous ne pouvez pas supprimer la première catégorie")
     }
     if (event.target.id == "deleteCategory") {
-        numberOfCategories = document.querySelectorAll("div[class*=categoryCol]")
-        console.log(numberOfCategories)
         ElementToRemove = document.querySelector(".categoryCol" + j)
         ElementToRemove.remove()
          j-- 

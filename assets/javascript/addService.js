@@ -5,19 +5,23 @@ document.addEventListener("click", event => {
         return alert("Vous pouvez ajouter un maximum de 5 services")
     }
     if (event.target.matches(".addPresta")) {
+        radioButtonNumber = event.target.parentElement.querySelectorAll("div[class^=presta]").length + 1
+        parentList = event.target.parentElement.classList[3]
+        parentColNumber = parentList.slice(11, 12)
+        parentColNumber
         textToAppend = `<div class="presta">
         <div class="row justify-content-center">
             <div class="col-10 text-center mt-2 innerExampleCol">
-                <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
-                <input type="text" name="serviceHour[]" class="mt-2" placeholder="horaires">
-                <input type="text" name="servicePrice[]" class="mt-2" placeholder="tarifs">
+                <input type="text" name="serviceName${parentColNumber}[]" class="mt-2" placeholder="Nom du service">
+                <input type="text" name="serviceHour${parentColNumber}[]" class="mt-2" placeholder="horaires">
+                <input type="text" name="servicePrice${parentColNumber}[]" class="mt-2" placeholder="tarifs">
                 <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
-                <input class="my-2 showInput" type="radio" name="buttonQuestion${numberOfServices}-${j}" value="1"><span>Oui</span>
-                <input class="my-2 hideInput" type="radio" name="buttonQuestion${numberOfServices}-${j}" value="0"><span>Non</span>
+                <input class="my-2 showInput" type="radio" name="buttonQuestion${radioButtonNumber}-${parentColNumber}" value="1"><span>Oui</span>
+                <input class="my-2 hideInput" type="radio" name="buttonQuestion${radioButtonNumber}-${parentColNumber}" checked="checked" value="0"><span>Non</span>
                 <div class="buttonContainer hiddenInput">
-                    <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
+                    <input type="text" name="buttonName${parentColNumber}[]" placeholder="nom du bouton" class="mt-2">
                     <label>Fichier à télécharger au clic</label>
-                    <input type="file" name="buttonFile[]" class="my-2">
+                    <input type="file" name="buttonFile${parentColNumber}[]" class="my-2">
                 </div>
             </div>
         </div>`

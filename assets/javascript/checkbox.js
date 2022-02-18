@@ -1,8 +1,16 @@
-document.querySelector(".showInput").addEventListener("click", () => {
-    const buttonContainer = document.querySelector(".buttonContainer")
-    buttonContainer.classList.remove("hiddenInput")
-})
-document.querySelector(".hideInput").addEventListener("click", () => {
-    const buttonContainer = document.querySelector(".buttonContainer")
-    buttonContainer.classList.add("hiddenInput")
+document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("click", event => {
+        if (event.target.matches(".showInput")) {
+            inputName = event.target.name
+            selectedInput = document.getElementsByName(inputName)[0]
+            closestContainer = selectedInput.closest("div").querySelector(".buttonContainer")
+            closestContainer.classList.remove("hiddenInput")
+        }
+        if (event.target.matches(".hideInput")) {
+            inputName = event.target.name
+            selectedInput = document.getElementsByName(inputName)[0]
+            closestContainer = selectedInput.closest(`div`).querySelector('.buttonContainer')
+            closestContainer.classList.add("hiddenInput")
+        }
+    })
 })
