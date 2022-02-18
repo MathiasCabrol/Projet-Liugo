@@ -3,8 +3,11 @@ class Hotel extends Database {
 
     private string $email;    
     
-    
-    public function getHotelNameFromEmail() {
+    /**
+     * Fonction qui retourne un objet avec l'attribut name contenant le nom de l'établissement connecté
+     * @return object
+     */
+    public function getHotelNameFromEmail():object {
         $query = 'SELECT `name` FROM `hotels` WHERE `email` = :email';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);

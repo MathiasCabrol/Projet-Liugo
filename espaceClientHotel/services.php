@@ -1,6 +1,8 @@
 <?php
 if(isset($_POST['saveChanges'])){
     var_dump($_POST['serviceName']);
+    var_dump($_POST);
+    var_dump($_POST['serviceTitle']);
 }
 ?>
 <!DOCTYPE html>
@@ -68,7 +70,7 @@ if(isset($_POST['saveChanges'])){
                         <span class="drop-zone__prompt text-black">Photo du service</span>
                         <input type="file" name="servicePhoto[]" class="drop-zone__input">
                     </div>
-                    <!-- Div services à laquelle sont append les éléements crées dans le DOM en JS -->
+                    <!-- Div services à laquelle sont append les éléments crées dans le DOM en JS -->
                     <div class="services">
                         <!-- Div clonée dans le JS -->
                         <div class="presta1">
@@ -78,8 +80,8 @@ if(isset($_POST['saveChanges'])){
                                     <input type="text" name="serviceHour[]" class="mt-2" placeholder="horaires">
                                     <input type="text" name="servicePrice[]" class="mt-2" placeholder="tarifs">
                                     <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
-                                    <input class="my-2 showInput" type="radio" name="buttonQuestion" value="Oui"><span>Oui</span>
-                                    <input class="my-2 hideInput" type="radio" name="buttonQuestion" value="non"><span>Non</span>
+                                    <input class="my-2 showInput" type="radio" name="buttonQuestion" value="1"><span>Oui</span>
+                                    <input class="my-2 hideInput" type="radio" name="buttonQuestion" value="0"><span>Non</span>
                                     <div class="buttonContainer hiddenInput">
                                         <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
                                         <label>Fichier à télécharger au clic</label>
@@ -91,7 +93,7 @@ if(isset($_POST['saveChanges'])){
                         </div>
                         <!-- CLosing services div -->
                     </div>
-                    <button type="button" class="exampleButton btn btn-outline-light addPresta mt-4">Ajouter une prestation</button>
+                    <button type="button" class="exampleButton btn btn-outline-light addPresta my-4">Ajouter une prestation</button>
                     <button type="button" class="deleteButton btn btn-outline-light deletePresta my-4">Supprimer la dernière prestation</button>
                 </div>
             </div>
