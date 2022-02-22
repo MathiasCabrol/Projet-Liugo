@@ -10,14 +10,16 @@ class Account extends Database {
     private string $postcode;
     private int $idCities;
     private string $sector;
+    private string $token;
     private string $table;
 
     public function createAccount():bool {
-        $query = 'INSERT INTO ' . $this->table . ' (`name`, `email`, `password`) VALUES (:name, :email, :password)';
+        $query = 'INSERT INTO ' . $this->table . ' (`name`, `email`, `password`, `token`) VALUES (:name, :email, :password, :token)';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
         $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         $queryStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $queryStatement->bindValue(':token', $this->token, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
@@ -31,25 +33,25 @@ class Account extends Database {
     }
 
     public function subscriptionFinalisationPartners():bool {
-        $query = 'UPDATE ' . $this->table . ' SET `phone` = :phone, `address` = :address, `postcode` = :postcode, `id_cities` = :idcities, `sector` = :sector WHERE `id` = :id';
+        $query = 'UPDATE ' . $this->table . ' SET `phone` = :phone, `address` = :address, `postcode` = :postcode, `id_cities` = :idcities, `sector` = :sector WHERE `email` = :email';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $queryStatement->bindValue(':address', $this->address, PDO::PARAM_STR);
         $queryStatement->bindValue(':postcode', $this->postcode, PDO::PARAM_STR);
         $queryStatement->bindValue(':idcities', $this->idCities, PDO::PARAM_INT);
         $queryStatement->bindValue(':sector', $this->sector, PDO::PARAM_STR);
-        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
     public function subscriptionFinalisationHotels():bool {
-        $query = 'UPDATE ' . $this->table . ' SET `phone` = :phone, `address` = :address, `postcode` = :postcode, `id_cities` = :idcities WHERE `id` = :id';
+        $query = 'UPDATE ' . $this->table . ' SET `phone` = :phone, `address` = :address, `postcode` = :postcode, `id_cities` = :idcities WHERE `email` = :email';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $queryStatement->bindValue(':address', $this->address, PDO::PARAM_STR);
         $queryStatement->bindValue(':postcode', $this->postcode, PDO::PARAM_STR);
         $queryStatement->bindValue(':idcities', $this->idCities, PDO::PARAM_INT);
-        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
@@ -63,9 +65,18 @@ class Account extends Database {
     }
 
     public function checkIfPhoneIsNull():object {
-        $query = 'SELECT COUNT(`id`) AS `result` FROM ' . $this->table . ' WHERE `phone` IS NULL AND `id` = :id;';
+        $query = 'SELECT COUNT(`id`) AS `result` FROM ' . $this->table . ' WHERE `phone` IS NULL AND `email` = :email;';
         $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+    // SELECT COUNT(`id`) AS `result` FROM hotels WHERE `token` IS NULL AND `email` = 'test@gmail.com';
+    public function checkIfTokenIsNull():object {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM ' . $this->table . ' WHERE `token` IS NULL AND `email` = :email;';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         $queryStatement->execute();
         $result = $queryStatement->fetch(PDO::FETCH_OBJ);
         return $result;
@@ -79,6 +90,40 @@ class Account extends Database {
         $queryStatement->execute();
         $selectedId = $queryStatement->fetch(PDO::FETCH_OBJ);
         return $selectedId;
+    }
+
+    public function checkToken():object{
+        $query = 'SELECT COUNT(`id`) AS `result` FROM ' . $this->table . ' WHERE `token` = :token';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':token', $this->token, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $result = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    public function getEmailFromToken():object{
+        $query = 'SELECT `email` FROM ' . $this->table . ' WHERE `token` = :token';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':token', $this->token, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $result = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    public function setTokenNull():bool{
+        $query = 'UPDATE ' . $this->table . ' SET `token` = NULL WHERE `email` = :email';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        return $queryStatement->execute();;
+    }
+
+
+    public function getMail():string{
+        return $this->email;
+    }
+
+    public function setToken($newToken) {
+        $this->token = $newToken;
     }
 
     public function setName($newName) {

@@ -207,14 +207,6 @@ confirmed styling */
     margin-left: auto;
     margin-right: auto;
 }
-.imageButton {
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-name: animatedButton;
-    position: absolute;
-    top: 90%;
-    left: 42.5%;
-}
 
 /* Connexion page */
 

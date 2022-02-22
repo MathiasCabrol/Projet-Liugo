@@ -82,7 +82,8 @@ if (!isset($_POST['confirm'])) {
 
 
 
-//Pour chaque fichier enregistré, insère le chemin dans le tableau $filePath pour affichage dans exemple vue client
+//Si le dossier existe, Pour chaque fichier enregistré, insère le chemin dans le tableau $filePath pour affichage dans exemple vue client
+if (is_dir('hotels/' . $_SESSION['login'] . '/')) {
 $files = scandir('hotels/' . $_SESSION['login'] . '/');
 $files = array_splice($files, 2);
 foreach ($filesArray as $fileName => $errorMessage) {
@@ -91,6 +92,7 @@ foreach ($filesArray as $fileName => $errorMessage) {
         $file[$fileName] = $fileCheck->returnFile($fileName);
         $filePath[$fileName] = 'hotels/' . $_SESSION['login'] . '/' . $file[$fileName];
     }
+}
 }
 
 

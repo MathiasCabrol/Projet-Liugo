@@ -21,6 +21,8 @@ require 'controller/finalSubscriptionVerif.php';
 <body>
     <?php include 'header.php' ?>
     <!-- Titre page -->
+    <?php if(isset($_GET['token']) && ($_GET['type'] == 'presta' || $_GET['type'] == 'hotel')){
+        ?>
     <section>
         <div class="container">
             <div class="row justify-content-center">
@@ -64,6 +66,10 @@ require 'controller/finalSubscriptionVerif.php';
             </div>
         </div>
     </section>
+    <?php }else {
+        include 'errorMessage.php';
+    }
+        ?>
     <?php include 'footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->

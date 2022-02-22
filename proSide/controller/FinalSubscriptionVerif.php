@@ -1,5 +1,6 @@
 <?php
 
+
 if (isset($_POST['postCode'])) {
     require '../model/Database.php';
     require '../model/Sector.php';
@@ -12,6 +13,10 @@ if (isset($_POST['postCode'])) {
 }
 
 session_start();
+
+if (isset($_GET['type'])) {
+    $_SESSION['type'] = $_GET['type'];
+}
 
 
 $phoneRegex = '/^((([\+]([0-9])*[\.\-\s]?)[0-9]?)||(([0])[0-9]))([\.\-\s])?([0-9]{2}([\.\-\s])?){3}[0-9]{2}$/';
@@ -88,35 +93,54 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
         $errorList['city'] = 'Merci d\'entrer une ville.';
     }
 
-        //Si il n'y a pas d'erreur, j'envois mes données
-    if(count($errorList) == 0){
+    if (isset($_GET['token'])) {
         $account = new Account;
         //Vérification préalable du type de compte
-        if($_SESSION['type'] == 'presta'){
+        if ($_SESSION['type'] == 'presta') {
             $account->setTable('partners');
-            $account->setSector($sector);
-        } else if ($_SESSION['type'] == 'hotel'){
+        } else if ($_SESSION['type'] == 'hotel') {
             $account->setTable('hotels');
             $header = '../espaceClientHotel/home.php';
+        }
+        $account->setToken(htmlspecialchars($_GET['token']));
+        $result = $account->checkToken();
+        if ($result->result) {
+            $token = $_GET['token'];
+        } else {
+            $errorList['token'] = 'Le jeton unique d\'identification ne correspond à aucun compte';
+        }
+    } else {
+        $errorList['token'] = 'Aucun jeton unique n\'est reconnu, merci d\'utiliser à nouveau le lien fourni par email.';
+    }
+
+    //Si il n'y a pas d'erreur, j'envois mes données
+    if (count($errorList) == 0) {
+        $email = $account->getEmailFromToken();
+        $account->setEmail($email->email);
+        if ($_SESSION['type'] == 'presta') {
+            $account->setSector($sector);
         }
         $account->setPhone($phone);
         $account->setAddress($address);
         $account->setPostCode($postCode);
         $account->setIdCities($city);
-        $account->setId(htmlspecialchars($_SESSION['id']));
         $check = $account->checkIfPhoneIsNull();
-        if($check->result){
-            if($_SESSION['type'] == 'presta'){
-                $account->subscriptionFinalisationPartners();
-            } else if($_SESSION['type'] == 'hotel'){
-                $account->subscriptionFinalisationHotels();
-                header('Location: ' . $header);
+        if ($check->result) {
+            if ($_SESSION['type'] == 'presta') {
+                if ($account->subscriptionFinalisationPartners()) {
+                    $account->setTokenNull();
+                }
+            } else if ($_SESSION['type'] == 'hotel') {
+                if ($account->subscriptionFinalisationHotels()) {
+                    if($account->setTokenNull()){
+                        header('Location: ../espaceClientHotel/home.php');
+                    }
+                }
             }
         } else {
             $errorList['account'] = 'Vous avez déja renseignées ces informations, merci de vous connecter.';
         }
     }
-
 } else {
     $confirmationError = 'Merci d\'entrer une valeur de bouton valide';
 }
@@ -145,3 +169,8 @@ if (isset($_POST['postCode'])) {
 
 $sector = new Sector;
 $sectorList = $sector->getSectors();
+
+if (isset($_POST['confirm'])) {
+    var_dump($errorList);
+    var_dump($_SESSION);
+}

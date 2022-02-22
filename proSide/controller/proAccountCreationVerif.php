@@ -1,6 +1,7 @@
 <?php
 require 'model/Database.php';
 require 'model/Account.php';
+require 'class/Token.php';
 
 session_start();
 if(isset($_GET['type'])){
@@ -74,12 +75,31 @@ if (isset($_POST['inscription'])) {
                 $checkAccountExists = $account->checkIfAccountExists();
                 //Si L'adresse e-mail ne correspond à aucun compte existant dans la bdd, insérer les données
                 if (!$checkAccountExists->check) {
-                    $account->createAccount();
-                    $idObject = $account->getId();
-                    $_SESSION['login'] = $mail;
-                    $_SESSION['id'] = $idObject->id;
-                    header('location: accountCreationConfirmed.php');
-                    exit;
+                    $token = new Token;
+                    $generatedToken = $token->createToken();
+                    $account->setToken($generatedToken);
+                    if($account->createAccount()){
+                        /**
+                         * Envoi du mail contenant le lien de confirmation
+                         */
+                        // $to = $account->getMail();
+                        // $subject = 'Liugo : Confirmation d\'inscription';
+                        // $message = '<html>
+                        // <head><title>LiveP2 : Confirmation de l\'inscription</title></head>
+                        // <body><h1>Bienvenue chez Liugo.</h1>
+                        // <p>Il ne reste plus qu\'une étape pour faire partie de nos membres. Merci de valider votre adresse mail en cliquant sur le lien ci-dessous.</p>
+                        //<a href="http://liugo/proSide/subscriptionFinalisation.php?token= . $generatedToken . '&type=' . $_GET['type'] . ">Clique ici</a></body>
+                        // </html>';
+                        // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                        // $headers[] = 'MIME-Version: 1.0';
+                        // $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+                        // $headers[] = 'From: Liugo <mmathiascabrol@gmail.com>';
+                        // mail($to, $subject, $message, implode("\r\n", $headers));
+                        $idObject = $account->getId();
+                        header('location: subscriptionFinalisation.php?type=' . $_SESSION['type'] . '&token=' . $generatedToken);
+                        exit;
+                    }
+                    
                     //Sinon créer un message d'erreur
                 } else {
                     $errorList['account'] = 'Cette adresse e-mail est déja liée à un compte';
