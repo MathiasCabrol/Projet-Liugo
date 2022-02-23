@@ -38,7 +38,7 @@ document.addEventListener("click", event => {
         let elementToRemove = event.target.closest("[class=presta]")
         elementToRemove.remove()
         let prestaDivs = document.querySelectorAll("div[class=presta]")
-        for (let i = 0; i <= prestaDivs.length; i++) {
+        for (let i = 0; i < prestaDivs.length; i++) {
             let divsRadio = prestaDivs[i].querySelectorAll("input[type=radio]")
             divsRadio.forEach(element => {
                 let nameToChange = element.name
@@ -46,7 +46,7 @@ document.addEventListener("click", event => {
                 element.name = replacedName
             })
         }
-        numberOfServices = event.target.parentElement.querySelectorAll("div[class=presta]").length
+        numberOfServices = document.querySelectorAll("div[class=presta]").length
         return
     }
 
