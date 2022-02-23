@@ -17,54 +17,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <h1 class="hotelTitle mt-5 ">Mes Services</h1>
+                <h1 class="hotelTitle mt-5 ">Création de service</h1>
             </div>
             <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">
-                <p>Vous trouverez sur cette page la totalité des services que vous pouvez proposer à vos clients.</p>
-                <p>Ils auront la possibilité de les réserver directement sur la page de votre établissement.</p>
-                <p>Ajoutez des photos, des descriptions, tarifs et plus encore !</p>
+                <p>Ci-dessous vous trouverez le formulaire vous permettant de créer un service.</p>
+                <p>Vos potentiels clients auront accès à ces informations lors de leur connexion</p>
+                <p>Une fois créé, vous pourrez le retrouver sur la page "services" et le modifier.</p>
             </div>
-            <hr class="hotelSeparation mt-5">
-            <?php if($newUser){
-                ?>
-            <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">
-                <p><?= $tutoText ?></p>  
-                <div class="addService">
-                    <a class="plusButton" href="addService.php">+</a> 
-                </div> 
-                
-            </div>
-            <!-- Service creation example, shown only if button clicked -->
-            <div class="col-12 col-md-5 text-center exampleCol mt-5">
-                <p class="mt-2 exampleTitle">Exemple de création d'un service</p>
-                <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage2">
-                <div class="row justify-content-center">
-                    <div class="col-10 text-center mt-2 innerExampleCol">
-                        <p class="tangerine mt-2 exampleTitle">Petit-Déjeuner</p>
-                        <p>De 7h00 à 10h30</p>
-                        <p>10€/enfant - 18€/adulte</p>
-                    </div>
-                    <div class="col-10 text-center mt-2 innerExampleCol">
-                        <p class="tangerine mt-2 exampleTitle">Déjeuner</p>
-                        <p>De 12h00 à 14h30</p>
-                        <p>Menu du jour à 25€/adulte - 15€/enfant</p>
-                        <p>Possibilté de choix à la carte</p>
-                        <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
-                    </div>
-                    <div class="col-10 text-center mt-2 innerExampleCol mb-2">
-                        <p class="tangerine mt-2 exampleTitle">Diner</p>
-                        <p>De 19h00 à 23h00</p>
-                        <p>Choix à la carte</p>
-                        <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
-                    </div>
-                </div>
-            </div>
-            <?php } ?>
         </div>
-        <!-- Creation of the first service -->
         <form action="" method="post" enctype="multipart/form-data">
             <div class="row justify-content-center formRow">
-                <div class="col-12 col-md-5 text-center categoryCol formCol mt-5 mx-3">
+                <div class="col-12 col-md-5 text-center categoryCol1 formCol mt-5 mx-3">
                     <input type="text" name="serviceTitle[]" placeholder="Restauration" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
@@ -75,7 +38,8 @@
                         <!-- Div clonée dans le JS -->
                         <div class="presta">
                             <div class="row justify-content-center">
-                                <div class="col-10 text-center mt-2 innerExampleCol">
+                                <div class="col-10 text-center mt-4 innerExampleCol">
+                                    <button type="button" class="redCrossButton btn btn-outline-light deletePresta my-4">x</button>
                                     <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
                                     <label for="serviceStartingHour">Heure de début</label>
                                     <input type="time" name="serviceStartingHour[]" class="mt-2" placeholder="heure de début">
@@ -97,37 +61,25 @@
                         <!-- CLosing services div -->
                     </div>
                     <button type="button" class="exampleButton btn btn-outline-light addPresta my-4">Ajouter une prestation</button>
-                    <button type="button" class="deleteButton btn btn-outline-light deletePresta my-4">Supprimer la dernière prestation</button>
                 </div>
             </div>
-        <div class="row justify-content-center">
-            <div class="col-12 text-center">
-                <button id="addCategory" type="button" class="showExampleButton btn btn-outline-light mt-4 mx-3">Ajouter une catégorie</button>
-                <button id="deleteCategory" type="button" class="deleteCategoryButton btn btn-outline-light mt-4 mx-3">Supprimer catégorie</button>
-            </div>
-        </div>
-        <hr class="hotelSeparation mt-5">
-        <div class="row justify-content-center mt-5">
+            <hr class="hotelSeparation mt-5">
+            <div class="row justify-content-center mt-5">
                 <div class="col-12 text-center">
                     <input type="submit" name="saveChanges" class="saveButton btn btn-outline-light" value="Sauvegarder">
                 </div>
             </div>
         </form>
     </div>
-
     <?php include 'footer.php' ?>
 </body>
 <!-- My script -->
 <!-- Drag & drop -->
 <script src="../assets/javascript/dragZone.js"></script>
-<!-- Linked to showExample button on top of the page -->
-<script src="../assets/javascript/showExample.js"></script>
 <!-- Linked to radio inputs in the form -->
 <script src="../assets/javascript/checkbox.js"></script>
 <!-- Cloning presta nodes on request -->
 <script src="../assets/javascript/addService.js"></script>
-<!-- Cloning category node on request -->
-<script src="../assets/javascript/addCategory.js"></script>
 <!-- Bootstrap Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

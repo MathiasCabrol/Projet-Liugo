@@ -392,10 +392,9 @@ styling */
     border: 1px solid black;
     border-radius: 10px;
 }
-.hiddenCol {
-    display: none;
-}
+
 .innerExampleCol {
+    position: relative;
     background-color: white;
     border: 1px solid black;
     border-radius: 3px;
@@ -419,10 +418,13 @@ styling */
     color: white;
     width: 12em;
 }
-.deleteButton {
+.redCrossButton {
+    position: absolute;
+    right: -20px;
+    top: -40px;
     background-color: red;
     color: white;
-    width: 18em;
+    width: auto;
 }
 .showExampleButton {
     width: 12em;
@@ -438,14 +440,27 @@ styling */
 .hiddenInput {
     display: none;
 }
-.deleteCategoryButton {
-    width: 12em;
-    border: none;
-    background-color: red;
-    color: white;
-    border-radius: 3px;
-    height: 3em;
+.addService {
+    background-color: rgb(44, 206, 44);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: black solid 1px;
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
 }
+
+.addService:hover{
+    background-color: rgb(41, 172, 41);
+}
+
+.plusButton, .plusButton:hover {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+}
+
 .saveButton {
     width: 12em;
     border: none;
