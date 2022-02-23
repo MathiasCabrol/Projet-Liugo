@@ -1,11 +1,4 @@
-<?php
-if(isset($_POST['saveChanges'])){
-    var_dump($_POST['serviceName']);
-    var_dump($_POST);
-    var_dump($_POST['serviceTitle']);
-    var_dump($_FILES);
-}
-?>
+<?php include 'controller/servicesController.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -66,10 +59,10 @@ if(isset($_POST['saveChanges'])){
         <form action="" method="post" enctype="multipart/form-data">
             <div class="row justify-content-center formRow">
                 <div class="col-12 col-md-5 text-center categoryCol1 formCol mt-5 mx-3">
-                    <input type="text" name="serviceTitle[]" placeholder="Restauration" class="mt-5">
+                    <input type="text" name="serviceTitle1[]" placeholder="Restauration" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
-                        <input type="file" name="servicePhoto[]" class="drop-zone__input">
+                        <input type="file" name="servicePhoto1[]" class="drop-zone__input">
                     </div>
                     <!-- Div services à laquelle sont append les éléments crées dans le DOM en JS -->
                     <div class="services">
@@ -77,16 +70,19 @@ if(isset($_POST['saveChanges'])){
                         <div class="presta">
                             <div class="row justify-content-center">
                                 <div class="col-10 text-center mt-2 innerExampleCol">
-                                    <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
-                                    <input type="text" name="serviceHour[]" class="mt-2" placeholder="horaires">
-                                    <input type="text" name="servicePrice[]" class="mt-2" placeholder="tarifs">
+                                    <input type="text" name="serviceName1[]" class="mt-2" placeholder="Nom du service">
+                                    <label for="serviceStartingHour1">Heure de début</label>
+                                    <input type="time" name="serviceStartingHour1[]" class="mt-2" placeholder="heure de début">
+                                    <input type="number" name="servicePrice1[]" class="mt-2" placeholder="tarifs">
+                                    <label for="serviceEndingHour1">Heure de fin</label>
+                                    <input type="time" name="serviceEndingHour1[]" class="mt-2" placeholder="heure de fin">
                                     <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
                                     <input class="my-2 showInput" type="radio" name="buttonQuestion" value="1" checked="checked"><span>Oui</span>
                                     <input class="my-2 hideInput" type="radio" name="buttonQuestion" value="0"><span>Non</span>
                                     <div class="buttonContainer">
-                                        <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
+                                        <input type="text" name="buttonName1[]" placeholder="nom du bouton" class="mt-2">
                                         <label>Fichier à télécharger au clic</label>
-                                        <input type="file" name="buttonFile[]" class="my-2">
+                                        <input type="file" name="buttonFile1[]" class="my-2">
                                     </div>
                                 </div>
                             </div>

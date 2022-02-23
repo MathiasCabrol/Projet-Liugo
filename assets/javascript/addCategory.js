@@ -19,8 +19,11 @@ document.addEventListener("click", event => {
                 <div class="row justify-content-center">
                     <div class="col-10 text-center mt-2 innerExampleCol">
                         <input type="text" name="serviceName${j}[]" class="mt-2" placeholder="Nom du service">
-                        <input type="text" name="serviceHour${j}[]" class="mt-2" placeholder="horaires">
-                        <input type="text" name="servicePrice${j}[]" class="mt-2" placeholder="tarifs">
+                        <label for="serviceStartingHour${j}">Heure de début</label>
+                        <input type="time" name="serviceStartingHour${j}[]" class="mt-2" placeholder="heure de début">
+                        <input type="number" name="servicePrice${j}[]" class="mt-2" placeholder="tarifs">
+                        <label for="serviceEndingHour${j}">Heure de fin</label>
+                        <input type="time" name="serviceEndingHour${j}[]" class="mt-2" placeholder="heure de fin">
                         <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
                         <input class="my-2 showInput" type="radio" name="buttonQuestion1-${j}" value="1"><span>Oui</span>
                         <input class="my-2 hideInput" type="radio" name="buttonQuestion1-${j}" checked="checked" value="0"><span>Non</span>
