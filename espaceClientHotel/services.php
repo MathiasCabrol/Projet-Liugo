@@ -65,7 +65,7 @@
         <form action="" method="post" enctype="multipart/form-data">
             <div class="row justify-content-center formRow">
                 <div class="col-12 col-md-5 text-center categoryCol formCol mt-5 mx-3">
-                    <input type="text" name="serviceTitle[]" placeholder="Restauration" class="mt-5">
+                    <input type="text" name="serviceTitle" placeholder="Restauration" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
                         <input type="file" name="servicePhoto[]" class="drop-zone__input">

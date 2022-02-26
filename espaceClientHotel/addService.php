@@ -28,10 +28,10 @@
         <form action="" method="post" enctype="multipart/form-data">
             <div class="row justify-content-center formRow">
                 <div class="col-12 col-md-5 text-center categoryCol1 formCol mt-5 mx-3">
-                    <input type="text" name="serviceTitle[]" placeholder="Restauration" class="mt-5">
+                    <input type="text" name="serviceTitle" placeholder="Restauration" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
-                        <input type="file" name="servicePhoto[]" class="drop-zone__input">
+                        <input type="file" name="servicePhoto" class="drop-zone__input">
                     </div>
                     <!-- Div services à laquelle sont append les éléments crées dans le DOM en JS -->
                     <div class="services">
@@ -43,7 +43,7 @@
                                     <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
                                     <label for="serviceStartingHour">Heure de début</label>
                                     <input type="time" name="serviceStartingHour[]" class="mt-2" placeholder="heure de début">
-                                    <input type="number" name="servicePrice[]" class="mt-2" placeholder="tarifs">
+                                    <input type="number" min="1" step="any" placeholder="tarif ex: 10.50" name="servicePrice[]" class="mt-2" placeholder="tarifs">
                                     <label for="serviceEndingHour1">Heure de fin</label>
                                     <input type="time" name="serviceEndingHour[]" class="mt-2" placeholder="heure de fin">
                                     <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
