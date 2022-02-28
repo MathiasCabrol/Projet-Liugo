@@ -11,8 +11,8 @@ $descriptionRegex = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúù�
 $fileCheck = new Files;
 $presentation = new Presentation();
 
-//Décflaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
-$filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil', 'activityPhoto' => 'Merci d\'insérer une photo pour la section activités', 'servicePhoto' => 'Merci d\'insérer une photo pour la section service',];
+//Déclaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
+$filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil', 'activityPhoto' => 'Merci d\'insérer une photo pour la section activités', 'servicePhoto' => 'Merci d\'insérer une photo pour la section service'];
 
 if (isset($_POST['confirm'])) {
     //Création d'un tableau d'erreur vide
@@ -30,11 +30,11 @@ if (isset($_POST['confirm'])) {
     //Différents setters de la classe Files.php
     $fileCheck->setLogin($_SESSION['login']);
     $fileCheck->setFilesArray($files);
-    /* Utilisation du tableau déclaré plus haut, pour chaque fichier, si l'ont ne rencontre pas 
+    /* Utilisation du tableau déclaré plus haut, pour chaque fichier, si l'on ne rencontre pas 
     d'erreur lors du téléchargement, insérer le fichier dans le dossier, sinon créer un message d'erreur correspondant */
     foreach ($filesArray as $fileName => $errorMessage) {
         if (!$_FILES[$fileName]['error']) {
-            $fileCheck->registrationChecks($fileName);
+            $fileCheck->registrationChecks($fileName, $path);
         } else {
             $errorList[$fileName] = $errorMessage;
         }

@@ -41,13 +41,13 @@ public function returnFile($keyword)
  * Fonction permettant d'enregistrer le fichier en paramètre dans le dossier de l'utilisateur connecté
  * @return string
  */
-private function fileRegistration($fileName): string
+private function fileRegistration($fileName, $path): string
 {
     $temp = explode(".", $_FILES[$fileName]['name']);
     $newfilename = $fileName . '.' . end($temp);
-    $uploaddir = 'hotels/' . $this->login . '/';
-    $uploadfile = $uploaddir . $newfilename;
-    if (move_uploaded_file($_FILES[$fileName]['tmp_name'], $uploadfile)) {
+    // $uploaddir = 'hotels/' . $this->login . '/';
+    $path .= $newfilename;
+    if (move_uploaded_file($_FILES[$fileName]['tmp_name'], $path)) {
         $result =  "File is valid, and was successfully uploaded.\n";
     } else {
         $result =  "Possible file upload attack!\n";
@@ -59,19 +59,19 @@ private function fileRegistration($fileName): string
 /**
  * Fonction englobante de toutes les autres méthodes de la classe
  */
-public function registrationChecks($file)
+public function registrationChecks($file, $path)
 {
     if(!empty($this->filesArray)) {
         if (!$this->array_partial_search($file)) {
-            $this->fileRegistration($file);
+            $this->fileRegistration($file, $path);
         } else {
             $oldFile = $this->returnFile($file);
             unlink('hotels/' . $this->login . '/' . $oldFile);
-            $this->fileRegistration($file);
+            $this->fileRegistration($file, $path);
         }
     }
 
-    $this->fileRegistration($file);
+    $this->fileRegistration($file, $path);
 }
 
 public function setLogin($newLogin):void {

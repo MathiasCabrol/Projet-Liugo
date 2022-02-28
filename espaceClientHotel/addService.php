@@ -31,7 +31,7 @@
                     <input type="text" name="serviceTitle" placeholder="Restauration" class="mt-5">
                     <div class="drop-zone mt-5">
                         <span class="drop-zone__prompt text-black">Photo du service</span>
-                        <input type="file" name="servicePhoto" class="drop-zone__input">
+                        <input type="file" name="categoryPhoto" class="drop-zone__input">
                     </div>
                     <!-- Div services à laquelle sont append les éléments crées dans le DOM en JS -->
                     <div class="services">
