@@ -55,6 +55,12 @@ private function fileRegistration($fileName, $path): string
     return $result;
 }
 
+public function renameFile($fileName, $path, $id) {
+    $temp = explode(".", $_FILES[$fileName]['name']);
+    $newfilename = $fileName . $id . '.' . end($temp);
+    return rename($path . $fileName . '.' . end($temp), $path . $newfilename);
+}
+
 
 /**
  * Fonction englobante de toutes les autres méthodes de la classe
@@ -66,7 +72,7 @@ public function registrationChecks($file, $path)
             $this->fileRegistration($file, $path);
         } else {
             $oldFile = $this->returnFile($file);
-            unlink('hotels/' . $this->login . '/' . $oldFile);
+            unlink('hotels/' . $this->login . '/' . 'category' . '/' . $oldFile);
             $this->fileRegistration($file, $path);
         }
     }

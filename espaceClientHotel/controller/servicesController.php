@@ -27,6 +27,22 @@ if ($numberOfServices == 0) {
     $newUser = false;
 }
 
+if(!$newUser && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
+    var_dump($service->getAllServices($service->getHotelId()));
+    $servicesInfos = $service->getAllServices($service->getHotelId());
+    $files = scandir('hotels/' . $_SESSION['login'] . '\/category/');
+    $files = array_splice($files, 2);
+    $fileCheck->setFilesArray($files);
+    foreach($servicesInfos as $info){
+        $subService = new subService;
+        $subServicesInfos = $subService->getAllSubServices($info->id);
+        var_dump($subServicesInfos);
+        $returnedFile = $fileCheck->returnFile($info->id);
+        $returnedFileArray = explode('.', $returnedFile);
+        $extension[$info->id] = end($returnedFileArray);
+    }
+}
+
 if (isset($_POST['saveChanges'])) {
     $errorList = [];
 
@@ -130,8 +146,8 @@ if (isset($_POST['saveChanges'])) {
             if (preg_match($boolRegex, $_POST['buttonQuestion' . $i])) {
                 $buttonQuestion[] = htmlspecialchars($_POST['buttonQuestion' . $i]);
                 var_dump($buttonQuestion);
-                if (!empty($_POST['buttonName'][$i]) && $_POST['buttonQuestion' . $i] == '1') {
-                    $buttonName[] = htmlspecialchars($_POST['buttonName'][$i]);
+                if (isset($_POST['buttonName'][$i]) && $_POST['buttonQuestion' . $i] == '1') {
+                    $buttonName[$i] = htmlspecialchars($_POST['buttonName'][$i]);
                     var_dump($buttonName);
                 } else if (empty($_POST['buttonName'][$i]) && $_POST['buttonQuestion' . $i] == '1') {
                     $errorList['buttonName'][$i] = 'Merci de renseigner le nom du bouton que vous souhaitez ajouter, sinon cocher "non"';
@@ -144,13 +160,17 @@ if (isset($_POST['saveChanges'])) {
         }
     }
 
-    var_dump($errorList);
-
     if (count($errorList) == 0) {
         $service->setServiceTitle($serviceTitle);
         $service->addService();
         $serviceId = $service->getServiceId();
-
+        foreach ($filesArray as $fileName => $errorMessage) {
+            if (!$_FILES[$fileName]['error']) {
+                $fileCheck->renameFile($fileName, $path, $serviceId);
+            } else {
+                $errorList[$fileName] = $errorMessage;
+            }
+        }
         for ($i = 0; $i <= (count($checkedServiceName) - 1); $i++) {
             $subService = new SubService;
             $subService->setTitle($checkedServiceName[$i]);

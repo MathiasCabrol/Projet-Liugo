@@ -18,11 +18,11 @@ if (isset($_POST['confirm'])) {
     //Création d'un tableau d'erreur vide
     $errorList = [];
     //Si le dossier du client n'existe pas, on le crée en utilisant son login
-    if (!is_dir('hotels/' . $_SESSION['login'] . '/')) {
-        mkdir('hotels/' . $_SESSION['login'] . '/', 0777, true);
+    if (!is_dir('hotels/' . $_SESSION['login'] . '/' . 'home' . '/')) {
+        mkdir('hotels/' . $_SESSION['login'] . '/' . 'home' . '/', 0777, true);
     }
     //Détermination du chemin pour l'ajout des fichiers
-    $path = 'hotels/' . $_SESSION['login'] . '/';
+    $path = 'hotels/' . $_SESSION['login'] . '/' . 'home' . '/';
     //Tableau qui retourne tous les fichiers dans le dossier du client
     $files = scandir($path);
     //Suppression des deux premiers indexs qui retournent respectivement "." et ".."
@@ -86,13 +86,16 @@ if (!isset($_POST['confirm'])) {
 if (is_dir('hotels/' . $_SESSION['login'] . '/')) {
 $files = scandir('hotels/' . $_SESSION['login'] . '/');
 $files = array_splice($files, 2);
-foreach ($filesArray as $fileName => $errorMessage) {
-    $fileCheck->setFilesArray($files);
-    if ($fileCheck->array_partial_search($fileName)) {
-        $file[$fileName] = $fileCheck->returnFile($fileName);
-        $filePath[$fileName] = 'hotels/' . $_SESSION['login'] . '/' . $file[$fileName];
+if(!$files){
+    foreach ($filesArray as $fileName => $errorMessage) {
+        $fileCheck->setFilesArray($files);
+        if ($fileCheck->array_partial_search($fileName)) {
+            $file[$fileName] = $fileCheck->returnFile($fileName);
+            $filePath[$fileName] = 'hotels/' . $_SESSION['login'] . '/' . $file[$fileName];
+        }
     }
 }
+
 }
 
 

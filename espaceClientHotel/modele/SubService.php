@@ -29,6 +29,15 @@ class SubService extends Database {
         return $subServiceId;
     }
 
+    public function getAllSubServices(int $serviceId){
+        $query = 'SELECT `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `startingHour`, `SS`.`finishingHour` AS `finishingHour`, `SS`.`price` AS `price`, `SS`.`addButton` AS `addButton` FROM `subservices` AS `SS` WHERE :serviceid = `SS`.`id_services`';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceid', $serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $subServicesInfo = $queryStatement->fetchAll(PDO::FETCH_OBJ);
+    return $subServicesInfo;
+    }
+
     public function setTitle($newTitle):void {
         $this->title = $newTitle;
     }

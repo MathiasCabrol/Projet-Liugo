@@ -25,95 +25,58 @@
                 <p>Ajoutez des photos, des descriptions, tarifs et plus encore !</p>
             </div>
             <hr class="hotelSeparation mt-5">
-            <?php if($newUser){
-                ?>
-            <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">
-                <p><?= $tutoText ?></p>  
-                <div class="addService">
-                    <a class="plusButton" href="addService.php">+</a> 
-                </div> 
-                
-            </div>
-            <!-- Service creation example, shown only if button clicked -->
-            <div class="col-12 col-md-5 text-center exampleCol mt-5">
-                <p class="mt-2 exampleTitle">Exemple de création d'un service</p>
-                <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage2">
-                <div class="row justify-content-center">
-                    <div class="col-10 text-center mt-2 innerExampleCol">
-                        <p class="tangerine mt-2 exampleTitle">Petit-Déjeuner</p>
-                        <p>De 7h00 à 10h30</p>
-                        <p>10€/enfant - 18€/adulte</p>
+            <div class="addService">
+                        <a class="plusButton" href="addService.php">+</a>
                     </div>
-                    <div class="col-10 text-center mt-2 innerExampleCol">
-                        <p class="tangerine mt-2 exampleTitle">Déjeuner</p>
-                        <p>De 12h00 à 14h30</p>
-                        <p>Menu du jour à 25€/adulte - 15€/enfant</p>
-                        <p>Possibilté de choix à la carte</p>
-                        <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
-                    </div>
-                    <div class="col-10 text-center mt-2 innerExampleCol mb-2">
-                        <p class="tangerine mt-2 exampleTitle">Diner</p>
-                        <p>De 19h00 à 23h00</p>
-                        <p>Choix à la carte</p>
-                        <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
+            <?php if ($newUser) {
+            ?>
+                <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">
+                    <p><?= $tutoText ?></p>
+                </div>
+                <!-- Service creation example, shown only if button clicked -->
+                <div class="col-12 col-md-5 text-center exampleCol mt-5">
+                    <p class="mt-2 exampleTitle">Exemple de création d'un service</p>
+                    <img src="../assets/img/restaurant-g8e7b7bd58_640.jpg" class="exampleImage2">
+                    <div class="row justify-content-center">
+                        <div class="col-10 text-center mt-2 innerExampleCol">
+                            <p class="tangerine mt-2 exampleTitle">Petit-Déjeuner</p>
+                            <p>De 7h00 à 10h30</p>
+                            <p>10€/enfant - 18€/adulte</p>
+                        </div>
+                        <div class="col-10 text-center mt-2 innerExampleCol">
+                            <p class="tangerine mt-2 exampleTitle">Déjeuner</p>
+                            <p>De 12h00 à 14h30</p>
+                            <p>Menu du jour à 25€/adulte - 15€/enfant</p>
+                            <p>Possibilté de choix à la carte</p>
+                            <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
+                        </div>
+                        <div class="col-10 text-center mt-2 innerExampleCol mb-2">
+                            <p class="tangerine mt-2 exampleTitle">Diner</p>
+                            <p>De 19h00 à 23h00</p>
+                            <p>Choix à la carte</p>
+                            <button class="exampleButton btn btn-outline-light mb-2">Consulter notre carte</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+        </div>
+    <?php } else { ?>
+        <!-- Affichage des différents services crées  -->
+        <div class="row justify-content-around">
+            <?php foreach ($servicesInfos as $service) { ?>
+                <div class="col-3 text-center">
+                    <div class="col-12 text-center my-5 text-black">
+                        <h2 class="tangerine hotelSub"><?= $service->title ?></h2>
+                        <img class="mt-5 previewImage" src="<?= 'hotels/' . $_SESSION['login'] . '/' . 'category/' . 'categoryPhoto' . $service->id . '.' . $extension[$service->id] ?>">
+
+
+
+                    </div>
+                </div>
             <?php } ?>
         </div>
-        <!-- Creation of the first service -->
-        <form action="" method="post" enctype="multipart/form-data">
-            <div class="row justify-content-center formRow">
-                <div class="col-12 col-md-5 text-center categoryCol formCol mt-5 mx-3">
-                    <input type="text" name="serviceTitle" placeholder="Restauration" class="mt-5">
-                    <div class="drop-zone mt-5">
-                        <span class="drop-zone__prompt text-black">Photo du service</span>
-                        <input type="file" name="servicePhoto[]" class="drop-zone__input">
-                    </div>
-                    <!-- Div services à laquelle sont append les éléments crées dans le DOM en JS -->
-                    <div class="services">
-                        <!-- Div clonée dans le JS -->
-                        <div class="presta">
-                            <div class="row justify-content-center">
-                                <div class="col-10 text-center mt-2 innerExampleCol">
-                                    <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
-                                    <label for="serviceStartingHour">Heure de début</label>
-                                    <input type="time" name="serviceStartingHour[]" class="mt-2" placeholder="heure de début">
-                                    <input type="number" name="servicePrice[]" class="mt-2" placeholder="tarifs">
-                                    <label for="serviceEndingHour1">Heure de fin</label>
-                                    <input type="time" name="serviceEndingHour[]" class="mt-2" placeholder="heure de fin">
-                                    <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
-                                    <input class="my-2 showInput" type="radio" name="buttonQuestion0" value="1" checked="checked"><span>Oui</span>
-                                    <input class="my-2 hideInput" type="radio" name="buttonQuestion0" value="0"><span>Non</span>
-                                    <div class="buttonContainer">
-                                        <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
-                                        <label>Fichier à télécharger au clic</label>
-                                        <input type="file" name="buttonFile[]" class="my-2">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Closing the "presta" div for JS use -->
-                        </div>
-                        <!-- CLosing services div -->
-                    </div>
-                    <button type="button" class="exampleButton btn btn-outline-light addPresta my-4">Ajouter une prestation</button>
-                    <button type="button" class="deleteButton btn btn-outline-light deletePresta my-4">Supprimer la dernière prestation</button>
-                </div>
-            </div>
-        <div class="row justify-content-center">
-            <div class="col-12 text-center">
-                <button id="addCategory" type="button" class="showExampleButton btn btn-outline-light mt-4 mx-3">Ajouter une catégorie</button>
-                <button id="deleteCategory" type="button" class="deleteCategoryButton btn btn-outline-light mt-4 mx-3">Supprimer catégorie</button>
-            </div>
-        </div>
-        <hr class="hotelSeparation mt-5">
-        <div class="row justify-content-center mt-5">
-                <div class="col-12 text-center">
-                    <input type="submit" name="saveChanges" class="saveButton btn btn-outline-light" value="Sauvegarder">
-                </div>
-            </div>
-        </form>
+    <?php } ?>
     </div>
+</div>
 
     <?php include 'footer.php' ?>
 </body>

@@ -1,6 +1,6 @@
 <footer class="sandBackground text-center text-white">
   <!-- Footer container -->
-  <div class="container p-4 pb-0 mt-5">
+  <div class="container-fluid p-4 pb-0 mt-5">
     <!-- Social media -->
     <section class="mb-4">
       <!-- Facebook -->
