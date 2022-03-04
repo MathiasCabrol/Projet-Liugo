@@ -48,9 +48,9 @@ private function fileRegistration($fileName, $path): string
     // $uploaddir = 'hotels/' . $this->login . '/';
     $path .= $newfilename;
     if (move_uploaded_file($_FILES[$fileName]['tmp_name'], $path)) {
-        $result =  "File is valid, and was successfully uploaded.\n";
+        $result =  "Le fichier est valide et a été télécchargé.\n";
     } else {
-        $result =  "Possible file upload attack!\n";
+        $result =  "POssiblement une attaque par fichier!\n";
     }
     return $result;
 }
