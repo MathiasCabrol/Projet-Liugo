@@ -274,6 +274,7 @@ styling */
 .hotelBody {
     background-image: url(../img/clouds_background.jpeg);
     background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 .hotelSeparation {
     height: 0px;
@@ -474,6 +475,30 @@ styling */
     width: 100%;
     height: auto;
 }
+
+.showService {
+    background: white;
+    border-radius: 10%;
+    position: relative;
+}
+
+.servicesButtons {
+    height: 40px;
+    width: 40px;
+}
+
+.crossButton {
+    position: absolute;
+    top: -5%;
+    right: -5%;
+}
+
+.modifyButton {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+}
+
 /* Specific Hotel side reservation page perks */
 .reservationTable {
     background-color: white;

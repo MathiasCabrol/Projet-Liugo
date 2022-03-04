@@ -35,7 +35,7 @@ if(!$newUser && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
     $fileCheck->setFilesArray($files);
     foreach($servicesInfos as $info){
         $subService = new subService;
-        $subServicesInfos = $subService->getAllSubServices($info->id);
+        $subServicesInfos[$info->id] = $subService->getAllSubServices($info->id);
         var_dump($subServicesInfos);
         $returnedFile = $fileCheck->returnFile($info->id);
         $returnedFileArray = explode('.', $returnedFile);
