@@ -6,20 +6,28 @@ require 'modele/SubService.php';
 require 'modele/subServicesButton.php';
 require 'class/Files.php';
 
+//Regex pour gestion du formulaire
 $titleRegex = '/^([A-Za-zÀ-ÖØ-öø-ÿ])+[- .]*$/';
 $hourRegex = '/^(([0-1][0-9])|(2[0-3])):[0-5][0-9]$/';
 $priceRegex = '/^[0-9]{1,5}([.-][0-9]{2})?$/';
 $boolRegex = '/^[0-1]$/';
 
+//Début de session
 session_start();
 
+//Instance de la classe de gestion de fichiers
 $fileCheck = new Files;
+//Instance de la classe modele service
 $service = new Service;
 
+//Paramètrage de l'id dans la classe de gestion des services
 $service->setHotelId($_SESSION['id']);
+//Vérifiation de service déja créé pôur affichage
 $checkIfServiceExist = $service->checkIfServicesAdded();
+//Nombre de services déja créés
 $numberOfServices = $checkIfServiceExist->count;
 
+//Conditions pour affichage
 if ($numberOfServices == 0) {
     $tutoText = 'Ajoutez votre premier service ! Cliquez sur le bouton + afin de proposer un nouveau service à vos clients !';
     $newUser = true;
@@ -27,6 +35,7 @@ if ($numberOfServices == 0) {
     $newUser = false;
 }
 
+//Récupération des données pour affichage si l'utilisateur a déja créé des services
 if(!$newUser && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
     var_dump($service->getAllServices($service->getHotelId()));
     $servicesInfos = $service->getAllServices($service->getHotelId());
@@ -36,7 +45,6 @@ if(!$newUser && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
     foreach($servicesInfos as $info){
         $subService = new subService;
         $subServicesInfos[$info->id] = $subService->getAllSubServices($info->id);
-        var_dump($subServicesInfos);
         $returnedFile = $fileCheck->returnFile($info->id);
         $returnedFileArray = explode('.', $returnedFile);
         $extension[$info->id] = end($returnedFileArray);
@@ -72,7 +80,7 @@ if (isset($_POST['saveChanges'])) {
         }
     }
 
-
+    //Vérifications du champ de titre de service dans le formulaire
     if (!empty($_POST['serviceTitle'])) {
         if (preg_match($titleRegex, $_POST['serviceTitle'])) {
             $serviceTitle = htmlspecialchars($_POST['serviceTitle']);
@@ -83,7 +91,7 @@ if (isset($_POST['saveChanges'])) {
         $errorList['serviceTitle'] = 'Merci d\'entrer un titre de service';
     }
 
-
+    //Vérifications du champ de titre de sous-service dans le formulaire
     if (isset($_POST['serviceName'])) {
         foreach ($_POST['serviceName'] as $serviceName) {
             if (!empty($serviceName)) {
@@ -98,6 +106,7 @@ if (isset($_POST['saveChanges'])) {
         $errorList['serviceName'] = 'Merci d\'entrer un nom de sous-service';
     }
 
+    //Vérifications du champ de heure de début dans le formulaire
     if (isset($_POST['serviceStartingHour'])) {
         foreach ($_POST['serviceStartingHour'] as $serviceStartingHour) {
             if (!empty($serviceStartingHour)) {
@@ -112,6 +121,7 @@ if (isset($_POST['saveChanges'])) {
         $errorList['serviceStartingHour'] = 'Merci d\'entrer une heure de début';
     }
 
+    //Vérifications du champ de prix dans le formulaire
     if (isset($_POST['servicePrice'])) {
         foreach ($_POST['servicePrice'] as $servicePrice) {
             if (!empty($servicePrice)) {
@@ -126,6 +136,7 @@ if (isset($_POST['saveChanges'])) {
         $errorList['servicePrice'] = 'Merci d\'entrer une heure de début';
     }
 
+    //Vérifications du champ de heure de fin dans le formulaire
     if (isset($_POST['serviceEndingHour'])) {
         foreach ($_POST['serviceEndingHour'] as $serviceEndingHour) {
             if (!empty($serviceEndingHour)) {
@@ -140,15 +151,17 @@ if (isset($_POST['saveChanges'])) {
         $errorList['serviceEndingHour'] = 'Merci d\'entrer une heure de début';
     }
 
+    //Vérification des champs de sous-services en fonction de leur quantité personalisable
     for ($i = 0; $i <= (count($_POST['serviceName']) - 1); $i++) {
         if (isset($_POST['buttonQuestion' . $i])) {
-            var_dump($_POST['buttonQuestion' . $i]);
+            //Vérification regex de la b aleur du bouton radio
             if (preg_match($boolRegex, $_POST['buttonQuestion' . $i])) {
+                //Insertion de la valeur (1 ou 0) dans la base de donnée
                 $buttonQuestion[] = htmlspecialchars($_POST['buttonQuestion' . $i]);
-                var_dump($buttonQuestion);
+                //Si l'utilisateur veux ajouter un bouton et que la valeur du nom est entrée
                 if (isset($_POST['buttonName'][$i]) && $_POST['buttonQuestion' . $i] == '1') {
                     $buttonName[$i] = htmlspecialchars($_POST['buttonName'][$i]);
-                    var_dump($buttonName);
+                //Si il n'y a pas de valeur entrée dans le nom du bouton    
                 } else if (empty($_POST['buttonName'][$i]) && $_POST['buttonQuestion' . $i] == '1') {
                     $errorList['buttonName'][$i] = 'Merci de renseigner le nom du bouton que vous souhaitez ajouter, sinon cocher "non"';
                 }
@@ -160,10 +173,14 @@ if (isset($_POST['saveChanges'])) {
         }
     }
 
+    //On compte le nombre d'erreurs liées au formulaire
     if (count($errorList) == 0) {
+        //Ajout du service
         $service->setServiceTitle($serviceTitle);
         $service->addService();
+        //Récupération de son id
         $serviceId = $service->getServiceId();
+        //On vient renommer le fichier pour que son nom corresponde à l'id du service enregistré par l'utilisateur
         foreach ($filesArray as $fileName => $errorMessage) {
             if (!$_FILES[$fileName]['error']) {
                 $fileCheck->renameFile($fileName, $path, $serviceId);
@@ -171,21 +188,28 @@ if (isset($_POST['saveChanges'])) {
                 $errorList[$fileName] = $errorMessage;
             }
         }
+        //Pour chaque sous-service enregistré
         for ($i = 0; $i <= (count($checkedServiceName) - 1); $i++) {
+            //INstance du modele sous-service
             $subService = new SubService;
+            //Les différents setter pour chaque tour de boucle
             $subService->setTitle($checkedServiceName[$i]);
             $subService->setStartingHour($checkedServiceStartingHour[$i]);
             $subService->setPrice($checkedServicePrice[$i]);
             $subService->setFinishingHour($checkedServiceEndingHour[$i]);
             $subService->setAddButton($buttonQuestion[$i]);
             $subService->setIdService($serviceId);
+            //Ajout du sous-service dans la bdd
             $subService->addSubService();
+            //Récupération de l'id du sous-service
             $subServiceId = $subService->getSubServiceId();
-            var_dump($subServiceId);
+            //Si l'utilisateur souhaite ajouter un bouton
             if ($buttonQuestion[$i] == '1') {
+                //>Instanciation du modèle bouton sous-service
                 $subServiceButton = new SubServiceButton;
                 $subServiceButton->setButtonValue($buttonName[$i]);
                 $subServiceButton->setIdSubService($subServiceId);
+                //INsertion du bouton dans la bdd
                 $subServiceButton->insertButtonValue();
             }
         }
