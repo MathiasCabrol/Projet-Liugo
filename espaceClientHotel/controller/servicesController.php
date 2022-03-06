@@ -15,6 +15,8 @@ $boolRegex = '/^[0-1]$/';
 //Début de session
 session_start();
 
+var_dump($_SESSION);
+
 //Instance de la classe de gestion de fichiers
 $fileCheck = new Files;
 //Instance de la classe modele service
@@ -33,6 +35,25 @@ if ($numberOfServices == 0) {
     $newUser = true;
 } else {
     $newUser = false;
+}
+
+if(isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
+    if($_GET['action'] == 'delete'){
+        if(isset($_GET['id'])){
+            $service->setServiceId(htmlspecialchars($_GET['id']));
+            if($service->checkIfServiceExists()){
+                $service->deleteService();
+            }
+        }
+    } elseif($_GET['action'] == 'modify'){
+        if(isset($_GET['id'])){
+            $service->setServiceId(htmlspecialchars($_GET['id']));
+            if($service->checkIfServiceExists()){
+                $_SESSION['serviceId'] = htmlspecialchars($_GET['id']);
+                header('location: modifyService.php');
+            }
+        }
+    }
 }
 
 //Récupération des données pour affichage si l'utilisateur a déja créé des services

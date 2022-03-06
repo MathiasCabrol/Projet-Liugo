@@ -499,6 +499,12 @@ styling */
     left: -5%;
 }
 
+/* Services modification page */
+
+.bold {
+    font-weight: bold;
+}
+
 /* Specific Hotel side reservation page perks */
 .reservationTable {
     background-color: white;

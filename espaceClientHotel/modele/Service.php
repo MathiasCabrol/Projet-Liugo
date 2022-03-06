@@ -3,6 +3,7 @@ class Service extends Database {
 
     private int $idhotel;
     private string $serviceTitle;
+    private int $serviceId;
 
     public function checkIfServicesAdded() {
         $query = 'SELECT COUNT(`id`) AS `count` FROM `services` WHERE `id_hotels` = :idhotels';
@@ -37,6 +38,35 @@ class Service extends Database {
         $queryStatement->execute();
         $servicesInfo = $queryStatement->fetchAll(PDO::FETCH_OBJ);
         return $servicesInfo;
+    }
+
+    public function checkIfServiceExists() {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
+    public function deleteService() {
+        $query = 'DELETE FROM `services` WHERE `services`.`id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        return $queryStatement->execute();
+    }
+
+    public function displayService() {
+        $query = 'SELECT `S`.`title` AS `serviceTitle`, `S`.`id` AS `serviceId` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $serviceInfo = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $serviceInfo;
+    }
+
+    public function setServiceId($newServiceId){
+        $this->serviceId = $newServiceId;
     }
 
     public function setServiceTitle($newServiceTitle): void {

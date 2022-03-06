@@ -72,7 +72,7 @@ public function registrationChecks($file, $path)
             $this->fileRegistration($file, $path);
         } else {
             $oldFile = $this->returnFile($file);
-            unlink('hotels/' . $this->login . '/' . 'category' . '/' . $oldFile);
+            unlink($path . '/' . $oldFile);
             $this->fileRegistration($file, $path);
         }
     }
