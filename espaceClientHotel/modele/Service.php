@@ -14,6 +14,15 @@ class Service extends Database {
         return $result;
     }
 
+    public function checkIfServiceExists() {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
     public function addService(): bool {
         $query = 'INSERT INTO `services` (`id_hotels`, `title`) VALUES (:idhotels, :title)';
         $queryStatement = $this->db->prepare($query);
@@ -40,22 +49,6 @@ class Service extends Database {
         return $servicesInfo;
     }
 
-    public function checkIfServiceExists() {
-        $query = 'SELECT COUNT(`id`) AS `result` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
-        $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
-        $queryStatement->execute();
-        $result = $queryStatement->fetchColumn();
-        return $result;
-    }
-
-    public function deleteService() {
-        $query = 'DELETE FROM `services` WHERE `services`.`id` = :serviceId';
-        $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
-        return $queryStatement->execute();
-    }
-
     public function displayService() {
         $query = 'SELECT `S`.`title` AS `serviceTitle`, `S`.`id` AS `serviceId` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
         $queryStatement = $this->db->prepare($query);
@@ -63,6 +56,21 @@ class Service extends Database {
         $queryStatement->execute();
         $serviceInfo = $queryStatement->fetch(PDO::FETCH_OBJ);
         return $serviceInfo;
+    }
+
+    public function updateServiceTitle(){
+        $query = 'UPDATE `services` SET `title` = :title WHERE `id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':title', $this->serviceTitle, PDO::PARAM_STR);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        return $queryStatement->execute();
+    }
+
+    public function deleteService() {
+        $query = 'DELETE FROM `services` WHERE `services`.`id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        return $queryStatement->execute();
     }
 
     public function setServiceId($newServiceId){

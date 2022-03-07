@@ -37,20 +37,37 @@ if ($numberOfServices == 0) {
     $newUser = false;
 }
 
+//Si le paramètre GET est set et que l'utilisateur se trouve sur la bonne page
 if(isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
+    //Si le paramètre action est égal à "delete" qui est définis par le clic de l'utilisateur
     if($_GET['action'] == 'delete'){
+        //Si le paramètre id existe et n'a pas été modifié volontairement
         if(isset($_GET['id'])){
+            //Setter de la classe service correspondant à l'id du service séléctionné
             $service->setServiceId(htmlspecialchars($_GET['id']));
+            //On vérifie si l'id correspond bien dans la base de donnée, retourne 1 en cas de réussite ou 0 en cas d'échec
             if($service->checkIfServiceExists()){
+                //Suppression du service
                 $service->deleteService();
+                //Suppression de l'image liée à ce service
+                $fileCheck->deleteCategoryFile($_GET['id']);
+            } else {
+                //Si l'id ne correspond à aucune ligne dans la table, affichage d'un message d'erreur
+                $getErrorMessage = 'Une erreur a été détéctée, veuillez réessayer.';
             }
         }
+        //Si le paramètre action et égal à "modify"
     } elseif($_GET['action'] == 'modify'){
         if(isset($_GET['id'])){
+            //Setter de la classe service
             $service->setServiceId(htmlspecialchars($_GET['id']));
+            //On vérifie si le service existe dans la bdd
             if($service->checkIfServiceExists()){
-                $_SESSION['serviceId'] = htmlspecialchars($_GET['id']);
-                header('location: modifyService.php');
+                //On redirige vers la page de modification de service en insérant en paramètre GET l'id du service à modifier
+                header('location: modifyService.php?id=' . $_GET['id']);
+            } else {
+                //Si l'id n'existe pas, on affiche un message d'erreur
+                $getErrorMessage = 'Une erreur a été détéctée, veuillez réessayer.';
             }
         }
     }
@@ -58,14 +75,16 @@ if(isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClientHotel/service
 
 //Récupération des données pour affichage si l'utilisateur a déja créé des services
 if(!$newUser && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php'){
-    var_dump($service->getAllServices($service->getHotelId()));
+    //Récupération des différents services en fonction de l'id de l'hotel pour affichage
     $servicesInfos = $service->getAllServices($service->getHotelId());
+    //Scan du dossier dans lequel sont enregistrés les images des services
     $files = scandir('hotels/' . $_SESSION['login'] . '\/category/');
+    //Supression des deux premiers index du tableau, égaux à "." et ".."
     $files = array_splice($files, 2);
+    //Utilisation du setter de la classe Files
     $fileCheck->setFilesArray($files);
+    //Pour chaque service, récupération de l'extension pour affichage
     foreach($servicesInfos as $info){
-        $subService = new subService;
-        $subServicesInfos[$info->id] = $subService->getAllSubServices($info->id);
         $returnedFile = $fileCheck->returnFile($info->id);
         $returnedFileArray = explode('.', $returnedFile);
         $extension[$info->id] = end($returnedFileArray);

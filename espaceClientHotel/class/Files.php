@@ -36,6 +36,23 @@ public function returnFile($keyword)
     return $file;
 }
 
+public function deleteCategoryFile($id)
+{
+    $path = 'hotels/' . $_SESSION['login'] . '\/category/';
+    $files = scandir($path);
+    $files = array_splice($files, 2);
+    $this->setFilesArray($files);
+    $fileToDelete = $this->returnFile($id);
+    return unlink($path . $fileToDelete);
+}
+
+public function registerCategoryFile($oldPath, $oldFileName, $id)
+{
+    $path = 'hotels/' . $_SESSION['login'] . '\/category/';
+    $temp = explode(".", $oldFileName);
+    return rename($oldPath, $path . 'categoryPhoto' . $id . '.' . end($temp));
+}
+
 
 /**
  * Fonction permettant d'enregistrer le fichier en paramètre dans le dossier de l'utilisateur connecté

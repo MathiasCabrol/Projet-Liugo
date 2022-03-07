@@ -25,8 +25,11 @@
             </div>
             <hr class="hotelSeparation mt-5">
             <div class="addService my-5">
-                        <a class="plusButton" href="addService.php">+</a>
-                    </div>
+                <a class="plusButton" href="addService.php">+</a>
+            </div>
+            <?php if(isset($getErrorMessage)){ ?>
+            <div class="col-12 text-center text-danger"><p><?= $getErrorMessage ?></p></div>
+            <?php } ?>
             <?php if ($newUser) {
             ?>
                 <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">

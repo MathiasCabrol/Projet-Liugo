@@ -1,6 +1,7 @@
 <?php
 class SubService extends Database {
 
+    private int $id;
     private string $title;
     private string $startingHour;
     private float $price;
@@ -30,12 +31,37 @@ class SubService extends Database {
     }
 
     public function getAllSubServices(int $serviceId){
-        $query = 'SELECT `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `startingHour`, `SS`.`finishingHour` AS `finishingHour`, `SS`.`price` AS `price`, `SS`.`addButton` AS `addButton` FROM `subservices` AS `SS` WHERE :serviceid = `SS`.`id_services`';
+        $query = 'SELECT `SS`.`id` AS `subServiceId`, `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `startingHour`, `SS`.`finishingHour` AS `finishingHour`, `SS`.`price` AS `price`, `SS`.`addButton` AS `addButton` FROM `subservices` AS `SS` WHERE :serviceid = `SS`.`id_services`';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $serviceId, PDO::PARAM_INT);
         $queryStatement->execute();
         $subServicesInfo = $queryStatement->fetchAll(PDO::FETCH_OBJ);
-    return $subServicesInfo;
+        return $subServicesInfo;
+    }
+
+    public function getSubServiceById(){
+        $query = 'SELECT `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `startingHour`, `SS`.`finishingHour` AS `finishingHour`, `SS`.`price` AS `price`, `SS`.`addButton` AS `addButton` FROM `subservices` AS `SS` WHERE :subserviceid = `SS`.`id`';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $subServicesInfo = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $subServicesInfo;
+    }
+
+    public function checkIfSubServiceExists() {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM `subservices` WHERE `id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
+    public function deleteSubService() {
+        $query = 'DELETE FROM `subservices` WHERE `id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        return $queryStatement->execute();
     }
 
     public function setTitle($newTitle):void {
@@ -60,6 +86,10 @@ class SubService extends Database {
 
     public function setIdService($newIdService):void {
         $this->idservice = $newIdService;
+    }
+
+    public function setId($newId):void {
+        $this->id = $newId;
     }
 
 }

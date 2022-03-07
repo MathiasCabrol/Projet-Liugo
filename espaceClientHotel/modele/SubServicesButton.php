@@ -12,6 +12,15 @@ class SubServiceButton extends Database {
         return $queryStatement->execute();
     }
 
+    public function getButtonValue() {
+        $query = 'SELECT `buttonValue` FROM `subservicesbutton` WHERE `id_subservices` = :idsubservice';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':idsubservice', $this->idsubservice, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $buttonValue = $queryStatement->fetchColumn();
+        return $buttonValue;
+    }
+
     public function setButtonValue($newButtonValue):void {
         $this->buttonValue = $newButtonValue;
     } 
