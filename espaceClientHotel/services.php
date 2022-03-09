@@ -24,15 +24,12 @@
                 <p>Ajoutez des photos, des descriptions, tarifs et plus encore !</p>
             </div>
             <hr class="hotelSeparation mt-5">
-            <div class="addService my-5">
-                <a class="plusButton" href="addService.php">+</a>
-            </div>
             <?php if(isset($getErrorMessage)){ ?>
             <div class="col-12 text-center text-danger"><p><?= $getErrorMessage ?></p></div>
             <?php } ?>
             <?php if ($newUser) {
             ?>
-                <div class="col-12 col-md-8 col-lg-8 text-center mt-5 hotelIntro">
+                <div class="col-12 col-md-12 col-lg-12 text-center mt-5 hotelIntro">
                     <p><?= $tutoText ?></p>
                 </div>
                 <!-- Service creation example, shown only if button clicked -->
@@ -65,7 +62,7 @@
         <!-- Affichage des différents services crées  -->
         <div class="row justify-content-around mt-5">
             <?php foreach ($servicesInfos as $service) { ?>
-                <div class="col-2 text-center showService">
+                <div class="col-5 col-md-3 col-lg-2 text-center showService">
                     <div class="col-12 text-center my-5 text-black">
                         <form action="" method="get">
                             <input type="hidden" name="id" value="<?= $service->id ?>">
@@ -77,6 +74,11 @@
                     </div>
                 </div>
             <?php } ?>
+            <div class="col-5 col-md-3 col-lg-2 text-center">
+                <div class="col-12 emptyService">
+                    <p><button onclick="window.location='addService.php'" class="btn-outline-light">+</button></p>
+                </div>
+            </div>
         </div>
     <?php } ?>
     </div>

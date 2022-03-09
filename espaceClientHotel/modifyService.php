@@ -64,6 +64,11 @@ require 'controller/serviceModifyController.php';
                     </div>
                 </div>
             <?php } ?>
+            <div class="col-2 text-center">
+                <div class="col-12 emptyService">
+                    <p><button onclick="window.location='addSubService.php'" class="btn-outline-light">+</button></p>
+                </div>
+            </div>
         </div>
         <?php if(isset($infoMessage)){ ?>
             <p class="text-center text-success my-5"><?= $infoMessage ?></p>

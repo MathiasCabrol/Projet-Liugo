@@ -31,6 +31,7 @@ document.addEventListener("click", event => {
         numberOfServices = event.target.parentElement.querySelectorAll("div[class=presta]").length
         return
     }
+
     if (event.target.matches(".redCrossButton") && numberOfServices == 1) {
         return alert("Vous ne pouvez pas supprimer le premier service")
     }

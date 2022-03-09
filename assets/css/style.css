@@ -465,7 +465,7 @@ styling */
 .saveButton {
     width: 12em;
     border: none;
-    background-color: green;
+    background-color: rgb(44, 206, 44);
     color: white;
     border-radius: 3px;
     height: 3em;
@@ -480,6 +480,30 @@ styling */
     background: white;
     border-radius: 10%;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.emptyService {
+    border-radius: 10%;
+    border: 3px #E8D5A3 dashed;
+    height: 100%;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.emptyService p {
+    font-size: 30px;
+    margin : auto auto;
+}
+
+.emptyService button {
+    border: none;
+    border-radius: 50%;
+    background-color:rgb(44, 206, 44);
+    color: white;
+    width: 60px;
+    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .servicesButtons {
@@ -503,6 +527,19 @@ styling */
 
 .bold {
     font-weight: bold;
+}
+
+.modifyCol {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.modifyCol div {
+    margin-top: 1em;
+}
+
+.modifyCol label {
+    margin-top: 2em;
 }
 
 /* Specific Hotel side reservation page perks */

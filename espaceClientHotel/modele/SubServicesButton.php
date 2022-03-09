@@ -21,6 +21,40 @@ class SubServiceButton extends Database {
         return $buttonValue;
     }
 
+    public function getLastInsertedButton() {
+        $query = 'SELECT `id` FROM `subservicesbutton` WHERE `id` = (SELECT LAST_INSERT_ID())';
+        $queryStatement = $this->db->query($query);
+        $buttonId = $queryStatement->fetchColumn();
+        return $buttonId;
+    }
+
+    public function getButtonsIdByService($serviceId) {
+        $query = 'SELECT `subservicesbutton`.`id` AS `buttonid` FROM `subservicesbutton` INNER JOIN `subservices` ON `subservices`.`id` = `subservicesbutton`.`id_subservices` INNER JOIN `services` ON `subservices`.`id_services` = `services`.`id` WHERE `services`.`id` = :serviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceid', $serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $buttonIds = $queryStatement->fetchAll(PDO::FETCH_OBJ);
+        return $buttonIds;
+    }
+
+    public function getButtonsIdBySubService($subServiceId){
+        $query = 'SELECT `subservicesbutton`.`id` AS `buttonid` FROM `subservicesbutton` INNER JOIN `subservices` ON `subservices`.`id` = `subservicesbutton`.`id_subservices` WHERE `subservices`.`id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $subServiceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $buttonIds = $queryStatement->fetchAll(PDO::FETCH_OBJ);
+        return $buttonIds;
+    }
+
+    public function getSingleButtonIDBySS() {
+        $query = 'SELECT `subservicesbutton`.`id` AS `id` FROM `subservicesbutton` INNER JOIN `subservices` ON `subservices`.`id` = `subservicesbutton`.`id_subservices` WHERE `subservices`.`id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->idsubservice, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $buttonId = $queryStatement->fetchColumn();
+        return $buttonId;
+    }
+
     public function setButtonValue($newButtonValue):void {
         $this->buttonValue = $newButtonValue;
     } 

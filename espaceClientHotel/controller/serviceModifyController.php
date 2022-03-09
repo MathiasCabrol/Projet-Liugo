@@ -12,47 +12,54 @@ session_start();
 var_dump($_SESSION);
 
 
-    $newService = new Service;
-    if(!isset($_SESSION['serviceId'])){
-        $serviceId = htmlspecialchars($_GET['id']);
+$newService = new Service;
+$fileCheck = new Files;
+if (isset($_GET['id'])) {
+    $serviceId = htmlspecialchars($_GET['id']);
+    $_SESSION['serviceId'] = htmlspecialchars($_GET['id']);
+}
+$serviceId = $_SESSION['serviceId'];
+var_dump($serviceId);
+$newService->setServiceId($serviceId);
+$serviceInfos = $newService->displayService();
+$newSubService = new SubService;
+$subServiceInfos = $newSubService->getAllSubServices($serviceInfos->serviceId);
+$newSubServiceButton = new SubServiceButton;
+foreach ($subServiceInfos as $subService) {
+    if ($subService->addButton) {
+        $newSubServiceButton->setIdSubService($subService->subServiceId);
+        $buttonValue[$subService->subServiceId] = $newSubServiceButton->getButtonValue();
+    }
+}
+
+if (isset($_GET['delete'])) {
+    if ($_GET['delete'] == '1') {
+        $infoMessage = 'Le sous-service a bien été supprimé';
     } else {
-        $serviceId = $_SESSION['serviceId'];
+        $infoMessage = 'Une erreur est survenue lors de la suppression';
     }
-    $_SESSION['serviceId'] = $serviceId;
-    $newService->setServiceId($serviceId);
-    $serviceInfos = $newService->displayService();
-    $newSubService = new SubService;
-    $subServiceInfos = $newSubService->getAllSubServices($serviceInfos->serviceId);
-    foreach($subServiceInfos as $subService){
-        if($subService->addButton){
-            $newSubServiceButton = new SubServiceButton;
-            $newSubServiceButton->setIdSubService($subService->subServiceId);
-            $buttonValue[$subService->subServiceId] = $newSubServiceButton->getButtonValue();
-        }
-    }
+}
 
-    if(isset($_GET['delete'])){
-        if($_GET['delete'] == '1'){
-            $infoMessage = 'Le sous-service a bien été supprimé';
-        } else {
-            $infoMessage = 'Une erreur est survenue lors de la suppression';
-        }
-    }
-
-    //Si le paramètre GET est set et que l'utilisateur se trouve sur la bonne page
-if(isset($_GET['action'])){
+//Si le paramètre GET est set et que l'utilisateur se trouve sur la bonne page
+if (isset($_GET['action'])) {
     //Si le paramètre action est égal à "delete" qui est définis par le clic de l'utilisateur
-    if($_GET['action'] == 'delete'){
+    if ($_GET['action'] == 'delete') {
         //Si le paramètre id existe et n'a pas été modifié volontairement
-        if(isset($_GET['subServiceId'])){
+        if (isset($_GET['subServiceId'])) {
             //Setter de la classe service correspondant à l'id du service séléctionné
             $newSubService->setId(htmlspecialchars($_GET['subServiceId']));
             //On vérifie si l'id correspond bien dans la base de donnée, retourne 1 en cas de réussite ou 0 en cas d'échec
             var_dump($newSubService->checkIfSubServiceExists());
-            if($newSubService->checkIfSubServiceExists()){
+            if ($newSubService->checkIfSubServiceExists()) {
+                $buttonsIds = $newSubServiceButton->getButtonsIdBySubService(htmlspecialchars($_GET['subServiceId']));
+                var_dump($buttonsIds);
+                foreach ($buttonsIds as $buttonsId) {
+                    $fileCheck->deleteButtonFile($buttonsId->buttonid);
+                }
                 //Suppression du service
-                if($newSubService->deleteSubService()){
+                if ($newSubService->deleteSubService()) {
                     header('Location: modifyService.php?id=' . $serviceId . '&delete=1');
+                    exit;
                 }
             } else {
                 //Si l'id ne correspond à aucune ligne dans la table, affichage d'un message d'erreur
@@ -60,12 +67,12 @@ if(isset($_GET['action'])){
             }
         }
         //Si le paramètre action et égal à "modify"
-    } elseif($_GET['action'] == 'modify'){
-        if(isset($_GET['subServiceId'])){
+    } elseif ($_GET['action'] == 'modify') {
+        if (isset($_GET['subServiceId'])) {
             //Setter de la classe service
             $newSubService->setId(htmlspecialchars($_GET['subServiceId']));
             //On vérifie si le service existe dans la bdd
-            if($newSubService->checkIfSubServiceExists()){
+            if ($newSubService->checkIfSubServiceExists()) {
                 //On redirige vers la page de modification de service en insérant en paramètre GET l'id du service à modifier
                 header('location: modifySubService.php?id=' . $_GET['subServiceId']);
             } else {
@@ -76,37 +83,37 @@ if(isset($_GET['action'])){
     }
 }
 
-    if (isset($_POST['saveChanges'])) {
-        $fileCheck = new Files;
-        $errorList = [];
-        $fileError = [];
-        $fileName = 'categoryPhoto';
-        if (!$_FILES[$fileName]['error']) {
-            $fileCheck->deleteCategoryFile($serviceId);
-            $fileCheck->registerCategoryFile($_FILES[$fileName]['tmp_name'], $_FILES[$fileName]['name'], $serviceId);
+if (isset($_POST['saveChanges'])) {
+    $fileCheck = new Files;
+    $errorList = [];
+    $fileError = [];
+    $fileName = 'categoryPhoto';
+    if (!$_FILES[$fileName]['error']) {
+        $fileCheck->deleteCategoryFile($serviceId);
+        $fileCheck->registerCategoryFile($_FILES[$fileName]['tmp_name'], $_FILES[$fileName]['name'], $serviceId);
+    } else {
+        $fileError[$fileName] = $errorMessage;
+    }
+
+    if (!empty($_POST['serviceTitle'])) {
+        if (preg_match($titleRegex, $_POST['serviceTitle'])) {
+            $serviceTitle = htmlspecialchars($_POST['serviceTitle']);
         } else {
-            $fileError[$fileName] = $errorMessage;
+            $errorList['serviceTitle'] = 'Merci d\'entrer un titre de service valide(tirets et espaces acceptés)';
         }
+    } else {
+        $errorList['serviceTitle'] = 'Merci d\'entrer un titre de service';
+    }
 
-        if (!empty($_POST['serviceTitle'])) {
-            if (preg_match($titleRegex, $_POST['serviceTitle'])) {
-                $serviceTitle = htmlspecialchars($_POST['serviceTitle']);
-            } else {
-                $errorList['serviceTitle'] = 'Merci d\'entrer un titre de service valide(tirets et espaces acceptés)';
-            }
+    if (count($errorList) == 0) {
+        $newService->setServiceId($serviceId);
+        $newService->setServiceTitle($serviceTitle);
+        if ($newService->updateServiceTitle()) {
+            $successMessage = 'Le nom du service a bien été modifié';
         } else {
-            $errorList['serviceTitle'] = 'Merci d\'entrer un titre de service';
+            $errorMessage = 'Une erreur est survenue lors de la modification du nom de service.';
         }
+    }
+}
 
-        if(count($errorList) == 0) {
-            $newService->setServiceId($serviceId);
-            $newService->setServiceTitle($serviceTitle);
-            if($newService->updateServiceTitle()){
-                $successMessage = 'Le nom du service a bien été modifié';
-            } else {
-                $errorMessage = 'Une erreur est survenue lors de la modification du nom de service.';
-            }   
-        }
-    }    
-
-    var_dump($newService->displayService());
+var_dump($newService->displayService());

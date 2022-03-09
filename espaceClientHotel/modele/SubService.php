@@ -48,6 +48,22 @@ class SubService extends Database {
         return $subServicesInfo;
     }
 
+    public function getServiceId(){
+        $query = 'SELECT `id_services` FROM `subservices` WHERE `id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
+    public function getLastInsertedSubService() {
+        $query = 'SELECT `id` FROM `subservices` WHERE `id` = (SELECT LAST_INSERT_ID())';
+        $queryStatement = $this->db->query($query);
+        $subserviceid = $queryStatement->fetchColumn();
+        return $subserviceid;
+    }
+
     public function checkIfSubServiceExists() {
         $query = 'SELECT COUNT(`id`) AS `result` FROM `subservices` WHERE `id` = :subserviceid';
         $queryStatement = $this->db->prepare($query);
@@ -61,6 +77,17 @@ class SubService extends Database {
         $query = 'DELETE FROM `subservices` WHERE `id` = :subserviceid';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        return $queryStatement->execute();
+    }
+
+    public function updateSubService() {
+        $query = 'UPDATE `subservices` SET `title` = :title, `startingHour` = :startingHour, `finishingHour` = :finishingHour, `price` = :price WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':title', $this->title, PDO::PARAM_STR);
+        $queryStatement->bindValue(':startingHour', $this->startingHour, PDO::PARAM_STR);
+        $queryStatement->bindValue(':finishingHour', $this->finishingHour, PDO::PARAM_STR);
+        $queryStatement->bindValue(':price', $this->price, PDO::PARAM_STR);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryStatement->execute();
     }
 
