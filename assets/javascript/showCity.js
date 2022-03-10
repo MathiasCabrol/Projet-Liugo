@@ -1,7 +1,5 @@
 postCodeInput.addEventListener("input", () => {
 
-    console.log(postCodeInput.value.length)
-
     if (postCodeInput.value.length == 5) {
 
         if (postCodeRegex.test(postCodeInput.value)) {
@@ -18,9 +16,12 @@ postCodeInput.addEventListener("input", () => {
 
         }
     }
-    if (postCodeInput.value.length != 5 && city != null) {
-        city.remove()
-        citySelect.remove()
+    if (postCodeInput.value.length != 5) {
+        let cityElement = document.getElementById("city")
+        if (cityElement) {
+            city.remove()
+            citySelect.remove()
+        }
     }
 })
 

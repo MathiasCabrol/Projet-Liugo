@@ -571,3 +571,84 @@ styling */
     color: #5256ad;
     cursor: pointer;
 }
+
+/* Account section perks */
+
+.flexColumn {
+    display: flex;
+}
+
+.accountContainer {
+    display: flex;
+    flex-direction: column;  
+    background-color: rgba(189, 195, 199, 0.7);
+    margin: 2em 0;
+    width: 20%;
+    border-right: 1px solid black;
+}
+
+.accountDetails {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(189, 195, 199, 0.7);  
+    width: 80%;
+    margin: 2em 0;
+    height: 40em;
+}
+
+.accountContainer button {
+    border: none;
+    height: 3em;
+    width: 100%;
+    border-radius: 0 10% 10% 0;
+    margin: 1em 0;
+    background-color: #E8D5A3;
+    color: white;
+    border: 1px solid white;
+    position: relative;
+}
+
+.accountContainer button:hover {
+    background-color: white;
+    color: black;
+}
+
+.accountIcon {
+    position: absolute;
+    left: 5%;
+}
+
+.accountInfos {
+    margin-left: 4em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+.accountInfos h2 {
+    color: #E8D5A3;
+    width: 100%;
+    font-size: 24px;
+    margin: 2em 0;
+}
+
+.accountSeparation {
+    margin: 4em 0;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.specificInfo {
+    margin: 1em 0;
+}
+
+.accountButtonContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between
+}
+

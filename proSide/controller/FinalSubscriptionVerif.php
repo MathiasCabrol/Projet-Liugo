@@ -152,6 +152,7 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
 
 if (isset($_POST['postCode'])) {
     $city = new City;
+    $city->setPostCode(htmlspecialchars($_POST['postCode']));
     $postCodeCity = $city->getCorespondingCity();
     // encode array to json
 
