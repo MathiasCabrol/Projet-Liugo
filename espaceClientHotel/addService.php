@@ -43,7 +43,7 @@
                                     <input type="text" name="serviceName[]" class="mt-2" placeholder="Nom du service">
                                     <label for="serviceStartingHour">Heure de début</label>
                                     <input type="time" name="serviceStartingHour[]" class="mt-2" placeholder="heure de début">
-                                    <input type="number" min="1" step="any" placeholder="tarif ex: 10.50" name="servicePrice[]" class="mt-2" placeholder="tarifs">
+                                    <input type="text" min="1" step="any" placeholder="tarif ex: 10.50" name="servicePrice[]" class="mt-2" placeholder="tarifs">
                                     <label for="serviceEndingHour1">Heure de fin</label>
                                     <input type="time" name="serviceEndingHour[]" class="mt-2" placeholder="heure de fin">
                                     <p class="mt-2 radioQuestion">Souhaitez-vous ajouter un bouton ?</p>
@@ -66,7 +66,7 @@
             <hr class="hotelSeparation mt-5">
             <div class="row justify-content-center mt-5">
                 <div class="col-12 text-center">
-                    <input type="submit" name="saveChanges" class="saveButton btn btn-outline-light" value="Sauvegarder">
+                    <input id="save" type="submit" name="saveChanges" class="saveButton btn btn-outline-light" value="Sauvegarder" disabled>
                 </div>
             </div>
         </form>
