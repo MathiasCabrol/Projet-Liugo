@@ -37,56 +37,39 @@
                 <h2>Informations personelles</h2>
                 <div class="accountSeparation">
                     <div class="specificInfo">
-                    <p><i class="fa-solid fa-signature"></i> Nom de l'établissement</p>
-                    <?php if(!isset($_GET['action'])){ ?>
-                    <p><?= $selectedHotelInfos->name ?></p>
-                    <?php }elseif($_GET['action'] == 'modify'){ ?>
-                    <input type="text" name="name">
-                    <?php } ?>
+                    <button class="accountModifyButton btn btn-info" data-input="name"><i class="fa-solid fa-pen-to-square"></i>edit</button>
+                    <p class="infoName"><i class="fa-solid fa-signature"></i> Nom de l'établissement</p>
+                    <p class="inline" data-name="name"><?= $selectedHotelInfos->name ?></p>
                     </div>
                     <div class="specificInfo">
-                    <p><i class="fa-solid fa-envelope"></i> Adresse e-mail</p>
-                    <?php if(!isset($_GET['action'])){ ?>
-                    <p><?= $selectedHotelInfos->email ?></p>
-                    <?php }elseif($_GET['action'] == 'modify'){ ?>
-                    <input type="mail" name="mail">
-                    <?php } ?>
+                    <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
+                    <p class="infoName"><i class="fa-solid fa-envelope"></i> Adresse e-mail</p>
+                    <p class="inline" data-name="email"><?= $selectedHotelInfos->email ?></p>
                     </div>
                     <div class="specificInfo">
-                    <p><i class="fa-solid fa-phone"></i> Numéro de téléphone</p>
-                    <?php if(!isset($_GET['action'])){ ?>
-                    <p><?= $selectedHotelInfos->phone ?></p>
-                    <?php }elseif($_GET['action'] == 'modify'){ ?>
-                    <input type="text" name="phone">
-                    <?php } ?>
+                    <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
+                    <p class="infoName"><i class="fa-solid fa-phone"></i> Numéro de téléphone</p>
+                    <p class="inline" data-name="phone"><?= $selectedHotelInfos->phone ?></p>
                     </div>
                 </div>
                 <div class="accountSeparation">
                     <div class="specificInfo">
-                    <p><i class="fa-solid fa-location-dot"></i> Adresse</p>
-                    <?php if(!isset($_GET['action'])){ ?>
-                    <p><?= $selectedHotelInfos->address ?></p>
-                    <?php }elseif($_GET['action'] == 'modify'){ ?>
-                    <input type="text" name="address">
-                    <?php } ?>
+                    <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
+                    <p class="infoName"><i class="fa-solid fa-location-dot"></i> Adresse</p>
+                    <p class="inline" data-name="address"><?= $selectedHotelInfos->address ?></p>
                     </div>
                     <div class="specificInfo">
-                    <p><i class="fa-solid fa-map"></i> Code Postal</p>
-                    <?php if(!isset($_GET['action'])){ ?>
-                    <p><?= $selectedHotelInfos->postcode ?></p>
-                    <?php }elseif($_GET['action'] == 'modify'){ ?>
-                    <input type="text" id="postCodeInput" name="postCode">
-                    <?php } ?>
+                    <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
+                    <p class="infoName"><i class="fa-solid fa-map"></i> Code Postal</p>
+                    <p class="inline" data-name="postcode"><?= $selectedHotelInfos->postcode ?></p>
                     </div>
                     <div class="specificInfo">
-                    <p><i class="fa-solid fa-building"></i> Ville</p>
-                    <p><?= $selectedCity->ville_slug ?></p>
+                    <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
+                    <p class="infoName"><i class="fa-solid fa-building"></i> Ville</p>
+                    <p class="inline" data-name="city"><?= $selectedCity->ville_slug ?></p>
                     </div>
                 </div>
                 <div class="accountButtonContainer">
-                <form action="" method="get">
-                    <button type="submit" name="action" value="modify" class="btn btn-primary">Modifier</button>
-                </form>
                 </div>
             </div>
         </div>
@@ -97,6 +80,7 @@
 </body>
 <!-- My script -->
 <script src="../assets/javascript/dragZone.js"></script>
+<script src="../assets/javascript/accountModification.js"></script>
 <!-- Bootstrap Javascript -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

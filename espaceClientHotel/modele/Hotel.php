@@ -3,6 +3,11 @@ class Hotel extends Database {
 
     private int $id;
     private string $email;    
+    private string $name;
+    private string $phone;
+    private string $address;
+    private string $postcode;
+    private string $id_cities;
     
     /**
      * Fonction qui retourne un objet avec l'attribut name contenant le nom de l'établissement connecté
@@ -26,8 +31,64 @@ class Hotel extends Database {
         return $hotelInfos;
     }
 
+    public function updateHotelName():bool {
+        $query = 'UPDATE `hotels` SET `name` = :hotelname WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':hotelname', $this->name, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
+    public function updateHotelEmail():bool {
+        $query = 'UPDATE `hotels` SET `email` = :hotelemail WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':hotelemail', $this->email, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
+    public function updateHotelPhone():bool {
+        $query = 'UPDATE `hotels` SET `phone` = :hotelphone WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':hotelphone', $this->phone, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
+    public function updateHotelAddress():bool {
+        $query = 'UPDATE `hotels` SET `address` = :hoteladdress WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':hoteladdress', $this->address, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
+    public function updateHotelPostCode():bool {
+        $query = 'UPDATE `hotels` SET `postcode` = :hotelpostcode WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':hotelpostcode', $this->postcode, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
     public function setEmail($newEmail):void{
         $this->email = $newEmail;
+    }
+
+    public function setName($newName):void{
+        $this->name = $newName;
+    }
+
+    public function setPhone($newPhone):void{
+        $this->phone = $newPhone;
+    }
+
+    public function setAddress($newAddress):void{
+        $this->address = $newAddress;
+    }
+
+    public function setPostCode($newPostCode):void{
+        $this->postcode = $newPostCode;
     }
 
     public function setId($newId):void{

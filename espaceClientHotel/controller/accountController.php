@@ -4,6 +4,7 @@ require 'modele/Database.php';
 require 'modele/Hotel.php';
 require 'modele/Cities.php';
 
+
 session_start();
 
 var_dump($_SESSION);
@@ -16,6 +17,8 @@ $city->setId($selectedHotelInfos->id_cities);
 $selectedCity = $city->getCityNameFromId();
 var_dump($selectedHotelInfos);
 
+// if(isset($_GET['action'] && $_GET['action'] == 'save')){
 
+// }
 
 

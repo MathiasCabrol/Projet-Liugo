@@ -171,7 +171,3 @@ if (isset($_POST['postCode'])) {
 $sector = new Sector;
 $sectorList = $sector->getSectors();
 
-if (isset($_POST['confirm'])) {
-    var_dump($errorList);
-    var_dump($_SESSION);
-}

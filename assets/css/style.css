@@ -593,7 +593,7 @@ styling */
     background-color: rgba(189, 195, 199, 0.7);  
     width: 80%;
     margin: 2em 0;
-    height: 40em;
+    height: 50em;
 }
 
 .accountContainer button {
@@ -643,6 +643,10 @@ styling */
 
 .specificInfo {
     margin: 1em 0;
+    border: 1px solid black;
+    padding: 1em;
+    position: relative;
+    background-color: white;
 }
 
 .accountButtonContainer {
@@ -650,5 +654,15 @@ styling */
     flex-direction: row;
     width: 100%;
     justify-content: space-between
+}
+
+.inline {
+    display: inline-block;
+}
+
+.accountModifyButton {
+    position: absolute;
+    right: -8%;
+    top: -12%;
 }
 
