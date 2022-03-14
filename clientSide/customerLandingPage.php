@@ -17,7 +17,6 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
 <link rel="stylesheet" href="../assets/css/clientSide.css">
 </head>
 <body class="mainSection">
-    <?php include 'parts/header.php'; ?>
     <section>
         <!-- Form container -->
         <div class="container">
@@ -30,22 +29,25 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     <!-- Inner form row -->
                     <div class="row justify-content-center">
                         <!-- Inner form col -->
-                        <div class="col-8 text-center">
-                            <form action="customerHomepage.php" method="post">
-                                <label class="mt-3 didot" for="fname">Nom</label><br>
-                                <input type="text" id="lastName" name="lastName"><br>
-                                <label class="mt-3 didot" for="lname">Prénom</label><br>
-                                <input type="text" id="firstName" name="firstName">
-                                <label class="mt-3 didot" for="mail">Adresse e-mail</label><br>
-                                <input type="mail" id="mail" name="mail"><br>
-                                <label class="mt-3 didot" for="phone">Numéro de téléphone</label><br>
-                                <input type="text" id="phone" name="phone">
+                        <div class="col-8 text-center customerFormCol">
+                            <form action="" method="post">
+                                <label class="mt-2 didot" for="fname">Nom</label>
+                                <input type="text" id="lastName" name="lastName" value="<?= isset($_POST['lastName']) ? $_POST['lastName'] : '' ?>">
+                                <label class="mt-2 didot" for="lname">Prénom</label>
+                                <input type="text" id="firstName" name="firstName" value="<?= isset($_POST['firstName']) ? $_POST['firstName'] : '' ?>">
+                                <label class="mt-2 didot" for="mail">Adresse e-mail</label>
+                                <input type="mail" id="mail" name="mail" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>">
+                                <label class="mt-2 didot" for="phone">Numéro de téléphone</label>
+                                <input type="text" id="phone" name="phone" value="<?= isset($_POST['phone']) ? $_POST['phone'] : '' ?>">
                         </div>
                         <!-- Button col -->
                         <div class="col-12 text-center">
-                            <button class="btn btn-outline-light priceButton border rounded shadow my-3" name="confirm" type="submit"> C'est parti !</button>
+                            <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="confirm" type="submit" disabled> C'est parti !</button>
                         </div>
                         </form>
+                        <?php if(isset($hotelErrorMessage)){ ?>
+                            <p class="errorMessage"><?= $hotelErrorMessage ?></p>
+                        <?php } ?>
                         <div class="col-12 text-center my-4">
                         <a class="didot accountCreationLink" href="">Créer un compte</a>
                         </div>
@@ -53,10 +55,15 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 </div>
             </div>
     </section>
+    <div class="absoluteFooter">
     <?php include '../proSide/footer.php' ?>
+    </div>
 </body>
 <!-- Bootstrap Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<!-- My script -->
+<script src="../assets/javascript/clientSideFrom.js"></script>
+
 
 </html>
