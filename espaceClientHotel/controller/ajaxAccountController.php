@@ -69,13 +69,36 @@ if (isset($_POST['address'])) {
 }
 
 if (isset($_POST['postcode'])) {
-    if (preg_match($regexPostcode, $_POST['postcode'])) {
-        $postcode = htmlspecialchars($_POST['postcode']);
-        $hotel->setPostCode($postcode);
-        $hotel->updateHotelPostCode();
+    if(isset($_POST['cityId'])){
+        if (preg_match($regexPostcode, $_POST['postcode'])) {
+            $postcode = htmlspecialchars($_POST['postcode']);
+            $hotel->setPostCode($postcode);
+            $hotel->setIdCities(htmlspecialchars($_POST['cityId']));
+            $hotel->updateHotelPostCode();
+        } else {
+            $errorList['postcode'] = 'Merci d\'entrer un code postal valide';
+        }
     } else {
         $errorList['postcode'] = 'Merci d\'entrer un code postal valide';
     }
 } else {
     $errorList['postcode'] = 'Merci d\'entrer un code postal valide';
+}
+
+if(isset($_POST['postCodeValue'])){
+    $jsonCity = new City;
+    $jsonCity->setPostCode(htmlspecialchars($_POST['postCodeValue']));
+    $postCodeCity = $jsonCity->getCorespondingCity();
+    // encode array to json
+
+    $jsonTable = array();
+
+    foreach ($postCodeCity as $singleCity) {
+        array_push($jsonTable, array(
+            'id' => $singleCity->ville_id,
+            'city' => $singleCity->city
+        ));
+    }
+    $json = json_encode($jsonTable);
+    echo $json;
 }

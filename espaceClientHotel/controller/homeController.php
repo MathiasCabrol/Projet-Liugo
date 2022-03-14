@@ -80,10 +80,14 @@ if (!isset($_POST['confirm'])) {
 }
 
 
+function is_dir_empty($dir) {
+    if (!is_readable($dir)) return null; 
+    return (count(scandir($dir)) == 2);
+  }
 
 
 //Si le dossier existe, Pour chaque fichier enregistré, insère le chemin dans le tableau $filePath pour affichage dans exemple vue client
-if (is_dir('hotels/' . $_SESSION['login'] . '/')) {
+if (!is_dir_empty('hotels/' . $_SESSION['login'] . '/')) {
 $files = scandir('hotels/' . $_SESSION['login'] . '/');
 $files = array_splice($files, 2);
 if(!$files){

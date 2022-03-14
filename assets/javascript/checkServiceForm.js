@@ -8,14 +8,14 @@ const nameError = "Veuillez entrer une valeur valide pour le nom du sous-service
 const priceError = "Veuillez insérer un prix, séparer les centimes avec un point ex 10.50"
 
 //Ajouter les noms des inputs ainsi que les regex associées
-let inputsArray = {
+const inputsArray = {
     "serviceTitle": titleRegex,
     "serviceName": titleRegex,
     "servicePrice": priceRegex
 }
 
 //Ajouter les messages d'erreur avec les noms des inputs ainsi que les messages associés
-let errorMessages = {
+const errorMessages = {
     "serviceTitle": titleError,
     "serviceName": nameError,
     "servicePrice": priceError

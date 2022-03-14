@@ -12,16 +12,12 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link href="../assets/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/clientSide.css">
 </head>
-<body>
-    <?php include '../proSide/header.php' ?>
+<body class="mainSection">
     <section>
         <!-- Form container -->
         <div class="container">
-            <div class="col-12">
-                <!-- Landing image -->
-                <img class="landingImage" src="../assets/img/camera-g5215acf9d_640.jpg">
-            </div>
             <!-- Form row -->
             <div class="row justify-content-center">
                 <!-- Form Col -->
@@ -31,8 +27,8 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                     <!-- Inner form row -->
                     <div class="row justify-content-center">
                         <!-- Inner form col -->
-                        <div class="col-8">
-                            <form>
+                        <div class="col-8 text-center">
+                            <form action="" method="post">
                                 <label class="mt-3 didot" for="fname">Nom</label><br>
                                 <input type="text" id="lastName" name="lastName"><br>
                                 <label class="mt-3 didot" for="lname">Prénom</label><br>
@@ -47,10 +43,12 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                         <div class="col-12 text-center">
                             <button class="btn btn-outline-light priceButton border rounded shadow my-3"> C'est parti !</button>
                         </div>
+                        <div class="col-12 text-center my-4">
+                        <a class="didot accountCreationLink" href="">Créer un compte</a>
+                        </div>
                     </div>
                 </div>
             </div>
-
     </section>
     <?php include '../proSide/footer.php' ?>
 </body>

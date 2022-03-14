@@ -64,10 +64,18 @@ class Hotel extends Database {
     }
 
     public function updateHotelPostCode():bool {
-        $query = 'UPDATE `hotels` SET `postcode` = :hotelpostcode WHERE `id` = :id';
+        $query = 'UPDATE `hotels` SET `postcode` = :hotelpostcode, `id_cities` = :id_cities WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         $queryStatement->bindValue(':hotelpostcode', $this->postcode, PDO::PARAM_STR);
+        $queryStatement->bindValue(':id_cities', $this->id_cities, PDO::PARAM_INT);
+        return $queryStatement->execute();
+    }
+
+    public function deleteHotel():bool {
+        $query = 'DELETE FROM `hotels` WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryStatement->execute();
     }
 
@@ -89,6 +97,10 @@ class Hotel extends Database {
 
     public function setPostCode($newPostCode):void{
         $this->postcode = $newPostCode;
+    }
+
+    public function setIdCities($newIdCities):void{
+        $this->id_cities = $newIdCities;
     }
 
     public function setId($newId):void{
