@@ -19,32 +19,30 @@
 
 <body>
     <?php include 'parts/header.php'; ?>
-    <div class="col-12 text-center my-5 text-black">
-        <h1 class="tangerine"><?= $selectedHotel->name ?></h1>
-        <img class="mt-5" src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/home/homePhoto' ?>">
-        <p class="mt-5"><?= $selectedDescription->description ?></p>
-        <div class="row justify-content-start">
-            <div class="col-8">
-                <p class="mt-5">Découvrez les activités proposées par nos partenaires</p>
-                <img class="customerPhoto" src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/home/activityPhoto' ?>">
-                <button class="btn btn-outline-light blueBackground categoryButton">Explorer</button>
+    <div class="container">
+        <fiv class="row">
+            <div class="col-12 text-center">
+            <h1 class="tangerine blueFont">Ci-dessous vous trouverez les différents services proposés par votre hébergeur, n'hésitez pas à en découvrir davantage.</h1>
             </div>
-        </div>
-        <div class="row justify-content-end mt-3">
-            <div class="col-8">
-                <p class="mt-5">Découvrez les services proposés par votre hébergeur</p>
-                <img class="customerPhoto" src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/home/servicePhoto' ?>">
-                <a href="hotelServices.php" class="btn btn-outline-light blueBackground categoryButton">Découvrir</a>
-            </div>
-        </div>
-        <div class="row justify-content-center my-5">
-            <div class="col-12 col-md-6 col-lg-6 infosCol">
-                <h2 class="tangerine">Des questions ?</h2>
-                <p class="didot">N'hésitez pas à contacter directement votre établissement par téléphone au numéro suivant :</p>
-                <p class="didot"><?= $hotelPhone ?></p>
-            </div>
-        </div>
+        </fiv>
     </div>
+    <section id="slider">
+        <?php $i = 1;
+        foreach ($hotelServices as $service) {
+            if ($i == 1) { ?>
+                <input type="radio" name="slider" id="s<?= $i ?>" checked>
+            <?php } else { ?>
+                <input type="radio" name="slider" id="s<?= $i ?>">
+        <?php }
+            $i++;
+        } ?>
+        <?php $j = 1;
+        foreach ($hotelServices as $service) {
+        ?>
+        <label for="s<?= $j ?>" id="slide<?= $j ?>"><p class="serviceName didot"><?= $service->title ?></p><a class="serviceFrameButton btn btn-outline-light blueBackground didot" href="hotelSelectedService.php?serviceId=<?= $service->id ?>">explorer</a><img src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/category/categoryPhoto' . $service->id ?>" alt=""></label>
+        <?php $j++;
+    } ?>
+    </section>
     <?php include '../proSide/footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->

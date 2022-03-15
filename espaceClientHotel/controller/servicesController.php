@@ -15,8 +15,7 @@ $boolRegex = '/^[0-1]$/';
 //Début de session
 session_start();
 
-var_dump($_FILES);
-var_dump($_SESSION);
+
 
 //Instance de la classe de gestion de fichiers
 $fileCheck = new Files;
@@ -214,6 +213,8 @@ if (isset($_POST['saveChanges'])) {
             $errorList['buttonQuestion' . $i] = 'Merci de cocher une valeur du bouton de choix';
         }
     }
+
+    var_dump($errorList);
 
     //On compte le nombre d'erreurs liées au formulaire
     if (count($errorList) == 0) {
