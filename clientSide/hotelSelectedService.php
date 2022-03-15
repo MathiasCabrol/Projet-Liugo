@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <?php if($subService->ssAddButton == 1){ ?>
-                                <button class="btn-light btn btn-outline-dark my-4"><?= $ssButtonArray[$subService->ssId]['buttonValue'] ?></button>
+                                <a href="../espaceClientHotel/hotels/<?= $selectedHotelEmail->email ?>/buttonFiles/buttonFile<?= $ssButtonArray[$subService->ssId]['buttonId'] ?>" class="btn-light btn btn-outline-dark my-4"><?= $ssButtonArray[$subService->ssId]['buttonValue'] ?></a>
                                 <?php } ?>
                         </div>
                     <?php } ?>
