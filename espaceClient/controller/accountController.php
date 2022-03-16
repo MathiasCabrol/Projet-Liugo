@@ -5,6 +5,7 @@ require 'modele/Account.php';
 require 'modele/Hotels.php';
 require 'modele/Partners.php';
 require 'modele/Cities.php';
+require 'class/Files.php';
 
 
 session_start();
@@ -17,6 +18,8 @@ if($_SESSION['type'] == 'partners'){
 } elseif($_SESSION['type'] == 'hotels'){
     $account = new Hotel;
 }
+
+$dirName = $_SESSION['type'];
 
 $account->setId(htmlspecialchars($_SESSION['id']));
 $selectedAccountInfos = $account->getAccountInfosById();
@@ -34,6 +37,9 @@ if(isset($_GET['action']) && $_GET['action'] == 'logout'){
 
 if(isset($_POST['deleteConfirm'])){
     $account->deleteAccount();
+    $fileCheck = new Files;
+    $fileCheck->rrmdir($dirName);
+    session_destroy();
     header('Location: ../proSide/homepage.php');
     exit;
 }

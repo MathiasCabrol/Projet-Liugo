@@ -55,6 +55,15 @@ class Account extends Database {
         return $queryStatement->execute();
     }
 
+    public function getIdByMail(){
+        $query = 'SELECT `id` FROM ' . $this->table . ' WHERE `email` = :email';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue('email', $this->email, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $userId = $queryStatement->fetchColumn();
+        return $userId;
+    }
+
     public function getConnexionId():object {
         $query = 'SELECT `id`, `password` FROM ' . $this->table . ' WHERE :email = `email`';
         $queryStatement = $this->db->prepare($query);

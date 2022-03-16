@@ -100,7 +100,6 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
             $account->setTable('partners');
         } else if ($_SESSION['type'] == 'hotels') {
             $account->setTable('hotels');
-            $header = '../espaceClientHotel/home.php';
         }
         $account->setToken(htmlspecialchars($_GET['token']));
         $result = $account->checkToken();
@@ -128,16 +127,24 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
         $account->setIdCities($city);
         $check = $account->checkIfPhoneIsNull();
         if ($check->result) {
-            if ($_SESSION['type'] == 'partnerd') {
+            if ($_SESSION['type'] == 'partners') {
                 if ($account->subscriptionFinalisationPartners()) {
                     if($account->setTokenNull()){
+                        $lastCreatedId = $account->getIdByMail();
+                        $_SESSION['id'] = $lastCreatedId;
+                        $_SESSION['login'] = $email->email;
                         header('Location: ../espaceClient/home.php');
+                        exit;
                     }
                 }
             } else if ($_SESSION['type'] == 'hotels') {
                 if ($account->subscriptionFinalisationHotels()) {
                     if($account->setTokenNull()){
+                        $lastCreatedId = $account->getIdByMail();
+                        $_SESSION['id'] = $lastCreatedId;
+                        $_SESSION['login'] = $email->email;
                         header('Location: ../espaceClient/home.php');
+                        exit;
                     }
                 }
             }

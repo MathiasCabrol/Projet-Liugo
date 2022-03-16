@@ -69,6 +69,22 @@ public function registerButtonFile($oldPath, $oldFileName, $id, $directory)
     return rename($oldPath, $path . 'buttonFile' . $id . '.' . end($temp));
 }
 
+public function rrmdir($directory)
+{
+    if (is_dir($directory)) {
+      $objects = scandir($directory);
+      foreach ($objects as $object) {
+        if ($object != "." && $object != "..") {
+          if (filetype($directory."/".$object) == "dir") 
+             $this->rrmdir($directory."/".$object); 
+          else unlink   ($directory."/".$object);
+        }
+      }
+      reset($objects);
+      rmdir($directory);
+    }
+}
+
 
 /**
  * Fonction permettant d'enregistrer le fichier en paramètre dans le dossier de l'utilisateur connecté

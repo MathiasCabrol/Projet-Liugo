@@ -21,7 +21,7 @@ require 'controller/finalSubscriptionVerif.php';
 <body>
     <?php include 'header.php' ?>
     <!-- Titre page -->
-    <?php if(isset($_GET['token']) && ($_GET['type'] == 'presta' || $_GET['type'] == 'hotel')){
+    <?php if(isset($_GET['token']) && ($_GET['type'] == 'partners' || $_GET['type'] == 'hotels')){
         ?>
     <section>
         <div class="container">
@@ -42,7 +42,7 @@ require 'controller/finalSubscriptionVerif.php';
                 </div>
                 <div class="col-7 col-md-4 col-lg-3 mt-5">
                     <form method="post" enctype="multipart/form-data" action="">
-                        <?php if ($_SESSION['type'] == 'presta') {
+                        <?php if ($_SESSION['type'] == 'partners') {
                         ?>
                             <label for="sectors">Secteur d'activité</label>
                             <select class="w-100" name="sectors" id="sectors">
