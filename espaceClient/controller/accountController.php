@@ -38,7 +38,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'logout'){
 if(isset($_POST['deleteConfirm'])){
     $account->deleteAccount();
     $fileCheck = new Files;
-    $fileCheck->rrmdir($dirName);
+    $fileCheck->rrmdir($dirName . '/' . $_SESSION['login']);
     session_destroy();
     header('Location: ../proSide/homepage.php');
     exit;

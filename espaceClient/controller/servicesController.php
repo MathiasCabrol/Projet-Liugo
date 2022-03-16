@@ -265,6 +265,7 @@ if (isset($_POST['saveChanges'])) {
                 $subServiceId = $subService->getSubServiceId();
                 //Si l'utilisateur souhaite ajouter un bouton
                 if ($buttonQuestion[$i] == '1') {
+                    var_dump('bonjour');
                     //Instanciation du modèle bouton sous-service
                     $subServiceButton = new SubServiceButton;
                     $subServiceButton->setButtonValue($buttonName[$i]);
@@ -278,9 +279,9 @@ if (isset($_POST['saveChanges'])) {
                         $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'][$i], $_FILES['buttonFile']['name'][$i], $buttonId, $dirName);
                     }
                 }
-            header('Location: services.php');
-            exit;
             }
         }
+        // header('Location: services.php');
+        // exit;
     }
 }
