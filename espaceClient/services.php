@@ -29,6 +29,9 @@
             <?php } ?>
             <?php if ($newUser) {
             ?>
+            <div class="col-12 text-center my-5">
+                <a class="btn btn-success btn-outline-light" href="addService.php">Ajouter</a>
+            </div>
                 <div class="col-12 col-md-12 col-lg-12 text-center mt-5 hotelIntro">
                     <p><?= $tutoText ?></p>
                 </div>
@@ -70,7 +73,7 @@
                         <button type="submit" class="btn btn-info servicesButtons text-white modifyButton" name="action" value="modify"><i class="fa-solid fa-pen-to-square"></i></button>
                         </form>
                         <h2 class="tangerine hotelSub"><?= $service->title ?></h2>
-                        <img class="mt-5 previewImage" src="<?= 'hotels/' . $_SESSION['login'] . '/' . 'category/' . 'categoryPhoto' . $service->id . '.' . $extension[$service->id] ?>">
+                        <img class="mt-5 previewImage" src="<?= $dirName . '/' . $_SESSION['login'] . '/' . 'category/' . 'categoryPhoto' . $service->id . '.' . $extension[$service->id] ?>">
                     </div>
                 </div>
             <?php } ?>

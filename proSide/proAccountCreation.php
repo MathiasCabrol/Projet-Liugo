@@ -40,7 +40,7 @@ var_dump($_SESSION);
         <div class="row justify-content-center mt-5">
                 <div class="col-5 text-center">
                     <img class="modalImage rounded" src="../assets/img/hotelDoor.jpg" alt="Hotel room door">
-                    <a type="submit" href="proAccountCreation.php?type=hotel" class="btn blueBackground categoryButton btn-outline-light">Hôtel</a>
+                    <a type="submit" href="proAccountCreation.php?type=hotels" class="btn blueBackground categoryButton btn-outline-light">Hôtel</a>
                     <!-- Closing Hotel choice col -->
                 </div>
                 <!-- oppening "or" col -->
@@ -51,12 +51,12 @@ var_dump($_SESSION);
                 <!-- Opening services choice -->
                 <div class="col-5 text-center">
                     <img class="modalImage rounded" src="../assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
-                    <a type="button" href="proAccountCreation.php?type=presta" class="btn blueBackground categoryButton btn-outline-light">Prestataire</a>
+                    <a type="button" href="proAccountCreation.php?type=partners" class="btn blueBackground categoryButton btn-outline-light">Prestataire</a>
                     <!-- Closing services choice -->
                 </div>
         </div>
     </div>
-    <?php } else if($_GET['type'] == "hotel" || $_GET['type'] == "presta") {
+    <?php } else if($_GET['type'] == "hotels" || $_GET['type'] == "partners") {
         ?>
     <section>
         <div class="container mt-5">

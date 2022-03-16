@@ -53,11 +53,11 @@ require 'controller/finalSubscriptionVerif.php';
                             </select>
                         <?php } ?>
                         <label for="phoneInput" class="mt-3">Téléphone</label>
-                        <input class="w-100" type="text" id="phoneInput" name="phoneInput"></input>
+                        <input class="w-100" type="text" id="phoneInput" name="phoneInput" value="<?= isset($_POST['phoneInput'])?$_POST['phoneInput']:'' ?>"></input>
                         <label for="address" class="mt-3">Adresse</label>
-                        <input class="w-100" type="text" id="addressInput" name="addressInput"></input>
+                        <input class="w-100" type="text" id="addressInput" name="addressInput" value="<?= isset($_POST['addressInput'])?$_POST['addressInput']:'' ?>"></input>
                         <label for="postCode" class="mt-3">Code postal</label>
-                        <input id="postCodeInput" class="w-100" type="text" id="postCodeInput" name="postCodeInput"></input>
+                        <input id="postCodeInput" class="w-100" type="text" id="postCodeInput" name="postCodeInput" value="<?= isset($_POST['postCodeInput'])?$_POST['postCodeInput']:'' ?>"></input>
                         <div class="col-12 text-center">
                             <input type="submit" value="confirmer" name="confirm" class="btn btn-outline-light priceButton border rounded shadow mt-3">
                         </div>

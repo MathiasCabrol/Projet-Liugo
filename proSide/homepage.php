@@ -120,7 +120,7 @@
                                     <!-- Opening Hotel choice col -->
                                     <div class="col-5 text-center">
                                         <img class="modalImage rounded" src="../assets/img/hotelDoor.jpg" alt="Hotel room door">
-                                        <a href="proAccountCreation.php?type=hotel" type="button" class="btn blueBackground categoryButton btn-outline-light">Hôtel</a>
+                                        <a href="proAccountCreation.php?type=hotels" type="button" class="btn blueBackground categoryButton btn-outline-light">Hôtel</a>
                                         <!-- Closing Hotel choice col -->
                                     </div>
                                     <!-- oppening "or" col -->
@@ -131,7 +131,7 @@
                                     <!-- Opening services choice -->
                                     <div class="col-5 text-center">
                                         <img class="modalImage rounded" src="../assets/img/servicesChoice.jpg" alt="Dancing woman on sunset">
-                                        <a href="proAccountCreation.php?type=presta" type="button" class="btn blueBackground categoryButton btn-outline-light">Prestataire</a>
+                                        <a href="proAccountCreation.php?type=partners" type="button" class="btn blueBackground categoryButton btn-outline-light">Prestataire</a>
                                         <!-- Closing services choice -->
                                     </div>
                                 </div>

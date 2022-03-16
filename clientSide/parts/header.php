@@ -12,7 +12,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav my-2">
         <li class="nav-item">
-          <a class="nav-link" href="homepage.php">Accueil</a>
+          <a class="nav-link" href="customerHomepage.php">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="hotelServices.php">Hôtel</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="functions.php">Fonctionnalités</a>

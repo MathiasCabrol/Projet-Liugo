@@ -7,9 +7,9 @@ session_start();
 
 if (isset($_POST['confirm'])) {
     $account = new Account;
-    if ($_SESSION['type'] == 'presta') {
+    if ($_SESSION['type'] == 'partners') {
         $account->setTable('partners');
-    } else if ($_SESSION['type'] == 'hotel') {
+    } else if ($_SESSION['type'] == 'hotels') {
         $account->setTable('hotels');
     }
     $account->setEmail(htmlspecialchars($_POST['mailInput']));
@@ -26,10 +26,10 @@ if (isset($_POST['confirm'])) {
             if ($tokenCheck->result == 0) {
                 $errorMessage = 'Votre compte n\'est pas validé, nous vous avons fait parvenir, lors de votre inscription, un mail de confirmation.';
             } else if ($tokenCheck->result == 1) {
-                if ($_SESSION['type'] == 'presta') {
-                    // header(location: '') page non crée pour le moment
-                } else if ($_SESSION['type'] == 'hotel') {
-                    header('location: ../espaceClientHotel/home.php');
+                if ($_SESSION['type'] == 'partners') {
+                    header('location: ../espaceClient/home.php');
+                } else if ($_SESSION['type'] == 'hotels') {
+                    header('location: ../espaceClient/home.php');
                 }
             }
         } else {

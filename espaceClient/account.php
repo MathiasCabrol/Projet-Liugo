@@ -39,29 +39,29 @@
                     <div class="specificInfo">
                         <button class="accountModifyButton btn btn-info" data-input="name"><i class="fa-solid fa-pen-to-square"></i>edit</button>
                         <p class="infoName"><i class="fa-solid fa-signature"></i> Nom de l'établissement</p>
-                        <p class="inline" data-name="name"><?= $selectedHotelInfos->name ?></p>
+                        <p class="inline" data-name="name"><?= $selectedAccountInfos->name ?></p>
                     </div>
                     <div class="specificInfo">
                         <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
                         <p class="infoName"><i class="fa-solid fa-envelope"></i> Adresse e-mail</p>
-                        <p class="inline" data-name="email"><?= $selectedHotelInfos->email ?></p>
+                        <p class="inline" data-name="email"><?= $selectedAccountInfos->email ?></p>
                     </div>
                     <div class="specificInfo">
                         <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
                         <p class="infoName"><i class="fa-solid fa-phone"></i> Numéro de téléphone</p>
-                        <p class="inline" data-name="phone"><?= $selectedHotelInfos->phone ?></p>
+                        <p class="inline" data-name="phone"><?= $selectedAccountInfos->phone ?></p>
                     </div>
                 </div>
                 <div class="accountSeparation">
                     <div class="specificInfo">
                         <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
                         <p class="infoName"><i class="fa-solid fa-location-dot"></i> Adresse</p>
-                        <p class="inline" data-name="address"><?= $selectedHotelInfos->address ?></p>
+                        <p class="inline" data-name="address"><?= $selectedAccountInfos->address ?></p>
                     </div>
                     <div class="specificInfo">
                         <button class="accountModifyButton btn btn-info"><i class="fa-solid fa-pen-to-square"></i>edit</button>
                         <p class="infoName"><i class="fa-solid fa-map"></i> Code Postal</p>
-                        <p class="inline" data-name="postcode"><?= $selectedHotelInfos->postcode ?></p>
+                        <p class="inline" data-name="postcode"><?= $selectedAccountInfos->postcode ?></p>
                     </div>
                     <div class="specificInfo">
                         <p class="infoName"><i class="fa-solid fa-building"></i> Ville</p>

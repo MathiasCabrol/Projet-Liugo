@@ -4,6 +4,8 @@ require 'modele/Database.php';
 require 'modele/Service.php';
 require 'modele/SubService.php';
 require 'modele/SubServicesButton.php';
+require 'modele/PartnersService.php';
+require 'modele/HotelsService.php';
 require 'class/Files.php';
 
 //Regex pour gestion du formulaire
@@ -15,15 +17,21 @@ $boolRegex = '/^[0-1]$/';
 //Début de session
 session_start();
 
-
+var_dump($_SESSION);
 
 //Instance de la classe de gestion de fichiers
 $fileCheck = new Files;
-//Instance de la classe modele service
-$service = new Service;
+
+if ($_SESSION['type'] == 'partners') {
+    $service = new PartnerService;
+    $dirName = 'partners';
+} elseif ($_SESSION['type'] == 'hotels') {
+    $service = new HotelService;
+    $dirName = 'hotels';
+}
 
 //Paramètrage de l'id dans la classe de gestion des services
-$service->setHotelId($_SESSION['id']);
+$service->setAccountId($_SESSION['id']);
 //Vérifiation de service déja créé pôur affichage
 $checkIfServiceExist = $service->checkIfServicesAdded();
 //Nombre de services déja créés
@@ -38,7 +46,7 @@ if ($numberOfServices == 0) {
 }
 
 //Si le paramètre GET est set et que l'utilisateur se trouve sur la bonne page
-if (isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php') {
+if (isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClient/services.php') {
     //Si le paramètre action est égal à "delete" qui est définis par le clic de l'utilisateur
     if ($_GET['action'] == 'delete') {
         //Si le paramètre id existe et n'a pas été modifié volontairement
@@ -54,7 +62,7 @@ if (isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClientHotel/servic
                 //Suppression du service
                 $service->deleteService();
                 //Suppression de l'image liée à ce service
-                $fileCheck->deleteCategoryFile($serviceId);
+                $fileCheck->deleteCategoryFile($serviceId, $dirName);
                 //Suppresion des images liées aux boutons de ce service
                 var_dump($selectedButtons);
                 foreach ($selectedButtons as $subServiceButton) {
@@ -84,11 +92,11 @@ if (isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClientHotel/servic
 }
 
 //Récupération des données pour affichage si l'utilisateur a déja créé des services
-if (!$newUser && $_SERVER['PHP_SELF'] == '/espaceClientHotel/services.php') {
+if (!$newUser && $_SERVER['PHP_SELF'] == '/espaceClient/services.php') {
     //Récupération des différents services en fonction de l'id de l'hotel pour affichage
     $servicesInfos = $service->getAllServices($service->getHotelId());
     //Scan du dossier dans lequel sont enregistrés les images des services
-    $files = scandir('hotels/' . $_SESSION['login'] . '\/category/');
+    $files = scandir($dirName . '/' . $_SESSION['login'] . '\/category/');
     //Supression des deux premiers index du tableau, égaux à "." et ".."
     $files = array_splice($files, 2);
     //Utilisation du setter de la classe Files
@@ -108,11 +116,11 @@ if (isset($_POST['saveChanges'])) {
     //Décflaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
     $filesArray = ['categoryPhoto' => 'Merci d\'insérer une photo de service'];
     //Si le dossier du client n'existe pas, on le crée en utilisant son login
-    if (!is_dir('hotels/' . $_SESSION['login'] . '\/category/')) {
-        mkdir('hotels/' . $_SESSION['login'] . '\/category/', 0777, true);
+    if (!is_dir($dirName . '/' . $_SESSION['login'] . '\/category/')) {
+        mkdir($dirName . '/' . $_SESSION['login'] . '\/category/', 0777, true);
     }
     //Détermination du chemin pour l'ajout des fichiers
-    $path = 'hotels/' . $_SESSION['login'] . '\/category/';
+    $path = $dirName . '/' . $_SESSION['login'] . '\/category/';
     //Tableau qui retourne tous les fichiers dans le dossier du client
     $files = scandir($path);
     //Suppression des deux premiers indexs qui retournent respectivement "." et ".."
@@ -235,7 +243,7 @@ if (isset($_POST['saveChanges'])) {
         //On vient renommer le fichier pour que son nom corresponde à l'id du service enregistré par l'utilisateur
         foreach ($filesArray as $fileName => $errorMessage) {
             if (!$_FILES[$fileName]['error']) {
-                $fileCheck->renameFile($fileName, $path, $serviceId);
+                $fileCheck->renameFile($fileName, $path, $serviceId, $dirName);
             } else {
                 $errorList[$fileName] = $errorMessage;
             }
@@ -252,23 +260,26 @@ if (isset($_POST['saveChanges'])) {
             $subService->setAddButton($buttonQuestion[$i]);
             $subService->setIdService($serviceId);
             //Ajout du sous-service dans la bdd
-            $subService->addSubService();
-            //Récupération de l'id du sous-service
-            $subServiceId = $subService->getSubServiceId();
-            //Si l'utilisateur souhaite ajouter un bouton
-            if ($buttonQuestion[$i] == '1') {
-                //Instanciation du modèle bouton sous-service
-                $subServiceButton = new SubServiceButton;
-                $subServiceButton->setButtonValue($buttonName[$i]);
-                $subServiceButton->setIdSubService($subServiceId);
-                //INsertion du bouton dans la bdd
-                if ($subServiceButton->insertButtonValue()) {
-                    if (!is_dir('hotels/' . $_SESSION['login'] . '\/buttonFiles/')) {
-                        mkdir('hotels/' . $_SESSION['login'] . '\/buttonFiles/', 0777, true);
+            if ($subService->addSubService()) {
+                //Récupération de l'id du sous-service
+                $subServiceId = $subService->getSubServiceId();
+                //Si l'utilisateur souhaite ajouter un bouton
+                if ($buttonQuestion[$i] == '1') {
+                    //Instanciation du modèle bouton sous-service
+                    $subServiceButton = new SubServiceButton;
+                    $subServiceButton->setButtonValue($buttonName[$i]);
+                    $subServiceButton->setIdSubService($subServiceId);
+                    //INsertion du bouton dans la bdd
+                    if ($subServiceButton->insertButtonValue()) {
+                        if (!is_dir($dirName . '/' . $_SESSION['login'] . '\/buttonFiles/')) {
+                            mkdir($dirName . '/' . $_SESSION['login'] . '\/buttonFiles/', 0777, true);
+                        }
+                        $buttonId = $subServiceButton->getLastInsertedButton();
+                        $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'][$i], $_FILES['buttonFile']['name'][$i], $buttonId, $dirName);
                     }
-                    $buttonId = $subServiceButton->getLastInsertedButton();
-                    $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'][$i], $_FILES['buttonFile']['name'][$i], $buttonId);
                 }
+            header('Location: services.php');
+            exit;
             }
         }
     }

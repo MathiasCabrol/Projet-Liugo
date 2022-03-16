@@ -1,14 +1,17 @@
 <?php
 class Service extends Database {
 
-    private int $idhotel;
+    private int $idaccount;
     private string $serviceTitle;
     private int $serviceId;
+    protected string $idtype;
+    protected string $table;
+    protected int $typeofid;
 
     public function checkIfServicesAdded() {
-        $query = 'SELECT COUNT(`id`) AS `count` FROM `services` WHERE `id_hotels` = :idhotels';
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `services` WHERE ' . $this->idtype . ' = :accountid';
         $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue(':idhotels', $this->idhotel, PDO::PARAM_INT);
+        $queryStatement->bindValue(':accountid', $this->idaccount, PDO::PARAM_INT);
         $queryStatement->execute();
         $result = $queryStatement->fetch(PDO::FETCH_OBJ);
         return $result;
@@ -24,9 +27,9 @@ class Service extends Database {
     }
 
     public function addService(): bool {
-        $query = 'INSERT INTO `services` (`id_hotels`, `title`) VALUES (:idhotels, :title)';
+        $query = 'INSERT INTO `services` (' . $this->idtype . ', `title`, `id_type`) VALUES (:accountid, :title, ' . $this->typeofid . ')';
         $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue(':idhotels', $this->idhotel, PDO::PARAM_INT);
+        $queryStatement->bindValue(':accountid', $this->idaccount, PDO::PARAM_INT);
         $queryStatement->bindValue(':title', $this->serviceTitle, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
@@ -39,11 +42,11 @@ class Service extends Database {
         $serviceId = $queryStatement->fetchColumn();
         return $serviceId;
     }
-    
-    public function getAllServices(int $hotelId):array {
-        $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title` FROM `services` AS `S` INNER JOIN `hotels` AS `H` WHERE `H`.`id` = :idhotel';
+
+    public function getAllServices(int $idaccount):array {
+        $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title` FROM `services` AS `S` WHERE ' . $this->idtype . ' = :accountid';
         $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue(':idhotel', $hotelId, PDO::PARAM_INT);
+        $queryStatement->bindValue(':accountid', $idaccount, PDO::PARAM_INT);
         $queryStatement->execute();
         $servicesInfo = $queryStatement->fetchAll(PDO::FETCH_OBJ);
         return $servicesInfo;
@@ -81,12 +84,12 @@ class Service extends Database {
         $this->serviceTitle = $newServiceTitle;
     }
     
-    public function setHotelId($newHotelId){
-        $this->idhotel = $newHotelId;
+    public function setAccountId($newAccountId){
+        $this->idaccount = $newAccountId;
     }
 
     public function getHotelId(){
-        return $this->idhotel;
+        return $this->idaccount;
     }
 
 }

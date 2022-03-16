@@ -1,6 +1,8 @@
 <?php
 require '../modele/Database.php';
-require '../modele/Hotel.php';
+require '../modele/Account.php';
+require '../modele/Hotels.php';
+require '../modele/Partners.php';
 require '../modele/Cities.php';
 
 session_start();
@@ -11,15 +13,20 @@ $regexPhone = '/^((([\+]([0-9])*[\.\-\s]?)[0-9]?)||(([0])[0-9]))([\.\-\s])?([0-9
 $regexAddress = '/^([0-9])*[\s]?([Bb][is])?[\s]([A-Za-zÀ-ÖØ-öø-ÿ\s])*$/';
 $regexPostcode = '/^[0-9]{5}$/';
 
-$hotel = new Hotel();
-$hotel->setId($_SESSION['id']);
+if($_SESSION['type'] == 'partners'){
+    $account = new Partner;
+} elseif($_SESSION['type'] == 'hotels'){
+    $account = new Hotel;
+}
+
+$account->setId($_SESSION['id']);
 
 
 if (isset($_POST['name'])) {
     if (preg_match($regexName, $_POST['name'])) {
         $name = htmlspecialchars($_POST['name']);
-        $hotel->setName($name);
-        $hotel->updateHotelName();
+        $account->setName($name);
+        $account->updateAccountName();
     } else {
         $errorList['name'] = 'Merci d\'entrer un nom valide';
     }
@@ -35,8 +42,8 @@ if (isset($_POST['name'])) {
 if (isset($_POST['email'])) {
     if (preg_match($regexMail, $_POST['email'])) {
         $email = htmlspecialchars($_POST['email']);
-        $hotel->setEmail($email);
-        $hotel->updateHotelEmail();
+        $account->setEmail($email);
+        $account->updateAccountEmail();
     } else {
         $errorList['email'] = 'Merci d\'entrer un email valide';
     }
@@ -47,8 +54,8 @@ if (isset($_POST['email'])) {
 if (isset($_POST['phone'])) {
     if (preg_match($regexPhone, $_POST['phone'])) {
         $phone = htmlspecialchars($_POST['phone']);
-        $hotel->setPhone($phone);
-        $hotel->updateHotelPhone();
+        $account->setPhone($phone);
+        $account->updateAccountPhone();
     } else {
         $errorList['phone'] = 'Merci d\'entrer un numéro de téléphone valide';
     }
@@ -59,8 +66,8 @@ if (isset($_POST['phone'])) {
 if (isset($_POST['address'])) {
     if (preg_match($regexAddress, $_POST['address'])) {
         $address = htmlspecialchars($_POST['address']);
-        $hotel->setAddress($address);
-        $hotel->updateHotelAddress();
+        $account->setAddress($address);
+        $account->updateAccountAddress();
     } else {
         $errorList['address'] = 'Merci d\'entrer une addresse valide';
     }
@@ -72,9 +79,9 @@ if (isset($_POST['postcode'])) {
     if(isset($_POST['cityId'])){
         if (preg_match($regexPostcode, $_POST['postcode'])) {
             $postcode = htmlspecialchars($_POST['postcode']);
-            $hotel->setPostCode($postcode);
-            $hotel->setIdCities(htmlspecialchars($_POST['cityId']));
-            $hotel->updateHotelPostCode();
+            $account->setPostCode($postcode);
+            $account->setIdCities(htmlspecialchars($_POST['cityId']));
+            $account->updateAccountPostCode();
         } else {
             $errorList['postcode'] = 'Merci d\'entrer un code postal valide';
         }

@@ -23,6 +23,12 @@ $phoneRegex = '/^((([\+]([0-9])*[\.\-\s]?)[0-9]?)||(([0])[0-9]))([\.\-\s])?([0-9
 $adressRegex = '/^([0-9])*[\s]?([Bb][is])?[\s]([A-Za-zÀ-ÖØ-öø-ÿ\s])*$/';
 $postCodeRegex = '/^[0-9]{5}$/';
 
+function checkIfSectorExists($value): bool
+    {
+        $sectorArray = ['restauration', 'indoor', 'outdoor', 'transport', 'mixte'];
+        return in_array($value, $sectorArray);
+    }
+
 //Création du tableau vide de listes d'erreurs
 
 if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
@@ -31,22 +37,16 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
 
     //Définition des erreurs du champ 'téléphone'
 
-    if ($_SESSION['type'] == 'presta') {
-        if (!empty($_POST['sector'])) {
-            if (!checkIfSectorExists($_POST['sector'])) {
-                $errorList['sector'] = 'Merci d\'entrer un secteur valide.';
+    if ($_SESSION['type'] == 'partners') {
+        if (isset($_POST['sectors'])) {
+            if (!checkIfSectorExists($_POST['sectors'])) {
+                $errorList['sectors'] = 'Merci d\'entrer un secteur valide.';
             } else {
-                $sector = htmlspecialchars($_POST['sector']);
+                $sector = htmlspecialchars($_POST['sectors']);
             }
         } else {
-            $errorList['sector'] = 'Veuillez entrer un numéro de téléphone.';
+            $errorList['sectors'] = 'Veuillez entrer un secteur valide.';
         }
-    }
-
-    function checkIfSectorExists($value): bool
-    {
-        $sectorArray = ['restauration', 'indoor', 'outdoor', 'transport', 'mixte'];
-        return in_array($value, $sectorArray);
     }
 
     //Définition des erreurs du champ 'téléphone'
@@ -96,9 +96,9 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
     if (isset($_GET['token'])) {
         $account = new Account;
         //Vérification préalable du type de compte
-        if ($_SESSION['type'] == 'presta') {
+        if ($_SESSION['type'] == 'partners') {
             $account->setTable('partners');
-        } else if ($_SESSION['type'] == 'hotel') {
+        } else if ($_SESSION['type'] == 'hotels') {
             $account->setTable('hotels');
             $header = '../espaceClientHotel/home.php';
         }
@@ -113,11 +113,13 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
         $errorList['token'] = 'Aucun jeton unique n\'est reconnu, merci d\'utiliser à nouveau le lien fourni par email.';
     }
 
+    var_dump($errorList);
+
     //Si il n'y a pas d'erreur, j'envois mes données
     if (count($errorList) == 0) {
         $email = $account->getEmailFromToken();
         $account->setEmail($email->email);
-        if ($_SESSION['type'] == 'presta') {
+        if ($_SESSION['type'] == 'partners') {
             $account->setSector($sector);
         }
         $account->setPhone($phone);
@@ -126,14 +128,16 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
         $account->setIdCities($city);
         $check = $account->checkIfPhoneIsNull();
         if ($check->result) {
-            if ($_SESSION['type'] == 'presta') {
+            if ($_SESSION['type'] == 'partnerd') {
                 if ($account->subscriptionFinalisationPartners()) {
-                    $account->setTokenNull();
+                    if($account->setTokenNull()){
+                        header('Location: ../espaceClient/home.php');
+                    }
                 }
-            } else if ($_SESSION['type'] == 'hotel') {
+            } else if ($_SESSION['type'] == 'hotels') {
                 if ($account->subscriptionFinalisationHotels()) {
                     if($account->setTokenNull()){
-                        header('Location: ../espaceClientHotel/home.php');
+                        header('Location: ../espaceClient/home.php');
                     }
                 }
             }

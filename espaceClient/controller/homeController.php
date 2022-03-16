@@ -1,28 +1,47 @@
 <?php session_start();
 
+var_dump($_SESSION);
+
 require 'class/Files.php';
 require 'modele/Database.php';
-require 'modele/Hotel.php';
+require 'modele/Account.php';
 require 'modele/Presentation.php';
+require 'modele/Hotels.php';
+require 'modele/Partners.php';
+require 'modele/HotelsPresentation.php';
+require 'modele/PartnersPresentation.php';
 
 //Regex qui servira aux tests de l'input description
 $descriptionRegex = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\'._\s-]{10,600}$/';
 
-$fileCheck = new Files;
-$presentation = new Presentation();
+$presentation = new Presentation;
 
-//Déclaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
-$filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil', 'activityPhoto' => 'Merci d\'insérer une photo pour la section activités', 'servicePhoto' => 'Merci d\'insérer une photo pour la section service'];
+if($_SESSION['type'] == 'partners'){
+    $account = new Partner;
+    $presentation = new HotelPresentation;
+    $presentation->setIdType(1);
+    //Déclaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
+$filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil'];
+}elseif($_SESSION['type'] == 'hotels'){
+    $account = new Hotel;
+    $presentation = new PartnerPresentation;
+    $presentation->setIdType(2);
+    //Déclaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
+    $filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil', 'activityPhoto' => 'Merci d\'insérer une photo pour la section activités', 'servicePhoto' => 'Merci d\'insérer une photo pour la section service'];
+}
+$dirName = $_SESSION['type'];
+
+$fileCheck = new Files;
 
 if (isset($_POST['confirm'])) {
     //Création d'un tableau d'erreur vide
     $errorList = [];
     //Si le dossier du client n'existe pas, on le crée en utilisant son login
-    if (!is_dir('hotels/' . $_SESSION['login'] . '/' . 'home' . '/')) {
-        mkdir('hotels/' . $_SESSION['login'] . '/' . 'home' . '/', 0777, true);
+    if (!is_dir($dirName . '/' . $_SESSION['login'] . '/' . 'home' . '/')) {
+        mkdir($dirName . '/' . $_SESSION['login'] . '/' . 'home' . '/', 0777, true);
     }
     //Détermination du chemin pour l'ajout des fichiers
-    $path = 'hotels/' . $_SESSION['login'] . '/' . 'home' . '/';
+    $path = $dirName . '/' . $_SESSION['login'] . '/' . 'home' . '/';
     //Tableau qui retourne tous les fichiers dans le dossier du client
     $files = scandir($path);
     //Suppression des deux premiers indexs qui retournent respectivement "." et ".."
@@ -87,23 +106,25 @@ function is_dir_empty($dir) {
 
 
 //Si le dossier existe, Pour chaque fichier enregistré, insère le chemin dans le tableau $filePath pour affichage dans exemple vue client
-if (!is_dir_empty('hotels/' . $_SESSION['login'] . '/')) {
-$files = scandir('hotels/' . $_SESSION['login'] . '/');
-$files = array_splice($files, 2);
-if(!$files){
-    foreach ($filesArray as $fileName => $errorMessage) {
-        $fileCheck->setFilesArray($files);
-        if ($fileCheck->array_partial_search($fileName)) {
-            $file[$fileName] = $fileCheck->returnFile($fileName);
-            $filePath[$fileName] = 'hotels/' . $_SESSION['login'] . '/' . $file[$fileName];
+if(is_dir($dirName . '/' . $_SESSION['login'] . '/')){
+    if (!is_dir_empty($dirName . '/' . $_SESSION['login'] . '/')) {
+        $files = scandir($dirName . '/' . $_SESSION['login'] . '/');
+        $files = array_splice($files, 2);
+        if(!$files){
+            foreach ($filesArray as $fileName => $errorMessage) {
+                $fileCheck->setFilesArray($files);
+                if ($fileCheck->array_partial_search($fileName)) {
+                    $file[$fileName] = $fileCheck->returnFile($fileName);
+                    $filePath[$fileName] = $dirName . '/' . $_SESSION['login'] . '/' . $file[$fileName];
+                }
+            }
         }
-    }
-}
-
 }
 
 
-//Utilisation du modele Hotel.php afin de récupérer le nom de l'établissement pour affichage
-$hotel = new Hotel;
-$hotel->setEmail($_SESSION['login']);
-$hotelName = $hotel->getHotelNameFromEmail();
+}
+
+
+//Utilisation du modele Account.php afin de récupérer le nom de l'établissement pour affichage
+$account->setEmail($_SESSION['login']);
+$accountName = $account->getAccountNameFromEmail();

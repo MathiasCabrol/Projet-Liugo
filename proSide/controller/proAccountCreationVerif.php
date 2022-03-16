@@ -4,6 +4,7 @@ require 'model/Account.php';
 require 'class/Token.php';
 
 session_start();
+
 if(isset($_GET['type'])){
     $_SESSION['type'] = $_GET['type'];
 }
@@ -62,9 +63,9 @@ if (isset($_POST['inscription'])) {
         $account = new Account;
         //Selon le type d'utilisateur, configurer la table de création de compte
         if (isset($_GET['type'])) {
-            if ($_GET['type'] == 'hotel') {
+            if ($_GET['type'] == 'hotels') {
                 $account->setTable('hotels');
-            } else if ($_GET['type'] == 'presta') {
+            } else if ($_GET['type'] == 'partners') {
                 $account->setTable('partners');
             }
                 //Création d'une nouvelle instance Hotels
@@ -93,7 +94,7 @@ if (isset($_POST['inscription'])) {
                         // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
                         // $headers[] = 'MIME-Version: 1.0';
                         // $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                        // $headers[] = 'From: Liugo <mmathiascabrol@gmail.com>';
+                        // $headers[] = 'From: Liugo <mathiascabrol@gmail.com>';
                         // mail($to, $subject, $message, implode("\r\n", $headers));
                         $idObject = $account->getId();
                         header('location: subscriptionFinalisation.php?type=' . $_SESSION['type'] . '&token=' . $generatedToken);

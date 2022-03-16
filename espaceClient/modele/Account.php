@@ -1,5 +1,5 @@
 <?php
-class Hotel extends Database {
+class Account extends Database {
 
     private int $id;
     private string $email;    
@@ -8,22 +8,24 @@ class Hotel extends Database {
     private string $address;
     private string $postcode;
     private string $id_cities;
-    
+    protected string $table;
+
     /**
      * Fonction qui retourne un objet avec l'attribut name contenant le nom de l'établissement connecté
      * @return object
      */
-    public function getHotelNameFromEmail():object {
-        $query = 'SELECT `name` FROM `hotels` WHERE `email` = :email';
+
+    public function getAccountNameFromEmail():object {
+        $query = 'SELECT `name` FROM ' . $this->table . ' WHERE `email` =  :email';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         $queryStatement->execute();
-        $hotelName = $queryStatement->fetch(PDO::FETCH_OBJ);
-        return $hotelName;
+        $accountName = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $accountName;
     }
 
-    public function getHotelInfosById():object {
-        $query = 'SELECT `name`, `email`, `phone`, `address`, `postcode`, `id_cities` FROM `hotels` WHERE `id` = :id';
+    public function getAccountInfosById():object {
+        $query = 'SELECT `name`, `email`, `phone`, `address`, `postcode`, `id_cities` FROM ' . $this->table . ' WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         $queryStatement->execute();
@@ -31,49 +33,49 @@ class Hotel extends Database {
         return $hotelInfos;
     }
 
-    public function updateHotelName():bool {
-        $query = 'UPDATE `hotels` SET `name` = :hotelname WHERE `id` = :id';
+    public function updateAccountName():bool {
+        $query = 'UPDATE ' . $this->table . ' SET `name` = :accountname WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $queryStatement->bindValue(':hotelname', $this->name, PDO::PARAM_STR);
+        $queryStatement->bindValue(':accountname', $this->name, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
-    public function updateHotelEmail():bool {
-        $query = 'UPDATE `hotels` SET `email` = :hotelemail WHERE `id` = :id';
+    public function updateAccountEmail():bool {
+        $query = 'UPDATE ' . $this->table . ' SET `email` = :accountemail WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $queryStatement->bindValue(':hotelemail', $this->email, PDO::PARAM_STR);
+        $queryStatement->bindValue(':accountemail', $this->email, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
-    public function updateHotelPhone():bool {
-        $query = 'UPDATE `hotels` SET `phone` = :hotelphone WHERE `id` = :id';
+    public function updateAccountPhone():bool {
+        $query = 'UPDATE ' . $this->table . ' SET `phone` = :accountphone WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $queryStatement->bindValue(':hotelphone', $this->phone, PDO::PARAM_STR);
+        $queryStatement->bindValue(':accountphone', $this->phone, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
-    public function updateHotelAddress():bool {
-        $query = 'UPDATE `hotels` SET `address` = :hoteladdress WHERE `id` = :id';
+    public function updateAccountAddress():bool {
+        $query = 'UPDATE ' . $this->table . ' SET `address` = :accountaddress WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $queryStatement->bindValue(':hoteladdress', $this->address, PDO::PARAM_STR);
+        $queryStatement->bindValue(':accountaddress', $this->address, PDO::PARAM_STR);
         return $queryStatement->execute();
     }
 
-    public function updateHotelPostCode():bool {
-        $query = 'UPDATE `hotels` SET `postcode` = :hotelpostcode, `id_cities` = :id_cities WHERE `id` = :id';
+    public function updateAccountPostCode():bool {
+        $query = 'UPDATE ' . $this->table . ' SET `postcode` = :accountpostcode, `id_cities` = :id_cities WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $queryStatement->bindValue(':hotelpostcode', $this->postcode, PDO::PARAM_STR);
+        $queryStatement->bindValue(':accountpostcode', $this->postcode, PDO::PARAM_STR);
         $queryStatement->bindValue(':id_cities', $this->id_cities, PDO::PARAM_INT);
         return $queryStatement->execute();
     }
 
-    public function deleteHotel():bool {
-        $query = 'DELETE FROM `hotels` WHERE `id` = :id';
+    public function deleteAccount():bool {
+        $query = 'DELETE FROM ' . $this->table . ' WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryStatement->execute();

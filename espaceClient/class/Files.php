@@ -35,9 +35,9 @@ public function returnFile($keyword)
     return $file;
 }
 
-public function deleteCategoryFile($id)
+public function deleteCategoryFile($id, $directory)
 {
-    $path = 'hotels/' . $_SESSION['login'] . '\/category/';
+    $path = $directory . '/' . $_SESSION['login'] . '\/category/';
     $files = scandir($path);
     $files = array_splice($files, 2);
     $this->setFilesArray($files);
@@ -45,9 +45,9 @@ public function deleteCategoryFile($id)
     return unlink($path . $fileToDelete);
 }
 
-public function deleteButtonFile($id)
+public function deleteButtonFile($id, $directory)
 {
-    $path = 'hotels/' . $_SESSION['login'] . '\/buttonFiles/';
+    $path = $directory . '/' . $_SESSION['login'] . '\/buttonFiles/';
     $files = scandir($path);
     $files = array_splice($files, 2);
     $this->setFilesArray($files);
@@ -55,16 +55,16 @@ public function deleteButtonFile($id)
     return unlink($path . $fileToDelete);
 }
 
-public function registerCategoryFile($oldPath, $oldFileName, $id)
+public function registerCategoryFile($oldPath, $oldFileName, $id, $directory)
 {
-    $path = 'hotels/' . $_SESSION['login'] . '\/category/';
+    $path = $directory . '/' . $_SESSION['login'] . '\/category/';
     $temp = explode(".", $oldFileName);
     return rename($oldPath, $path . 'categoryPhoto' . $id . '.' . end($temp));
 }
 
-public function registerButtonFile($oldPath, $oldFileName, $id)
+public function registerButtonFile($oldPath, $oldFileName, $id, $directory)
 {
-    $path = 'hotels/' . $_SESSION['login'] . '\/buttonFiles/';
+    $path = $directory . '/' . $_SESSION['login'] . '\/buttonFiles/';
     $temp = explode(".", $oldFileName);
     return rename($oldPath, $path . 'buttonFile' . $id . '.' . end($temp));
 }
