@@ -11,17 +11,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav my-2">
+        <?php if(isset($_SESSION['hotelId'])){ ?>
         <li class="nav-item">
           <a class="nav-link" href="customerHomepage.php">Accueil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="hotelServices.php">Hôtel</a>
         </li>
+        <?php } ?>
         <li class="nav-item">
-          <a class="nav-link" href="">Activités</a>
+          <a class="nav-link" href="activities.php">Activités</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Mes réservations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Mon compte</a>
         </li>
       </ul>
     </div>

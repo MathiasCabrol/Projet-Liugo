@@ -12,19 +12,17 @@ require 'modele/HotelsPresentation.php';
 require 'modele/PartnersPresentation.php';
 
 //Regex qui servira aux tests de l'input description
-$descriptionRegex = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\'._\s-]{10,600}$/';
-
-$presentation = new Presentation;
+$descriptionRegex = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\'!._\s-]{10,600}$/';
 
 if($_SESSION['type'] == 'partners'){
     $account = new Partner;
-    $presentation = new HotelPresentation;
+    $presentation = new PartnerPresentation;
     $presentation->setIdType(1);
     //Déclaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
 $filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil'];
 }elseif($_SESSION['type'] == 'hotels'){
     $account = new Hotel;
-    $presentation = new PartnerPresentation;
+    $presentation = new HotelPresentation;
     $presentation->setIdType(2);
     //Déclaration d'un tableau contenant le nom des fichiers ainsi que les messages d'erreur
     $filesArray = ['homePhoto' => 'Merci d\'insérer une photo d\'accueil', 'activityPhoto' => 'Merci d\'insérer une photo pour la section activités', 'servicePhoto' => 'Merci d\'insérer une photo pour la section service'];

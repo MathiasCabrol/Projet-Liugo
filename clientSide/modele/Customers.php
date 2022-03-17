@@ -73,6 +73,24 @@ class Customer extends Database {
         return $queryStatement->execute();;
     }
 
+    public function checkIfTokenIsNull():string {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM `customers` WHERE `token` IS NULL AND `email` = :email;';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
+    public function getConnexionId():object {
+        $query = 'SELECT `id`, `password` FROM `customers` WHERE :email = `email`';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $connexionId = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $connexionId;
+    }
+
     public function setFirstName($newFirstName){
         $this->firstName = $newFirstName;
     }

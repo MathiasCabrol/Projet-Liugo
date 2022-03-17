@@ -7,9 +7,10 @@ require 'modele/SubServicesButton.php';
 require 'modele/PartnersService.php';
 require 'modele/HotelsService.php';
 require 'class/Files.php';
+require 'class/Slugify.php';
 
 //Regex pour gestion du formulaire
-$titleRegex = '/^([A-Za-zÀ-ÖØ-öø-ÿ])+[- .]*$/';
+$titleRegex = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\'._\s-]{2,50}$/';
 $hourRegex = '/^(([0-1][0-9])|(2[0-3])):[0-5][0-9]$/';
 $priceRegex = '/^[0-9]{1,5}([.-][0-9]{2})?$/';
 $boolRegex = '/^[0-1]$/';
@@ -228,6 +229,11 @@ if (isset($_POST['saveChanges'])) {
     if (count($errorList) == 0) {
         //Ajout du service
         $service->setServiceTitle($serviceTitle);
+        //Instance de la classe permettant la création du slug
+        $slugify = new Slug;
+        //Transformation du titre du service en slug
+        $serviceSlug = $slugify->slugify($serviceTitle);
+        $service->setSlug($serviceSlug);
         $service->addService();
         //Récupération de son id
         $serviceId = $service->getServiceId();
@@ -281,7 +287,7 @@ if (isset($_POST['saveChanges'])) {
                 }
             }
         }
-        // header('Location: services.php');
-        // exit;
+        header('Location: services.php');
+        exit;
     }
 }

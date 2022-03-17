@@ -1,5 +1,5 @@
 //Regex (possibilité d'en ajouter si nécéssaire)
-const titleRegex = /^([A-Za-zÀ-ÖØ-öø-ÿ])+([-\ .]|[A-Za-zÀ-ÖØ-öø-ÿ])*$/
+const titleRegex = /^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\'._\s-]{2,50}$/
 const priceRegex = /^[0-9]{1,5}([.][0-9]{2})?$/
 
 //Création des messages d'erreur

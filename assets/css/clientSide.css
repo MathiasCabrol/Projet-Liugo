@@ -5,9 +5,8 @@
 }
 
 .absoluteFooter {
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    margin-top: 7em;
 }
 
 .accountCreationLink {
@@ -259,4 +258,68 @@ input[type=radio]:checked {
   background-color: #4E629C;
   margin: 1em 0;
 }
+
+.filterDiv {
+  width: fit-content;
+  border: 1px solid black;
+  height: fit-content;
+  padding: 0 2em;
+}
+
+.searchInput {
+  width: 100%;
+  border-radius: 10%;
+  font-family: Didot, serif;
+  box-sizing: border-box;
+  height: 3em;
+}
+
+.searchDiv{
+  display: inline-block;
+  position: relative;
+  width: 60%;
+  margin-top: 10px;
   
+}
+
+.searchIcon {
+  position: absolute;
+  top: 40%;
+  right: 5%;
+}
+
+.searchIcon:hover {
+  cursor: pointer;
+  color: #4E629C;
+}
+
+.searchResult img {
+  width: 100%;
+  height: 16em;
+}
+  
+.searchResult {
+  border: 1px solid black;
+  margin: 2em 0;
+}
+
+.searchCol:nth-child(1){
+  margin-top: 6em;
+} 
+
+.customerServiceDescrption{
+  width: 60%;
+}
+
+.serviceDescriptionCol {
+  font-family: Didot, serif;
+  text-align: center;
+}
+
+.serviceDescriptionCol h3 {
+  margin-top: 1em;
+}
+
+.serviceDescriptionCol p {
+  margin: 2em 0;
+}
