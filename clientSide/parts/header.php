@@ -17,15 +17,12 @@
         <li class="nav-item">
           <a class="nav-link" href="hotelServices.php">Hôtel</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="functions.php">Fonctionnalités</a>
+        <li class="nav-item">
+          <a class="nav-link" href="">Activités</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="prices.php">Tarifs</a>
+          <a class="nav-link" href="">Mes réservations</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="proAccountCreation.php">Mon compte</a>
-        </li> -->
       </ul>
     </div>
   </nav>

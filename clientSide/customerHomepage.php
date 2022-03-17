@@ -21,19 +21,19 @@
     <?php include 'parts/header.php'; ?>
     <div class="col-12 text-center my-5 text-black">
         <h1 class="tangerine"><?= $selectedHotel->name ?></h1>
-        <img class="mt-5" src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/home/homePhoto' ?>">
+        <img class="mt-5" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/homePhoto' ?>">
         <p class="mt-5"><?= $selectedDescription->description ?></p>
         <div class="row justify-content-start">
             <div class="col-8">
                 <p class="mt-5">Découvrez les activités proposées par nos partenaires</p>
-                <img class="customerPhoto" src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/home/activityPhoto' ?>">
+                <img class="customerPhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/activityPhoto' ?>">
                 <button class="btn btn-outline-light blueBackground categoryButton">Explorer</button>
             </div>
         </div>
         <div class="row justify-content-end mt-3">
             <div class="col-8">
                 <p class="mt-5">Découvrez les services proposés par votre hébergeur</p>
-                <img class="customerPhoto" src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/home/servicePhoto' ?>">
+                <img class="customerPhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/servicePhoto' ?>">
                 <a href="hotelServices.php" class="btn btn-outline-light blueBackground categoryButton">Découvrir</a>
             </div>
         </div>

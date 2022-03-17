@@ -66,7 +66,7 @@ if (isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClient/services.ph
                 //Suppresion des images liées aux boutons de ce service
                 var_dump($selectedButtons);
                 foreach ($selectedButtons as $subServiceButton) {
-                    $fileCheck->deleteButtonFile($subServiceButton->buttonid);
+                    $fileCheck->deleteButtonFile($subServiceButton->buttonid, $dirName);
                 }
             } else {
                 //Si l'id ne correspond à aucune ligne dans la table, affichage d'un message d'erreur

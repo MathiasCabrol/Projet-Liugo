@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="shadow-lg col-12 col-md-10 col-lg-10 mainService text-center">
                 <h2 class="tangerine serviceTitle"><?= $selectedService->title ?></h2>
-                <img class="serviceImage" src="<?= '../espaceClientHotel/hotels/' . $selectedHotelEmail->email . '/category/categoryPhoto' . $selectedService->id ?>" alt="image du service <?= $selectedService->title ?>">
+                <img class="serviceImage" src="<?= '../espaceClient/hotels/' . $selectedHotelEmail->email . '/category/categoryPhoto' . $selectedService->id ?>" alt="image du service <?= $selectedService->title ?>">
                 <div class="row justify-content-around">
                     <?php foreach ($selectedServiceSS as $subService) { ?>
                         <div class="col-10 col-md-5 col-lg-5 text-center my-5 showSS shadow">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <?php if($subService->ssAddButton == 1){ ?>
-                                <a href="../espaceClientHotel/hotels/<?= $selectedHotelEmail->email ?>/buttonFiles/buttonFile<?= $ssButtonArray[$subService->ssId]['buttonId'] ?>" class="btn-light btn btn-outline-dark my-4"><?= $ssButtonArray[$subService->ssId]['buttonValue'] ?></a>
+                                <a href="../espaceClient/hotels/<?= $selectedHotelEmail->email ?>/buttonFiles/buttonFile<?= $ssButtonArray[$subService->ssId]['buttonId'] ?>" class="btn-light btn btn-outline-dark my-4"><?= $ssButtonArray[$subService->ssId]['buttonValue'] ?></a>
                                 <?php } ?>
                         </div>
                     <?php } ?>

@@ -39,7 +39,7 @@
         <?php $j = 1;
         foreach ($hotelServices as $service) {
         ?>
-        <label for="s<?= $j ?>" id="slide<?= $j ?>"><p class="serviceName didot"><?= $service->title ?></p><a class="serviceFrameButton btn btn-outline-light blueBackground didot" href="hotelSelectedService.php?serviceId=<?= $service->id ?>">explorer</a><img src="<?= '../espaceClientHotel/hotels/' . $selectedHotel->email . '/category/categoryPhoto' . $service->id ?>" alt=""></label>
+        <label for="s<?= $j ?>" id="slide<?= $j ?>"><p class="serviceName didot"><?= $service->title ?></p><a class="serviceFrameButton btn btn-outline-light blueBackground didot" href="hotelSelectedService.php?serviceId=<?= $service->id ?>">explorer</a><img src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/category/categoryPhoto' . $service->id ?>" alt=""></label>
         <?php $j++;
     } ?>
     </section>

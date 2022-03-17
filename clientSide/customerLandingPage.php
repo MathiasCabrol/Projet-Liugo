@@ -42,17 +42,21 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                         </div>
                         <!-- Button col -->
                         <div class="col-12 text-center">
-                            <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="confirm" type="submit" disabled> C'est parti !</button>
+                            <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="confirm" type="submit" disabled> Continuer en tant qu'invité</button>
                         </div>
                         </form>
                         <?php if(isset($hotelErrorMessage)){ ?>
                             <p class="errorMessage"><?= $hotelErrorMessage ?></p>
                         <?php } ?>
-                        <div class="col-12 text-center my-4">
-                        <a class="didot accountCreationLink" href="">Créer un compte</a>
+                        <div class="col-12 text-center my-1">
+                        <a class="didot accountCreationLink" href="">Se connecter</a>
+                        </div>
+                        <div class="col-12 text-center my-1">
+                        <a class="didot accountCreationLink" href="customerAccountCreation.php">Créer un compte</a>
                         </div>
                     </div>
                 </div>
+                
             </div>
     </section>
     <div class="absoluteFooter">

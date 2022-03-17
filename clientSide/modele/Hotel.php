@@ -31,7 +31,7 @@ class Hotel extends Database {
     }
 
     public function getDescription():object{
-        $query = 'SELECT `description` FROM `presentation` WHERE `hotels_id` = :id';
+        $query = 'SELECT `description` FROM `presentation` WHERE `id_hotels` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         $queryStatement->execute();
