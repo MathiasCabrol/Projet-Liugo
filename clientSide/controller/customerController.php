@@ -95,6 +95,7 @@ if (isset($_POST['login'])) {
                 if (isset($_GET['idhotel'])) {
                     $hotel = new Hotel;
                     $hotelId = htmlspecialchars($_GET['idhotel']);
+                    var_dump($hotel->checkIfHotelExists());
                     $hotel->setId($hotelId);
                     if ($hotel->checkIfHotelExists()) {
                         $_SESSION['hotelId'] = $hotelId;
@@ -102,7 +103,7 @@ if (isset($_POST['login'])) {
                         exit;
                     }
                 } else {
-                    // header('Location: customerHomepage.php');
+                    header('Location: activities.php');
                 }
             }
         }

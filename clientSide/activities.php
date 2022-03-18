@@ -21,7 +21,7 @@ require 'controller/activityController.php';
 <body>
     <?php include 'parts/header.php'; ?>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-cente" id="headerRow">
             <div class="col-12 text-center">
                 <div class="filterDiv">
                     <button class="btn btn-outline-light customerAccountButton">+</button>
@@ -33,7 +33,7 @@ require 'controller/activityController.php';
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="noSearchRow">
             <?php foreach ($servicesByPage as $service) { ?>
                 <div class="col-8 searchCol">
                     <div class="searchResult">
@@ -46,6 +46,7 @@ require 'controller/activityController.php';
                                 <p><?= $service->title ?></p>
                                 <p>A partir de <?= $serviceLowestPrice[$service->id] ?>€</p>
                                 <p>Situé à <?= $cityName[$service->id] ?></p>
+                                <a class="btn btn-outline-light customerAccountButton" href="servicePage.php?serviceId=<?= $service->id ?>">Découvrir</a>
                             </div>
                         </div>
                     </div>

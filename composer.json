@@ -1,5 +1,6 @@
 {
     "require": {
-        "endroid/qr-code": "^4.4"
+        "endroid/qr-code": "^4.4",
+        "benhall14/php-calendar": "^1.2"
     }
 }

@@ -321,5 +321,50 @@ input[type=radio]:checked {
 }
 
 .serviceDescriptionCol p {
-  margin: 2em 0;
+  margin: 0.8em 0;
 }
+
+.servicePageImage {
+  width: 50%;
+  height: 30em;
+  margin: 6em auto;
+}
+
+.subServiceCol {
+  border: 1px solid black;
+  padding: 10px;
+  background: #4E629C;
+  color: white;
+  font-family: Didot, serif;
+  font-size: 16px;
+}
+
+.reservationCol {
+  border: 1px solid black;
+  background: white;
+  color: black;
+  padding: 10px;
+}
+
+select {
+  width: 50%;
+  background: #4E629C;
+  color: white;
+  border: none;
+  border-radius: 10%;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+.partnerMention {
+  margin-top: 8em;
+}
+
+.partnerName {
+  font-family: Didot, serif;
+  font-size: 20px;
+  font-style: italic;
+}
+

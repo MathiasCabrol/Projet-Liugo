@@ -13,6 +13,15 @@ private int $serviceId;
         return $services;
     }
 
+    public function getServiceById(){
+        $query = 'SELECT `S`.`id` AS `serviceId`, `S`.`title` AS `serviceTitle`, `P`.`id` AS `partnerId`, `P`.`name` AS `partnerName`, `P`.`email` AS `partnerEmail`, `P`.`phone` AS `partnerPhone` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `S`.`id` = :serviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $service = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $service;
+    }
+
     public function getAllPartnersServices($page){
         $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title`, `P`.`email` AS `partnerEmail`, `P`.`name` AS `partnerName`, `P`.`id_cities` AS `cityId` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `id_type` = 1 ORDER BY title DESC LIMIT :number, 10';
         $queryStatement = $this->db->prepare($query);
@@ -57,6 +66,15 @@ private int $serviceId;
         $queryStatement->execute();
         $searchedService = $queryStatement->fetchAll(PDO::FETCH_OBJ);
         return $searchedService;
+    }
+
+    public function checkIfServiceExists() {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
     }
 
     public function setServiceId($newServiceId):void{

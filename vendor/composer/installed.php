@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'cb08852d4f0ace2fe77c7109e115ce724f3dc585',
+        'reference' => '4792ed39d52a340d7a51c0fdc6a3a921ae585d7a',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'cb08852d4f0ace2fe77c7109e115ce724f3dc585',
+            'reference' => '4792ed39d52a340d7a51c0fdc6a3a921ae585d7a',
             'dev_requirement' => false,
         ),
         'bacon/bacon-qr-code' => array(
@@ -26,6 +26,15 @@
             'install_path' => __DIR__ . '/../bacon/bacon-qr-code',
             'aliases' => array(),
             'reference' => 'd70c840f68657ce49094b8d91f9ee0cc07fbf66c',
+            'dev_requirement' => false,
+        ),
+        'benhall14/php-calendar' => array(
+            'pretty_version' => '1.2',
+            'version' => '1.2.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../benhall14/php-calendar',
+            'aliases' => array(),
+            'reference' => '5dbf8e63b0778c0d7549ee4d935d2627b850319f',
             'dev_requirement' => false,
         ),
         'dasprid/enum' => array(

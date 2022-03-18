@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitb747516d4e0f665c189575a14916a78c
 {
     public static $prefixLengthsPsr4 = array (
+        'b' => 
+        array (
+            'benhall14\\' => 10,
+        ),
         'E' => 
         array (
             'Endroid\\QrCode\\' => 15,
@@ -22,6 +26,10 @@ class ComposerStaticInitb747516d4e0f665c189575a14916a78c
     );
 
     public static $prefixDirsPsr4 = array (
+        'benhall14\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/benhall14/php-calendar/src',
+        ),
         'Endroid\\QrCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/endroid/qr-code/src',
