@@ -45,24 +45,11 @@
                                     <p>Pour réserver, choisissez votre créneau horaire, le nombre de personnes et éffectuez le règlement :</p>
                                     <form action="" method="post">
                                         <div>
-                                            <label for="hourSlot">Créneau horaire</label>
+                                        <label for="reservationDate">Date</label>
                                         </div>
-                                        <select name="hourSlot">
-                                            <?php foreach ($subServiceHourSlots[$subService->subServiceId] as $hourSlot) { ?>
-                                                <option value="<?= $hourSlot ?>"><?= $hourSlot ?></option>
-                                            <?php } ?>
-                                        </select>
+                                        <input type="date" name="reservationDate" class="reservationDate">
                                         <div>
-                                            <label for="clientsNumber">Nombre de personnes</label>
-                                        </div>
-                                        <select name="clientsNumber">
-                                            <?php for ($i = 1; $i < 10; $i++) { ?>
-                                                <option value="<?= $i ?>"><?= $i ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div>
-                                            <input type="hidden" name="id" value="<?= $subService->subServiceId ?>">
-                                            <input type="submit" name="book" value="réserver" class="btn btn-outline-light customerAccountButton">
+                                            <input id="subServiceId" type="hidden" name="id" class="subServiceId" value="<?= $subService->subServiceId ?>">
                                         </div>
                                     </form>
                                     <p>Pour des réservations de plus de 9 personnes, veuillez prendre contact avec l'établissement.</p>
@@ -85,5 +72,6 @@
 <!-- Bootstrap Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="../assets/javascript/customerReservation.js"></script>
 
 </html>

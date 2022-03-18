@@ -4,6 +4,8 @@ require 'modele/Database.php';
 require 'modele/Services.php';
 require 'modele/SubService.php';
 
+var_dump($_POST);
+
 session_start();
 
 if(isset($_GET['serviceId'])){
@@ -11,6 +13,7 @@ if(isset($_GET['serviceId'])){
     $service = new Service;
     $subService = new SubService;
     $service->setServiceId(htmlspecialchars($_GET['serviceId']));
+
     if($service->checkIfServiceExists()){
         $selectedServiceInfos = $service->getServiceById();
         $selectedSubServices = $subService->getAllSubServicesFromServiceId($selectedServiceInfos->serviceId);    

@@ -1,6 +1,8 @@
 <?php
 
 class SubService extends Database {
+
+    private int $id;
     
     public function getServicesSS($serviceId):array{
         $query = 'SELECT `ss`.`id` AS `ssId`, `ss`.`title` AS `ssTitle`, `ss`.`startingHour` AS `ssStartingHour`, `ss`.`finishingHour` AS `ssFinishingHour`, `ss`.`price` AS `ssPrice`, `ss`.`addButton` AS `ssAddButton` FROM `subservices` AS `ss` INNER JOIN `services` AS `s` ON `ss`.`id_services` = `s`.`id` WHERE `s`.`id` = :serviceid';
@@ -18,5 +20,18 @@ class SubService extends Database {
         $queryStatement->execute();
         $result = $queryStatement->fetchAll(PDO::FETCH_OBJ);
         return $result;
+    }
+
+    public function getSubServiceById(){
+        $query = 'SELECT `SS`.`id` AS `subServiceId`, `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `subServiceStartingHour`, `SS`.`finishingHour` AS `subServiceFinishingHour`, `SS`.`price` AS `subServicePrice`, `SS`.`addButton` AS `addButton` FROM `subservices` AS `SS` WHERE `SS`.`id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    public function setSubServiceId($newSubServiceId){
+        $this->id = $newSubServiceId;
     }
 }
