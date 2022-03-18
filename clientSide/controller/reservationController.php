@@ -6,6 +6,9 @@ require '../modele/Services.php';
 require '../modele/SubService.php';
 
 $dateRegex = '/^20[2-9][0-9]-((0[1-9])||(1[0-2]))-((0[1-9])||([1-2][0-9])||(3[0-1]))$/';
+$hourRegex = '/^((0[1-9])||(1[0-9])||(2[0-3])):[0-5][0-9]$/';
+$peopleRegex = '/^[1-9]$/';
+
 
 if (isset($_POST['reservationDate'])) {
     $errorDate = [];
@@ -63,4 +66,30 @@ if (isset($_POST['reservationDate'])) {
 
 if(isset($_POST['numberOfPeople'])){
     echo $_POST['numberOfPeople'];
+}
+
+if(isset($_POST['date'])){
+    $errorReservation = [];
+    if (preg_match($dateRegex, $_POST['date'])) {
+        $date = htmlspecialchars($_POST['date']);
+    } else {
+        $errorReservation['date'] = 'Merci d\'insérer une date valide';
+    }
+
+    if(isset($_POST['hour'])){
+        if (preg_match($hourRegex, $_POST['hour'])) {
+            $hour = htmlspecialchars($_POST['hour']);
+        } else {
+            $errorReservation['hour'] = 'Merci d\'insérer une heure valide';
+        }
+    }
+
+    if(isset($_POST['numberOfPeople'])){
+        if (preg_match($peopleRegex, $_POST['numberOfPeople'])) {
+            $hour = htmlspecialchars($_POST['numberOfPeople']);
+        } else {
+            $errorReservation['numberOfPeople'] = 'Merci d\'insérer un nombre de personnes valide';
+        }
+    }
+
 }
