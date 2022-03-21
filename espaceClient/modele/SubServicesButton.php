@@ -1,8 +1,13 @@
 <?php
 
-class SubServiceButton extends Database {
+class SubServiceButton {
     private string $buttonValue;
     private int $idsubservice;
+
+    public function __construct()
+    {
+        $this->db = Database::getConnection();
+    }
 
     public function insertButtonValue():bool {
         $query = 'INSERT INTO `subservicesbutton` (`buttonValue`, `id_subservices`) VALUES (:buttonValue, :idsubservice)';

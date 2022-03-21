@@ -61,7 +61,7 @@ var_dump($_SESSION);
     <section>
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-7 col-md-3 col-lg-3">
+                <div class="col-10 col-md-3 col-lg-3">
                     <form method="post" action="<?= isset($_POST['confirmer']) && count($errorList) == 0 ? 'accountCreationConfirmed.php' : '' ?>">
                         <div class="inputIcons">
                             <label>Nom de l'établissement</label><br>

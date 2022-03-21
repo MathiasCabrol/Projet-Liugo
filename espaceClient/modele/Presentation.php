@@ -1,9 +1,14 @@
 <?php
-class Presentation extends Database {
+class Presentation {
 
     private string $description;
     private string $id_type;
     protected string $typeofid;
+
+    public function __construct()
+    {
+        $this->db = Database::getConnection();
+    }
 
     public function insertDescription($id):bool{
         $query = 'INSERT INTO `presentation` (`description`, ' . $this->typeofid . ', `id_type`) VALUES (:description, :id, :idtype)';

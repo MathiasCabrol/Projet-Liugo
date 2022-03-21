@@ -1,5 +1,5 @@
 <?php
-class Account extends Database {
+class Account {
 
     private int $id;
     private string $email;    
@@ -9,6 +9,12 @@ class Account extends Database {
     private string $postcode;
     private string $id_cities;
     protected string $table;
+
+
+    public function __construct()
+    {
+        $this->db = Database::getConnection();
+    }
 
     /**
      * Fonction qui retourne un objet avec l'attribut name contenant le nom de l'établissement connecté

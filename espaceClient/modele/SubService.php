@@ -1,5 +1,5 @@
 <?php
-class SubService extends Database {
+class SubService {
 
     private int $id;
     private string $title;
@@ -8,6 +8,11 @@ class SubService extends Database {
     private string $finishingHour;
     private int $addButton;
     private int $idservice;
+
+    public function __construct()
+    {
+        $this->db = Database::getConnection();
+    }
 
     public function addSubService(): bool {
         $query = 'INSERT INTO `subServices` (`title`, `startingHour`, `price`, `finishingHour`, `addButton`, `id_services`) VALUES (:title, :startingHour, :price, :finishingHour, :addButton, :idservices)';

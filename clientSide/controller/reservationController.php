@@ -92,4 +92,8 @@ if(isset($_POST['date'])){
         }
     }
 
+    if(count($errorReservation) == 0){
+        
+    }
+
 }

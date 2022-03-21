@@ -1,5 +1,5 @@
 <?php
-class Service extends Database {
+class Service {
 
     private int $idaccount;
     private string $serviceTitle;
@@ -8,6 +8,11 @@ class Service extends Database {
     protected string $idtype;
     protected string $table;
     protected int $typeofid;
+
+    public function __construct()
+    {
+        $this->db = Database::getConnection();
+    }
 
     public function checkIfServicesAdded() {
         $query = 'SELECT COUNT(`id`) AS `count` FROM `services` WHERE ' . $this->idtype . ' = :accountid';
@@ -96,6 +101,22 @@ class Service extends Database {
 
     public function getHotelId(){
         return $this->idaccount;
+    }
+
+    public function beginTransaction(){
+        return $this->db->beginTransaction();
+    }
+
+    public function commit(){
+        return $this->db->commit();
+    }
+
+    public function rollback(){
+        return $this->db->rollback();
+    }
+
+    public function lastInsertId(){
+        return $this->db->lastInsertId();
     }
 
 }

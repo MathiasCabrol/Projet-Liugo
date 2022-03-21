@@ -234,60 +234,70 @@ if (isset($_POST['saveChanges'])) {
         //Transformation du titre du service en slug
         $serviceSlug = $slugify->slugify($serviceTitle);
         $service->setSlug($serviceSlug);
-        $service->addService();
-        //Récupération de son id
-        $serviceId = $service->getServiceId();
-        /* Utilisation du tableau déclaré plus haut, pour chaque fichier, si l'on ne rencontre pas 
+        try {
+            //Début de la transaction
+            $service->beginTransaction();
+            $service->addService();
+            //Récupération de son id
+            $serviceId = $service->getServiceId();
+            /* Utilisation du tableau déclaré plus haut, pour chaque fichier, si l'on ne rencontre pas 
         d'erreur lors du téléchargement, insérer le fichier dans le dossier, sinon créer un message d'erreur correspondant */
-        foreach ($filesArray as $fileName => $errorMessage) {
-            if (!$_FILES[$fileName]['error']) {
-                $fileCheck->fileRegistration($fileName, $path);
-            } else {
-                $errorList[$fileName] = $errorMessage;
+            foreach ($filesArray as $fileName => $errorMessage) {
+                if (!$_FILES[$fileName]['error']) {
+                    $fileCheck->fileRegistration($fileName, $path);
+                } else {
+                    $errorList[$fileName] = $errorMessage;
+                }
             }
-        }
-        //On vient renommer le fichier pour que son nom corresponde à l'id du service enregistré par l'utilisateur
-        foreach ($filesArray as $fileName => $errorMessage) {
-            if (!$_FILES[$fileName]['error']) {
-                $fileCheck->renameFile($fileName, $path, $serviceId, $dirName);
-            } else {
-                $errorList[$fileName] = $errorMessage;
+            //On vient renommer le fichier pour que son nom corresponde à l'id du service enregistré par l'utilisateur
+            foreach ($filesArray as $fileName => $errorMessage) {
+                if (!$_FILES[$fileName]['error']) {
+                    $fileCheck->renameFile($fileName, $path, $serviceId, $dirName);
+                } else {
+                    $errorList[$fileName] = $errorMessage;
+                }
             }
-        }
-        //Pour chaque sous-service enregistré
-        for ($i = 0; $i < (count($checkedServiceName)); $i++) {
-            //INstance du modele sous-service
-            $subService = new SubService;
-            //Les différents setter pour chaque tour de boucle
-            $subService->setTitle($checkedServiceName[$i]);
-            $subService->setStartingHour($checkedServiceStartingHour[$i]);
-            $subService->setPrice($checkedServicePrice[$i]);
-            $subService->setFinishingHour($checkedServiceEndingHour[$i]);
-            $subService->setAddButton($buttonQuestion[$i]);
-            $subService->setIdService($serviceId);
-            //Ajout du sous-service dans la bdd
-            if ($subService->addSubService()) {
-                //Récupération de l'id du sous-service
-                $subServiceId = $subService->getSubServiceId();
-                //Si l'utilisateur souhaite ajouter un bouton
-                if ($buttonQuestion[$i] == '1') {
-                    var_dump('bonjour');
-                    //Instanciation du modèle bouton sous-service
-                    $subServiceButton = new SubServiceButton;
-                    $subServiceButton->setButtonValue($buttonName[$i]);
-                    $subServiceButton->setIdSubService($subServiceId);
-                    //INsertion du bouton dans la bdd
-                    if ($subServiceButton->insertButtonValue()) {
-                        if (!is_dir($dirName . '/' . $_SESSION['login'] . '\/buttonFiles/')) {
-                            mkdir($dirName . '/' . $_SESSION['login'] . '\/buttonFiles/', 0777, true);
+            //Pour chaque sous-service enregistré
+            for ($i = 0; $i < (count($checkedServiceName)); $i++) {
+                //INstance du modele sous-service
+                $subService = new SubService;
+                //Les différents setter pour chaque tour de boucle
+                $subService->setTitle($checkedServiceName[$i]);
+                $subService->setStartingHour($checkedServiceStartingHour[$i]);
+                $subService->setPrice($checkedServicePrice[$i]);
+                $subService->setFinishingHour($checkedServiceEndingHour[$i]);
+                $subService->setAddButton($buttonQuestion[$i]);
+                $subService->setIdService($serviceId);
+                //Ajout du sous-service dans la bdd
+                if ($subService->addSubService()) {
+                    //Récupération de l'id du sous-service
+                    $subServiceId = $subService->getSubServiceId();
+                    //Si l'utilisateur souhaite ajouter un bouton
+                    if ($buttonQuestion[$i] == '1') {
+                        var_dump('bonjour');
+                        //Instanciation du modèle bouton sous-service
+                        $subServiceButton = new SubServiceButton;
+                        $subServiceButton->setButtonValue($buttonName[$i]);
+                        $subServiceButton->setIdSubService($subServiceId);
+                        //INsertion du bouton dans la bdd
+                        if ($subServiceButton->insertButtonValue()) {
+                            if (!is_dir($dirName . '/' . $_SESSION['login'] . '\/buttonFiles/')) {
+                                mkdir($dirName . '/' . $_SESSION['login'] . '\/buttonFiles/', 0777, true);
+                            }
+                            $buttonId = $subServiceButton->getLastInsertedButton();
+                            $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'][$i], $_FILES['buttonFile']['name'][$i], $buttonId, $dirName);
                         }
-                        $buttonId = $subServiceButton->getLastInsertedButton();
-                        $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'][$i], $_FILES['buttonFile']['name'][$i], $buttonId, $dirName);
                     }
                 }
             }
+            //Commit final
+            $service->commit();
+            header('Location: services.php');
+            exit;
+        } catch (PDOException $error) {
+            //Si une insertion de la transaction n'a pas abouti, effectue un rollback
+            $service->rollback();
+            die($error->getMessage());
         }
-        header('Location: services.php');
-        exit;
     }
 }

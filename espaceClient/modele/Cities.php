@@ -4,7 +4,11 @@ class City extends Database {
 
     private int $id;
     private string $postcode;
-
+    
+    public function __construct()
+    {
+        $this->db = Database::getConnection();
+    }
 
     public function getCityNameFromId(){
         $query = 'SELECT `ville_slug` FROM `villes_france_free` WHERE `ville_id` = :id';
