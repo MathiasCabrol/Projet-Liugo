@@ -6,7 +6,7 @@
 
 .absoluteFooter {
     width: 100%;
-    margin-top: 7em;
+    margin-top: 16em;
 }
 
 .accountCreationLink {
@@ -403,4 +403,3 @@ select:hover {
   font-size: 20px;
   font-style: italic;
 }
-

@@ -22,6 +22,24 @@ private int $serviceId;
         return $service;
     }
 
+    public function getPartnerId(){
+        $query = 'SELECT `id_partners` FROM `services` WHERE `id` = :serviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $partnerId = $queryStatement->fetchColumn();
+        return $partnerId;
+    }
+
+    public function getPartnerName(){
+        $query = 'SELECT `partners`.`name` AS `name` FROM `services` INNER JOIN `partners` ON `partners`.`id` = `services`.`id_partners` WHERE `services`.`id` = :serviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $partnerName = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $partnerName;
+    }
+
     public function getAllPartnersServices($page){
         $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title`, `P`.`email` AS `partnerEmail`, `P`.`name` AS `partnerName`, `P`.`id_cities` AS `cityId` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `id_type` = 1 ORDER BY title DESC LIMIT :number, 10';
         $queryStatement = $this->db->prepare($query);

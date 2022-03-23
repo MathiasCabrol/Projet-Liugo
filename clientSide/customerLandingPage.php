@@ -95,7 +95,7 @@
         </div>
     </div>
     <div class="absoluteFooter">
-        <?php include '../proSide/footer.php' ?>
+        <?php include 'footer.php' ?>
     </div>
 </body>
 <!-- Bootstrap Javascript -->

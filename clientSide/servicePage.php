@@ -49,7 +49,8 @@
                                         </div>
                                         <input type="date" name="reservationDate" class="reservationDate">
                                         <div>
-                                            <input id="subServiceId" type="hidden" name="id" class="subServiceId" value="<?= $subService->subServiceId ?>">
+                                            <input type="hidden" name="id" class="subServiceId" value="<?= $subService->subServiceId ?>">
+                                            <input type="hidden" name="customer" class="customerId" value="<?= $_SESSION['id'] ?>">
                                         </div>
                                     </form>
                                     <p>Pour des réservations de plus de 9 personnes, veuillez prendre contact avec l'établissement.</p>
@@ -67,7 +68,7 @@
     <section>
 
     </section>
-    <?php include '../proSide/footer.php' ?>
+    <?php include 'footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

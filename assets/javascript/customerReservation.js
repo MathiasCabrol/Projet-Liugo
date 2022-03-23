@@ -13,7 +13,7 @@ document.addEventListener("input", event => {
         let parentDiv = event.target.closest("div")
         //Sélection des différents élements qui seront utiles par la suite
         let SubServiceId = parentDiv.querySelector(".subServiceId").value
-        let hiddenInput = parentDiv.querySelector("#subServiceId")
+        let hiddenInput = parentDiv.querySelector(".subServiceId")
         let checkSubmitButton = parentDiv.querySelector("#book")
         //Si la valeur de l'input correspond à la regex déclarée plus haut
         if (dateRegex.test(event.target.value)) {
@@ -45,10 +45,12 @@ document.addEventListener("input", event => {
                         for (let i = element.startingHour; i < element.finishingHour; i++) {
                             //Si le fichier json contient la propriété "bookedHours", cela signifie que le traitement en php
                             //A détécté que d'autres réservations sont présentes au même jour pour ce service
-                            if (response.hasOwnProperty('bookedHours')) {
+                            if (response.bookedHours) {
+                                console.log('Bonjour')
                                 //Dans la boucle, si la variable i qui correspond à l'heure de réservation existe dans les heures déja réservées
                                 //On rend l'option innacessible
                                 if (response.bookedHours.find(element => element = i) != undefined) {
+                                    console.log('Bonjour')
                                     htmlToAppend += `<option value="${i + ':00'}" disabled>${i + ':00'}</option>`
                                     //Sinon l'option s'affiche normalement
                                 } else {
@@ -88,12 +90,18 @@ document.addEventListener("input", event => {
 document.addEventListener('click', event => {
     //SI le bouton cliqué correspond bien au bouton de validation créé dans le DOM
     if (event.target.matches('#book')) {
+        //Récupération de l'url
+        let url_string = window.location.href
+        let url = new URL(url_string);
+        //Insertion du paramètre get dans la variable
+        let serviceId = url.searchParams.get("serviceId");
         //Variable indiquant la div de réservation la plus proche
         let parentDivContainer = event.target.closest('.reservationCol')
         let chosenDate = parentDivContainer.querySelector('.reservationDate').value
         let chosenHour = parentDivContainer.querySelector('select[name="hourSlot"]').value
         let chosenNumberOfPeople = parentDivContainer.querySelector('select[name="clientsNumber"]').value
-        let subServiceId = parentDivContainer.querySelector('#subServiceId').value
+        let subServiceId = parentDivContainer.querySelector('.subServiceId').value
+        let customerId = parentDivContainer.querySelector('.customerId').value
         //Instance fomrData
         const formData = new FormData();
         //Si les inputs ne sont pas vides
@@ -103,6 +111,8 @@ document.addEventListener('click', event => {
             formData.append('hour', chosenHour)
             formData.append('numberOfPeople', chosenNumberOfPeople)
             formData.append('subServiceId', subServiceId)
+            formData.append('serviceId', serviceId)
+            formData.append('customerId', customerId)
             //Fetch des données vers le controlleur php de gestion
             fetch("./controller/reservationController.php", { method: 'POST', body: formData })
                 .then(response => response.text()) // si je recois du json je met .json() a la place

@@ -31,6 +31,24 @@ class SubService extends Database {
         return $result;
     }
 
+    public function getSubServicePriceById(){
+        $query = 'SELECT `price` FROM `subservices` WHERE `id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
+    public function checkIfSubServiceExists() {
+        $query = 'SELECT COUNT(`id`) AS `result` FROM `subservices` AS `SS` WHERE `SS`.`id` = :subserviceId';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceId', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchColumn();
+        return $result;
+    }
+
     public function setSubServiceId($newSubServiceId){
         $this->id = $newSubServiceId;
     }
