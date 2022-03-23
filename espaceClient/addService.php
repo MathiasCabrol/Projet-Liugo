@@ -52,7 +52,7 @@
                                     <div class="buttonContainer">
                                         <input type="text" name="buttonName[]" placeholder="nom du bouton" class="mt-2">
                                         <label>Fichier à télécharger au clic</label>
-                                        <input type="file" name="buttonFile[]" class="my-2">
+                                        <input type="file" name="buttonFile[]" class="my-2 w-100">
                                     </div>
                                 </div>
                             </div>

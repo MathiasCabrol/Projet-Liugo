@@ -93,7 +93,7 @@
                     </video>
                 </div>
                 <!-- Account creation button -->
-                <div class="col-8 col-md-4 col-lg-4 text-center mt-5">
+                <div class="col-12 col-md-4 col-lg-4 text-center mt-5">
                     <button class="btn btn-outline-light accountButton border rounded shadow" type="button" data-toggle="modal" data-target="#accountModal">Créer un compte</button>
                     <!-- Closing btn col -->
                 </div>

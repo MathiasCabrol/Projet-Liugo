@@ -1,6 +1,6 @@
 <?php
 
-class City extends Database {
+class City {
 
     private int $id;
     private string $postcode;

@@ -3,14 +3,15 @@
 $page = $_SERVER['REQUEST_URI'];
 $page = str_replace("/Liugo\/proSide/", "", $page);
 ?>
+
 <header>
-  <!-- Navbar creation -->
-  <nav class="navbar navbar-expand-lg navbar-dark blueBackground">
-    <button class="navbar-toggler mx-2" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon white"></span>
+<nav class="navbar navbar-expand-lg navbar-dark blueBackground">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav my-2">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav my-2">
         <li class="nav-item">
           <a class="nav-link<?= $page == "homepage.php" ? ' active' : '' ?>" href="homepage.php">Accueil</a>
         </li>
@@ -25,9 +26,9 @@ $page = str_replace("/Liugo\/proSide/", "", $page);
         </li>
       </ul>
     </div>
-  </nav>
-  <!-- Openning logo container -->
-  <div class="container">
+  </div>
+</nav>
+<div class="container">
     <div class="row justify-content-center">
       <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
         <img class="logo" src="../assets/marque/Logo_Liugo.png" alt="Logo Liugo">

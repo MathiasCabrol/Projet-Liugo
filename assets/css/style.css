@@ -480,6 +480,12 @@ styling */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+@media only screen and (max-width: 768px){
+    .showService {
+        margin: 3em 0;
+    }
+}
+
 .emptyService {
     border-radius: 10%;
     border: 3px #E8D5A3 dashed;
@@ -575,6 +581,12 @@ styling */
     display: flex;
 }
 
+@media only screen and (max-width: 768px){
+    .flexColumn {
+        display: block;
+    }
+}
+
 .accountContainer {
     display: flex;
     flex-direction: column;  
@@ -585,6 +597,15 @@ styling */
     position: relative;
 }
 
+@media only screen and (max-width: 768px){
+    .accountContainer {
+        margin: 0;
+        margin-top: 2em;
+        width: 100%;
+        border-right: none;
+    }
+}
+
 .accountDetails {
     display: flex;
     flex-direction: column;
@@ -592,6 +613,15 @@ styling */
     width: 80%;
     margin: 2em 0;
     height: 50em;
+}
+
+@media only screen and (max-width: 768px){
+    .accountDetails{
+        height: 80em;
+        margin-top: 0;
+        width: 100%;
+    }
+    
 }
 
 .accountContainer button:nth-child(-n+2) {
@@ -636,6 +666,12 @@ styling */
     flex-wrap: wrap;
 }
 
+@media only screen and (max-width: 768px) {
+    .accountInfos {
+    margin-left: 0;
+    }
+}
+
 
 .accountInfos h2 {
     color: #E8D5A3;
@@ -649,6 +685,13 @@ styling */
     display: flex;
     flex-direction: column;
     width: 40%;
+}
+
+@media only screen and (max-width: 768px) {
+    .accountSeparation {
+    width: 80%;
+    margin: 1em 0;
+    }
 }
 
 .specificInfo {

@@ -21,24 +21,24 @@
     <?php include 'parts/header.php'; ?>
     <div class="col-12 text-center my-5 text-black">
         <h1 class="tangerine"><?= $selectedHotel->name ?></h1>
-        <img class="mt-5" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/homePhoto' ?>">
+        <img class="mt-5 homePhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/homePhoto' ?>">
         <p class="mt-5"><?= $selectedDescription->description ?></p>
         <div class="row justify-content-start">
-            <div class="col-8">
+            <div class="col-12 col-md-8 col-lg-8">
                 <p class="mt-5">Découvrez les activités proposées par nos partenaires</p>
                 <img class="customerPhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/activityPhoto' ?>">
                 <button class="btn btn-outline-light blueBackground categoryButton">Explorer</button>
             </div>
         </div>
         <div class="row justify-content-end mt-3">
-            <div class="col-8">
+            <div class="col-12 col-md-8 col-lg-8">
                 <p class="mt-5">Découvrez les services proposés par votre hébergeur</p>
                 <img class="customerPhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/servicePhoto' ?>">
                 <a href="hotelServices.php" class="btn btn-outline-light blueBackground categoryButton">Découvrir</a>
             </div>
         </div>
         <div class="row justify-content-center my-5">
-            <div class="col-12 col-md-6 col-lg-6 infosCol">
+            <div class="col-12 col-md-8 col-lg-8 infosCol">
                 <h2 class="tangerine">Des questions ?</h2>
                 <p class="didot">N'hésitez pas à contacter directement votre établissement par téléphone au numéro suivant :</p>
                 <p class="didot"><?= $hotelPhone ?></p>
@@ -48,7 +48,6 @@
     <?php include '../proSide/footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </html>

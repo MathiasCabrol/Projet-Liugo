@@ -13,6 +13,14 @@ session_start();
 
 $subService = new SubService;
 
+if(isset($_SESSION['type'])){
+    if($_SESSION['type'] == 'partners'){
+        $directory = 'partners';
+    } else if($_SESSION['type'] == 'hotels'){
+        $directory = 'hotels';
+    }
+}
+
 if (isset($_POST['save'])) {
     $errorList = [];
     //Vérifications du champ de titre de service dans le formulaire
@@ -102,7 +110,7 @@ if (isset($_POST['save'])) {
                 $buttonId = $subServiceButton->getLastInsertedButton();
                 $fileCheck = new Files;
                 if(!$_FILES['buttonFile']['error']){
-                    $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'], $_FILES['buttonFile']['name'], $buttonId);
+                    $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'], $_FILES['buttonFile']['name'], $buttonId, $directory);
                 }
             }
             $successMessage = 'Le sous-service a bien été ajouté';

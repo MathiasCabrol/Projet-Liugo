@@ -26,7 +26,6 @@ $selectedAccountInfos = $account->getAccountInfosById();
 $city = new City;
 $city->setId($selectedAccountInfos->id_cities);
 $selectedCity = $city->getCityNameFromId();
-var_dump($selectedAccountInfos);
 
 
 if(isset($_GET['action']) && $_GET['action'] == 'logout'){

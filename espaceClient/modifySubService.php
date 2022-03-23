@@ -27,7 +27,7 @@ require 'controller/subServiceModifyController.php';
             </div>
         </div>
         <div class="row justify-content-center">
-        <div class="col-5 text-center my-5 modifyCol">
+        <div class="col-10 col-md-5 col-lg-5 text-center my-5 modifyCol">
             <form action="" method="post" enctype="multipart/form-data">
                 <label for="ssTitle">Titre du sous-service</label>
                 <div><input type="text" name="ssTitle" value="<?= $selectedSubService->subServiceTitle ?>"></div>
@@ -55,7 +55,7 @@ require 'controller/subServiceModifyController.php';
                     <?php if(isset($errorList['ssButtonValue'])){ ?>
                     <p class="errorMessage"><?= $errorList['ssButtonValue'] ?></p>
                     <?php } ?>
-                    <div><input type="file" name="buttonFile"></div>
+                    <div><input type="file" name="buttonFile" class="w-100"></div>
                     <?php if(isset($errorList['buttonFile'])){ ?>
                     <p class="errorMessage"><?= $errorList['buttonFile'] ?></p>
                     <?php } ?>
@@ -72,9 +72,6 @@ require 'controller/subServiceModifyController.php';
     <?php include 'footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </html>

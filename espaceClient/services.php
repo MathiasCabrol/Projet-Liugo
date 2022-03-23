@@ -65,7 +65,7 @@
         <!-- Affichage des différents services crées  -->
         <div class="row justify-content-around mt-5">
             <?php foreach ($servicesInfos as $service) { ?>
-                <div class="col-5 col-md-3 col-lg-2 text-center showService">
+                <div class="col-10 col-md-3 col-lg-2 text-center showService">
                     <div class="col-12 text-center my-5 text-black">
                         <form action="" method="get">
                             <input type="hidden" name="id" value="<?= $service->id ?>">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             <?php } ?>
-            <div class="col-5 col-md-3 col-lg-2 text-center">
+            <div class="col-10 col-md-3 col-lg-2 text-center">
                 <div class="col-12 emptyService">
                     <p><button onclick="window.location='addService.php'" class="btn-outline-light">+</button></p>
                 </div>

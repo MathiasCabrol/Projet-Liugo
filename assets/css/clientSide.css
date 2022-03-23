@@ -27,9 +27,21 @@
     text-align : center;
 }
 
+@media only screen and (max-width: 768px){
+.homePhoto {
+  width: 100%;
+}
+}
+
 .customerPhoto {
     width: 50%;
     height: auto;
+}
+
+@media only screen and (max-width: 768px){
+  .customerPhoto {
+    width: 100%;
+}
 }
 
 .infosCol {
@@ -226,6 +238,12 @@ input[type=radio]:checked {
   border-right: 2px solid #4E629C;
 }
 
+@media only screen and (max-width:768px) {
+  .serviceImage {
+    width: 90%;
+  }
+}
+
 .customerFormCol input{
   width: 80%;
 }
@@ -279,7 +297,12 @@ input[type=radio]:checked {
   position: relative;
   width: 60%;
   margin-top: 10px;
-  
+}
+
+@media only screen and (max-width:768px) {
+  .searchDiv{
+    width: 100%;
+  }
 }
 
 .searchIcon {
@@ -330,6 +353,13 @@ input[type=radio]:checked {
   margin: 6em auto;
 }
 
+@media only screen and (max-width:768px) {
+  .servicePageImage {
+    width: 100%;
+    height: 12em;
+  }
+}
+
 .subServiceCol {
   border: 1px solid black;
   padding: 10px;
@@ -337,6 +367,12 @@ input[type=radio]:checked {
   color: white;
   font-family: Didot, serif;
   font-size: 16px;
+}
+
+@media only screen and (max-width:768px) {
+  .subServiceCol {
+    margin-top: 2em;
+  }
 }
 
 .reservationCol {

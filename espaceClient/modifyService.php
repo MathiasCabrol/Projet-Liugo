@@ -48,7 +48,7 @@ require 'controller/serviceModifyController.php';
         </div>
         <div class="row justify-content-around mt-5">
             <?php foreach ($subServiceInfos as $subService) { ?>
-                <div class="col-2 text-center showService">
+                <div class="col-10 col-md-2 col-lg-2 text-center showService">
                     <div class="col-12 text-center my-5 text-black">
                         <form action="" method="get">
                             <input type="hidden" name="subServiceId" value="<?= $subService->subServiceId ?>">
@@ -64,7 +64,7 @@ require 'controller/serviceModifyController.php';
                     </div>
                 </div>
             <?php } ?>
-            <div class="col-2 text-center">
+            <div class="col-10 col-md-2 col-lg-2 text-center">
                 <div class="col-12 emptyService">
                     <p><button onclick="window.location='addSubService.php'" class="btn-outline-light">+</button></p>
                 </div>
@@ -79,10 +79,7 @@ require 'controller/serviceModifyController.php';
     <?php include 'footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- My script -->
 <script src="../assets/javascript/dragZone.js"></script>
 
