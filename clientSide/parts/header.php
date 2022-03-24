@@ -23,7 +23,7 @@
           <a class="nav-link" href="activities.php">Activités</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Mes réservations</a>
+          <a class="nav-link" href="myBookings.php">Mes réservations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Mon compte</a>

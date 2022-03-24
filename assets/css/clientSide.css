@@ -403,3 +403,36 @@ select:hover {
   font-size: 20px;
   font-style: italic;
 }
+
+.showBookings img {
+  width: 100%;
+  height: 12em;
+}
+
+.showBookings{
+  border: 1px solid black;
+}
+
+.bookingDetails{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.reservationNumber {
+  font-weight: bold;
+}
+
+.bookingsTitle{
+  font-size: 30px;
+  margin: 2em 0;
+  text-align: center;
+}
+
+.reservationConfirmed {
+  margin: 2em 0;
+  font-size: 50px;
+  background-color: #4E629C;
+  color: white;
+  border-radius: 10%;
+  padding: 20px;
+}

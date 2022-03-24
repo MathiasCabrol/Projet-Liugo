@@ -41,6 +41,7 @@ document.addEventListener("input", event => {
                     <label for="hourSlot">Créneau horaire</label>
                 </div>
                 <select name="hourSlot">`
+                //TODO débugguer le système de gestion des crénaux horaires déja réservés
                         //Création des éléments option dans une boucle for
                         for (let i = element.startingHour; i < element.finishingHour; i++) {
                             //Si le fichier json contient la propriété "bookedHours", cela signifie que le traitement en php
@@ -117,7 +118,7 @@ document.addEventListener('click', event => {
             fetch("./controller/reservationController.php", { method: 'POST', body: formData })
                 .then(response => response.text()) // si je recois du json je met .json() a la place
                 .then(response => {
-                    console.log(response);
+                    window.location.href = response
                 })
         }
     }

@@ -40,6 +40,15 @@ class SubService extends Database {
         return $result;
     }
 
+    public function getSubServiceAndPartnerDetails(){
+        $query = 'SELECT `SS`.`title` AS `subserviceTitle`, `S`.`title` AS `serviceTitle`, `S`.`id` AS `serviceId`, `P`.`id` AS `partnerId`, `P`.`name` AS `partnerName`, `P`.`address` AS `partnerAddress`, `P`.`postcode` AS `partnerPostcode`, `P`.`id_cities` AS `partnerCity`, `P`.`email` AS `partnerEmail` FROM `subservices` AS `SS` INNER JOIN `services` AS `S` ON `SS`.`id_services` = `S`.`id` INNER JOIN `partners` AS `P` ON `S`.`id_partners` = `P`.`id` WHERE `SS`.`id` = :subserviceid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':subserviceid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $result = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+
     public function checkIfSubServiceExists() {
         $query = 'SELECT COUNT(`id`) AS `result` FROM `subservices` AS `SS` WHERE `SS`.`id` = :subserviceId';
         $queryStatement = $this->db->prepare($query);

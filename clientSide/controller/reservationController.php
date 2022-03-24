@@ -100,26 +100,46 @@ if (isset($_POST['date'])) {
     if (count($errorReservation) == 0) {
         $newService = new Service;
         $newService->setServiceId(htmlspecialchars($_POST['serviceId']));
+        //Si l'id correspond bien à un service existant
         if ($newService->checkIfServiceExists()) {
             $subService = new SubService;
             $subServiceId = htmlspecialchars($_POST['subServiceId']);
             $subService->setSubServiceId($subServiceId);
-            if($subService->checkIfSubServiceExists()){
-            $bookingCreation = new Booking;
-            $numberGenerator = new numberGenerator;
-            $subServicePrice = $subService->getSubServicePriceById();
-            $partnerId = $newService->getPartnerId();
-            $partnerName = $newService->getPartnerName();
-            $bookingNumber = $numberGenerator->createBookingNumber($partnerName->name);
-            $bookingCreation->setDate($date);
-            $bookingCreation->setHour($hour . ':00');
-            $bookingCreation->setPax($pax);
-            $bookingCreation->setPrice($subServicePrice);
-            $bookingCreation->setBookingNumber($bookingNumber);
-            $bookingCreation->setSubServiceId($subServiceId);
-            $bookingCreation->setPartnerId($partnerId);
-            $bookingCreation->setCustomerId(htmlspecialchars($_POST['customerId']));
-            echo var_dump($bookingCreation->createBooking());
+            //Si l'id correspond bien à un sous-service existant
+            if ($subService->checkIfSubServiceExists()) {
+                $bookingCreation = new Booking;
+                $numberGenerator = new numberGenerator;
+                //Récupéraiton du prix du sous-service
+                $subServicePrice = $subService->getSubServicePriceById();
+                //Récupération des informations du partenaire
+                $partnerId = $newService->getPartnerId();
+                $partnerName = $newService->getPartnerName();
+                /**
+                 * Génération d'un numéro de réservation aléatoire contenant également les deuxc premières lettre sud nom
+                 * du partenraire
+                 */
+                $bookingNumber = $numberGenerator->createBookingNumber($partnerName->name);
+                $bookingCreation->setBookingNumber($bookingNumber);
+                //Si les numéro de réservation existe déja
+                if ($bookingCreation->checkIfReservationNumberExists()) {
+                    //On génère un nouveau numéro de réservation jsuq'à ce qu'il n'existe pas
+                    while ($bookingCreation->checkIfReservationNumberExists()) {
+                        $bookingNumber = $numberGenerator->createBookingNumber($partnerName->name);
+                        $bookingCreation->setBookingNumber($bookingNumber);
+                    }
+                }
+                $bookingCreation->setDate($date);
+                $bookingCreation->setHour($hour . ':00');
+                $bookingCreation->setPax($pax);
+                $bookingCreation->setPrice($subServicePrice);
+                $bookingCreation->setSubServiceId($subServiceId);
+                $bookingCreation->setPartnerId($partnerId);
+                $bookingCreation->setCustomerId(htmlspecialchars($_POST['customerId']));
+                if ($bookingCreation->createBooking()) {
+                    $lastCreatedBookingId = $bookingCreation->getLastCreatedBooking();
+                    echo 'bookingConfirmation.php?bookingId=' . $lastCreatedBookingId;
+                    exit;
+                }
             }
         }
     }
