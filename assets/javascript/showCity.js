@@ -11,11 +11,13 @@ postCodeInput.addEventListener("input", () => {
             fetch("./controller/FinalSubscriptionVerif.php", { method: 'POST', body: formData })
                 .then(response => response.json()) // si je recois du json je met .json() a la place
                 .then(response => {
+                    //Utilisation des données renvoyées en réponse en paramètre de la fonction
                     CreateFormElement(response)
                 })
 
         }
     }
+    //Si la longueur de la valeur dans l'input n'est pas égale à 5, alors on supprime le select permettant de choisir la ville
     if (postCodeInput.value.length != 5) {
         let cityElement = document.getElementById("city")
         if (cityElement) {
@@ -25,6 +27,7 @@ postCodeInput.addEventListener("input", () => {
     }
 })
 
+//Création du select avec label et insertion
 CreateFormElement = (param) => {
     let label = document.createElement("label")
     label.setAttribute("for", "city")

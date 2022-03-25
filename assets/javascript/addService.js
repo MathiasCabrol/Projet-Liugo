@@ -1,11 +1,15 @@
 let numberOfServices = 1
 document.addEventListener("click", event => {
     let textToAppend
+    //Si le client souhaite ajouter une prestation mais qu'elles sont déja au nombre de 5
     if (event.target.matches(".addPresta") && numberOfServices >= 5) {
+        //renvoyer un message d'erreur
+        //TODO Créer un message toast
         return alert("Vous pouvez ajouter un maximum de 5 services")
     }
+    //Si le client souhaite ajouter une prestation
     if (event.target.matches(".addPresta")) {
-        parentList = event.target.parentElement.classList[3]
+        //Nouvelle prestation à insérer
         textToAppend = `<div class="presta">
         <div class="row justify-content-center">
             <div class="col-10 text-center mt-4 innerExampleCol">
@@ -26,20 +30,31 @@ document.addEventListener("click", event => {
                 </div>
             </div>
         </div>`
+        //Récupération du noeud de la div des services
         serviceDiv = event.target.parentElement.querySelector(".services")
+        //Insertiond e la nouvelle prestation avant la fermeture de la balise
         serviceDiv.insertAdjacentHTML('beforeend', textToAppend)
+        //Mise à jour du nombre de services
         numberOfServices = event.target.parentElement.querySelectorAll("div[class=presta]").length
+        //Sortie de la fonction
         return
     }
 
+    //Si l'utilisateur souhaite supprimer un service et qu'il en existe un
     if (event.target.matches(".redCrossButton") && numberOfServices == 1) {
+        //Le client ne peux pas supprimer le denrier service
         return alert("Vous ne pouvez pas supprimer le premier service")
     }
+    //Si les services sont plus nombreux que un
     if (event.target.matches(".redCrossButton")) {
+        //Récupération de la div à supprimer
         let elementToRemove = event.target.closest("[class=presta]")
+        //Suppresion de l'élément
         elementToRemove.remove()
+        //Récupération de toutes les divs portant le même nom de classe
         let prestaDivs = document.querySelectorAll("div[class=presta]")
         for (let i = 0; i < prestaDivs.length; i++) {
+            //Modification du nom des boutons radio pour qu'ils correspondent au nombre de la div
             let divsRadio = prestaDivs[i].querySelectorAll("input[type=radio]")
             divsRadio.forEach(element => {
                 let nameToChange = element.name
@@ -47,6 +62,7 @@ document.addEventListener("click", event => {
                 element.name = replacedName
             })
         }
+        //Mise à jour du nombre de services
         numberOfServices = document.querySelectorAll("div[class=presta]").length
         return
     }

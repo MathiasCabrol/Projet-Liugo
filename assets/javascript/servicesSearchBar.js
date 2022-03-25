@@ -8,10 +8,13 @@ searchButton.addEventListener("click", () => {
         fetch("./controller/searchController.php", { method: 'POST', body: formData })
             .then(response => response.json()) // si je recois du json je met .json() a la place
             .then(response => {
+                //Suppression des résultats sans recherche
                 noSearchRow.remove()
+                //Si la réponse n'est pas vide et que des services correspondent
                 if(response.length > 0){
+                    //Pour chaque service
                 response.forEach(element => {
-                    console.log(element.title)
+                    //On vient générer le code html correspondant
                     newHtml = `<div class="row justify-content-center" id="noSearchRow">
                         <div class="col-8 searchCol">
                             <div class="searchResult">
@@ -30,9 +33,12 @@ searchButton.addEventListener("click", () => {
                             </div>
                         </div>
                 </div>`
+                //Insertion du code html
                 headerRow.insertAdjacentHTML('afterend', newHtml)
                 })
+                //Si aucun résultat ne correspond
             } else {
+                //Message d'erreur généré
                 newHtml = `<div class="container my-5">
                 <div class="row">
                     <div class="col-12 text-center">
