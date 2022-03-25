@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Landing page</title>
+    <title>Accueil Hôtel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,7 @@
         <h1 class="tangerine"><?= $selectedHotel->name ?></h1>
         <img class="mt-5 homePhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/homePhoto' ?>">
         <p class="mt-5"><?= $selectedDescription->description ?></p>
+        <?php if($_SESSION['type'] == 'account'){ ?>
         <div class="row justify-content-start">
             <div class="col-12 col-md-8 col-lg-8">
                 <p class="mt-5">Découvrez les activités proposées par nos partenaires</p>
@@ -30,7 +31,8 @@
                 <button class="btn btn-outline-light blueBackground categoryButton">Explorer</button>
             </div>
         </div>
-        <div class="row justify-content-end mt-3">
+        <?php } ?>
+        <div class="row <?= $_SESSION['type'] == 'account' ? 'justify-content-end' : 'justify-content-center' ?> mt-3">
             <div class="col-12 col-md-8 col-lg-8">
                 <p class="mt-5">Découvrez les services proposés par votre hébergeur</p>
                 <img class="customerPhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/servicePhoto' ?>">

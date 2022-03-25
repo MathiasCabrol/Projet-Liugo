@@ -4,12 +4,9 @@ require 'modele/Database.php';
 require 'modele/Services.php';
 require 'modele/SubService.php';
 
-var_dump($_POST);
-
 session_start();
 
 if(isset($_GET['serviceId'])){
-    var_dump($_SESSION);
     $service = new Service;
     $subService = new SubService;
     $service->setServiceId(htmlspecialchars($_GET['serviceId']));

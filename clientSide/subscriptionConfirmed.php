@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Landing page</title>
+    <title>Confirmation d'inscription</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
             <div class="col-12 col-md-6 col-lg-6 text-center">
                 <h1 class="didot customerAccounTitle">Confirmation d'inscription</h1>
                 <p class="didot my-5">Votre inscription est bien confirmée ! vous pouvez dès maintenant commencer à naviguer sur l'application et réserver des services.</p>
-                <a href="customerSearchPage.php" class="btn btn-outline-light customerAccountButton"></a>
+                <a href="customerSearchPage.php" class="btn btn-outline-light customerAccountButton">Voir les activités</a>
             </div>
         </div>
     </div>

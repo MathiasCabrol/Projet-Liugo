@@ -1,5 +1,4 @@
-<?php require 'controller/bookingConfirmationController.php';
-?>
+<?php require 'controller/accountController.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -20,11 +19,9 @@
 <body>
     <?php include 'parts/header.php'; ?>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-8 text-center reservationConfirmed shadow">
-                <p class="didot">Votre réservation est bien confirmée !</p>
-                <p class="didot">Elle porte le numéro <?= $confirmedBookingNumber ?></p>
-                <a class="btn btn-light btn-outline-dark" href="myBookings.php">Retour à mes réservations</a>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="tangerine blueFont">Ici vous pouvez consulter et modifier les informations de votre compte</h1>
             </div>
         </div>
     </div>

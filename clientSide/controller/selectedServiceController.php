@@ -38,5 +38,4 @@ if(isset($_GET['serviceId'])){
             }
         }
     } //Else à faire avec erreur
-    var_dump($ssButtonArray);
 }

@@ -68,5 +68,3 @@ if(isset($_POST['cancel'])){
         exit;
     }
 }
-var_dump($bookingDetails);
-var_dump($previousBookings);

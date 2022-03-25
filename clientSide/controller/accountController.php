@@ -14,7 +14,7 @@ $passwordRegex = '/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,})
 //Création du tableau vide de listes d'erreurs
 
 
-if (isset($_POST['inscription'])) {
+if (isset($_POST['inscription']) || isset($_POST['modify'])) {
     $errorList = [];
 
     //Définition des erreurs du champ 'name'
@@ -76,8 +76,6 @@ if (isset($_POST['inscription'])) {
     } else {
         $errorList['password'] = 'Merci d\'entrer un mot de passe.';
     }
-
-    var_dump($errorList);
 
     //Insertion des données
     if (count($errorList) == 0) {

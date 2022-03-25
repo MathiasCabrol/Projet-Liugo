@@ -19,6 +19,7 @@
           <a class="nav-link" href="hotelServices.php">Hôtel</a>
         </li>
         <?php } ?>
+        <?php if($_SESSION['type'] == 'account'){ ?>
         <li class="nav-item">
           <a class="nav-link" href="activities.php">Activités</a>
         </li>
@@ -26,8 +27,9 @@
           <a class="nav-link" href="myBookings.php">Mes réservations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Mon compte</a>
+          <a class="nav-link" href="account.php">Mon compte</a>
         </li>
+        <?php } ?>
       </ul>
     </div>
   </div>

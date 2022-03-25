@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Landing page</title>
+    <title>QPage d'accueil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,17 @@
 </head>
 
 <body class="mainSection">
+    <header>
+    <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
+        <img class="logo" src="../assets/marque/Logo_Liugo.png" alt="Logo Liugo">
+      </div>
+      <!--Closing row logo-->
+    </div>
+    <!--Closing container-->
+  </div>
+    </header>
     <section>
         <!-- Form container -->
         <div class="container">
@@ -29,23 +40,11 @@
                     <h1 class="tangerine mt-3 text-center">Prêts pour l'aventure ?</h1>
                     <!-- Inner form row -->
                     <div class="row justify-content-center">
-                        <!-- Inner form col -->
-                        <div class="col-8 text-center customerFormCol">
-                            <form action="" method="post">
-                                <div>
-                                    <label class="mt-2 didot" for="fname">Nom</label>
-                                </div>
-                                <input type="text" id="lastName" name="lastName" value="<?= isset($_POST['lastName']) ? $_POST['lastName'] : '' ?>">
-                                <label class="mt-2 didot" for="lname">Prénom</label>
-                                <input type="text" id="firstName" name="firstName" value="<?= isset($_POST['firstName']) ? $_POST['firstName'] : '' ?>">
-                                <label class="mt-2 didot" for="mail">Adresse e-mail</label>
-                                <input type="mail" id="mail" name="mail" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>">
-                                <label class="mt-2 didot" for="phone">Numéro de téléphone</label>
-                                <input type="text" id="phone" name="phone" value="<?= isset($_POST['phone']) ? $_POST['phone'] : '' ?>">
-                        </div>
                         <!-- Button col -->
                         <div class="col-12 text-center">
-                            <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="confirm" type="submit" disabled> Continuer en tant qu'invité</button>
+                            <form action="" method="post">
+                            <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="guest" type="submit"> Continuer en tant qu'invité</button>
+                            </form>
                         </div>
                         </form>
                         <?php if (isset($hotelErrorMessage)) { ?>
@@ -100,8 +99,6 @@
 </body>
 <!-- Bootstrap Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<!-- My script -->
-<script src="../assets/javascript/clientSideFrom.js"></script>
 
 
 </html>

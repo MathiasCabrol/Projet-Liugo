@@ -6,8 +6,6 @@ require 'modele/Services.php';
 
 session_start();
 
-var_dump($_SESSION);
-
 $hotel = new Hotel;
 $service = new Service;
 
