@@ -20,7 +20,6 @@ if (isset($_POST['confirm'])) {
         if ($passwordCheck) {
             $account->setId($selectedAccount->id);
             $tokenCheck = $account->checkIfTokenIsNull();
-            var_dump($tokenCheck->result);
             $_SESSION['login'] = htmlspecialchars($_POST['mailInput']);
             $_SESSION['id'] = $selectedAccount->id;
             if ($tokenCheck->result == 0) {

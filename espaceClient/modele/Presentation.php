@@ -20,10 +20,10 @@ class Presentation {
     }
 
     public function updateDescription($id):bool{
-        $query = 'UPDATE `presentation` SET `description` = :description WHERE ' . $this->typeofid . ' = :id';
+        $query = 'UPDATE `presentation` SET `description` = :description WHERE ' . $this->typeofid . '= :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':description', $this->description, PDO::PARAM_STR);
-        $queryStatement->bindValue(':hotel_id', $id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':id', $id, PDO::PARAM_INT);
         return $queryStatement->execute();
     }
 

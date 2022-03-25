@@ -112,7 +112,6 @@ if (isset($_POST['confirm']) && $_POST['confirm'] == "confirmer") {
         $errorList['token'] = 'Aucun jeton unique n\'est reconnu, merci d\'utiliser à nouveau le lien fourni par email.';
     }
 
-    var_dump($errorList);
 
     //Si il n'y a pas d'erreur, j'envois mes données
     if (count($errorList) == 0) {

@@ -27,44 +27,42 @@ require 'controller/homeController.php';
                     votre page d'accueil.</p>
                 <p>À vous de jouer ! Mettez en avant votre établissement à votre façon via des textes entièrement personalisables. Vous pouvez également modifier toutes les images affichées lors de la connexion de vos cients.</p>
                 <p>Attention, cette page est visible publiquement sur votre page d'accueil lors du scan de votre QR code.</p>
-                <?php if($_SESSION['type'] == 'hotels'){ ?>
-                <button type="button" class="exampleButton btn-outline-light" data-toggle="modal" data-target="#customerViewModal">Exemple vue utilisateur</button>
-                <!-- Example modal -->
-                <div class="modal fade" id="customerViewModal" tabindex="-1" role="dialog" aria-labelledby="customerViewModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header sandBackground">
-                                <button type="button" class="close modalCross btn-secondary btn-outline-light rounded" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-12 text-center my-5 text-black">
-                                    <h2 class="tangerine hotelSub"><?= $accountName->name ?></h2>
-                                    <img class="primaryModalImage mt-5" src="<?= isset($filePath['homePhoto']) ? $filePath['homePhoto'] : '../assets/img/hotel-webFormat.jpg' ?>">
-                                    <p class="mt-5"><?= isset($SelectedDescription) ? $SelectedDescription->description : 'Dans ce lieu de relaxation pensé et étudié pour une clientèle exigeante. Nous faisons honneur à un cadre somptueux tout en conservant un sens aïgue du service et de l\'hospitalité.' ?></p>
-                                    <div class="row justify-content-start">
-                                        <div class="col-10">
-                                            <p class="mt-5 modalSmallp">Découvrez les activités proposées par nos partenaires</p>
-                                            <img class="secondaryModalImage" src="<?= isset($filePath['activityPhoto']) ? $filePath['activityPhoto'] : '../assets/img/hiker-g2509bd607_640.jpg' ?>">
-                                            <button class="exploreButton btn btn-outline-light blueBackground categoryButton">Explorer</button>
+                <?php if ($_SESSION['type'] == 'hotels') { ?>
+                    <button type="button" class="exampleButton btn-outline-light" data-bs-toggle="modal" data-bs-target="#customerViewModal">Exemple vue utilisateur</button>
+                    <!-- Example modal -->
+                    <div class="modal fade" id="customerViewModal" tabindex="-1" role="dialog" aria-labelledby="customerViewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header sandBackground">
+                                    <button type="button" class="close modalCross btn-secondary btn-outline-light rounded" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-12 text-center my-5 text-black">
+                                        <h2 class="tangerine hotelSub"><?= $accountName->name ?></h2>
+                                        <img class="primaryModalImage mt-5" src="<?= isset($filePath['homePhoto']) ? $filePath['homePhoto'] : '../assets/img/hotel-webFormat.jpg' ?>">
+                                        <p class="mt-5"><?= isset($SelectedDescription) ? $SelectedDescription->description : 'Dans ce lieu de relaxation pensé et étudié pour une clientèle exigeante. Nous faisons honneur à un cadre somptueux tout en conservant un sens aïgue du service et de l\'hospitalité.' ?></p>
+                                        <div class="row justify-content-start">
+                                            <div class="col-10">
+                                                <p class="mt-5 modalSmallp">Découvrez les activités proposées par nos partenaires</p>
+                                                <img class="secondaryModalImage" src="<?= isset($filePath['activityPhoto']) ? $filePath['activityPhoto'] : '../assets/img/hiker-g2509bd607_640.jpg' ?>">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row justify-content-end">
-                                        <div class="col-10">
-                                            <p class="mt-5 modalSmallp">Découvrez les services proposés par votre hébergeur</p>
-                                            <img class="secondaryModalImage" src="<?= isset($filePath['servicePhoto']) ? $filePath['servicePhoto'] : '../assets/img/chef-g4f86bc479_640.jpg' ?>">
-                                            <button class="discoverButton btn btn-outline-light blueBackground categoryButton">Découvrir</button>
+                                        <div class="row justify-content-end">
+                                            <div class="col-10">
+                                                <p class="mt-5 modalSmallp">Découvrez les services proposés par votre hébergeur</p>
+                                                <img class="secondaryModalImage" src="<?= isset($filePath['servicePhoto']) ? $filePath['servicePhoto'] : '../assets/img/chef-g4f86bc479_640.jpg' ?>">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer sandBackground">
-                                    <button type="button" class="btn btn-secondary btn-outline-light closeModal" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary btn-outline-light closeModal" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
                 <hr class="hotelSeparation mt-5">
             </div>
@@ -79,20 +77,20 @@ require 'controller/homeController.php';
                     </div>
                     <p class="errorMessage"><?= isset($errorList['homePhoto']) ? $errorList['homePhoto'] : '' ?></p>
                     <textarea class="formText mt-5" id="description" name="description" rows="5" cols="30" placeholder="Descriptif de l'établissement. ex : Notre établissement hôtelier le Cap-Ferret est idéalement situé sur les côtes pour une vue imprenable."></textarea>
-                    <?php if($_SESSION['type'] == 'hotels'){ ?>
-                    <div class="drop-zone mt-5">
-                        <span class="drop-zone__prompt">Photo de la section activités</span>
-                        <input type="file" name="activityPhoto" class="drop-zone__input">
-                    </div>
-                    <p class="errorMessage"><?= isset($errorList['activityPhoto']) ? $errorList['activityPhoto'] : '' ?></p>
-                    <div class="drop-zone mt-5">
-                        <span class="drop-zone__prompt">Photo de la section services</span>
-                        <input type="file" name="servicePhoto" class="drop-zone__input">
-                    </div>
-                    <p class="errorMessage"><?= isset($errorList['servicePhoto']) ? $errorList['servicePhoto'] : '' ?></p>
+                    <?php if ($_SESSION['type'] == 'hotels') { ?>
+                        <div class="drop-zone mt-5">
+                            <span class="drop-zone__prompt">Photo de la section activités</span>
+                            <input type="file" name="activityPhoto" class="drop-zone__input">
+                        </div>
+                        <p class="errorMessage"><?= isset($errorList['activityPhoto']) ? $errorList['activityPhoto'] : '' ?></p>
+                        <div class="drop-zone mt-5">
+                            <span class="drop-zone__prompt">Photo de la section services</span>
+                            <input type="file" name="servicePhoto" class="drop-zone__input">
+                        </div>
+                        <p class="errorMessage"><?= isset($errorList['servicePhoto']) ? $errorList['servicePhoto'] : '' ?></p>
                     <?php } ?>
                     <div class="col-12 text-center">
-                    <input class="mt-5 confirmationButton btn-outline-light" type="submit" name="confirm" value="Confirmer">
+                        <input class="mt-5 confirmationButton btn-outline-light" type="submit" name="confirm" value="Confirmer">
                     </div>
                 </form>
             </div>

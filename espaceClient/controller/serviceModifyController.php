@@ -1,6 +1,8 @@
 <?php
 require 'modele/Database.php';
 require 'modele/Service.php';
+require 'modele/PartnersService.php';
+require 'modele/HotelsService.php';
 require 'modele/SubService.php';
 require 'modele/SubServicesButton.php';
 require 'class/Files.php';
@@ -9,17 +11,20 @@ $titleRegex = '/^([A-Za-zÀ-ÖØ-öø-ÿ])+[- .]*$/';
 
 session_start();
 
-var_dump($_SESSION);
+if ($_SESSION['type'] == 'partners') {
+    $newService = new PartnerService;
+    $dirName = 'partners';
+} elseif ($_SESSION['type'] == 'hotels') {
+    $newService = new HotelService;
+    $dirName = 'hotels';
+}
 
-
-$newService = new Service;
 $fileCheck = new Files;
 if (isset($_GET['id'])) {
     $serviceId = htmlspecialchars($_GET['id']);
     $_SESSION['serviceId'] = htmlspecialchars($_GET['id']);
 }
 $serviceId = $_SESSION['serviceId'];
-var_dump($serviceId);
 $newService->setServiceId($serviceId);
 $serviceInfos = $newService->displayService();
 $newSubService = new SubService;
@@ -49,12 +54,10 @@ if (isset($_GET['action'])) {
             //Setter de la classe service correspondant à l'id du service séléctionné
             $newSubService->setId(htmlspecialchars($_GET['subServiceId']));
             //On vérifie si l'id correspond bien dans la base de donnée, retourne 1 en cas de réussite ou 0 en cas d'échec
-            var_dump($newSubService->checkIfSubServiceExists());
             if ($newSubService->checkIfSubServiceExists()) {
                 $buttonsIds = $newSubServiceButton->getButtonsIdBySubService(htmlspecialchars($_GET['subServiceId']));
-                var_dump($buttonsIds);
                 foreach ($buttonsIds as $buttonsId) {
-                    $fileCheck->deleteButtonFile($buttonsId->buttonid);
+                    $fileCheck->deleteButtonFile($buttonsId->buttonid, $dirName);
                 }
                 //Suppression du service
                 if ($newSubService->deleteSubService()) {
@@ -89,8 +92,8 @@ if (isset($_POST['saveChanges'])) {
     $fileError = [];
     $fileName = 'categoryPhoto';
     if (!$_FILES[$fileName]['error']) {
-        $fileCheck->deleteCategoryFile($serviceId);
-        $fileCheck->registerCategoryFile($_FILES[$fileName]['tmp_name'], $_FILES[$fileName]['name'], $serviceId);
+        $fileCheck->deleteCategoryFile($serviceId, $dirName);
+        $fileCheck->registerCategoryFile($_FILES[$fileName]['tmp_name'], $_FILES[$fileName]['name'], $serviceId, $dirName);
     } else {
         $fileError[$fileName] = $errorMessage;
     }
@@ -109,11 +112,9 @@ if (isset($_POST['saveChanges'])) {
         $newService->setServiceId($serviceId);
         $newService->setServiceTitle($serviceTitle);
         if ($newService->updateServiceTitle()) {
-            $successMessage = 'Le nom du service a bien été modifié';
+            $successMessage = 'Le service a bien été modifié';
         } else {
-            $errorMessage = 'Une erreur est survenue lors de la modification du nom de service.';
+            $errorMessage = 'Une erreur est survenue lors de la modification du service.';
         }
     }
 }
-
-var_dump($newService->displayService());
