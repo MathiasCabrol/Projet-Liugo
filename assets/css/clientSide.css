@@ -444,5 +444,11 @@ select:hover {
   margin: 2em 0;
   padding: 10px;
   border-radius: 10%;
+  position: relative;
+}
 
+.accountModifyButton {
+  position: absolute;
+  top: -18%;
+  right: -5%;
 }

@@ -76,6 +76,22 @@ class Customer extends Database {
         return $userInformations;
     }
 
+    public function updateAccountEmail():bool {
+        $query = 'UPDATE `customers` SET `email` = :accountemail WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':accountemail', $this->email, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
+    public function updateAccountPhone():bool {
+        $query = 'UPDATE `customers` SET `phone` = :accountphone WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryStatement->bindValue(':accountphone', $this->phone, PDO::PARAM_STR);
+        return $queryStatement->execute();
+    }
+
     public function setTokenNull():bool{
         $query = 'UPDATE `customers` SET `token` = NULL WHERE `email` = :email';
         $queryStatement = $this->db->prepare($query);
@@ -99,6 +115,13 @@ class Customer extends Database {
         $queryStatement->execute();
         $connexionId = $queryStatement->fetch(PDO::FETCH_OBJ);
         return $connexionId;
+    }
+
+    public function deleteAccount():bool {
+        $query = 'DELETE FROM `customers` WHERE `id` = :id';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryStatement->execute();
     }
 
     public function setFirstName($newFirstName):void{
