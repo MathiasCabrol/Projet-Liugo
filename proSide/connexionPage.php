@@ -1,7 +1,5 @@
 <?php
 require 'controller/connexionPage.php';
-var_dump($_SESSION);
-var_dump($_POST);
 ?>
 
 <!DOCTYPE html>

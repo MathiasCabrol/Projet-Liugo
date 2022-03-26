@@ -19,15 +19,15 @@
 
 <body class="mainSection">
     <header>
-    <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
-        <img class="logo" src="../assets/marque/Logo_Liugo.png" alt="Logo Liugo">
-      </div>
-      <!--Closing row logo-->
-    </div>
-    <!--Closing container-->
-  </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
+                    <img class="logo" src="../assets/marque/Logo_Liugo.png" alt="Logo Liugo">
+                </div>
+                <!--Closing row logo-->
+            </div>
+            <!--Closing container-->
+        </div>
     </header>
     <section>
         <!-- Form container -->
@@ -43,7 +43,7 @@
                         <!-- Button col -->
                         <div class="col-12 text-center">
                             <form action="" method="post">
-                            <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="guest" type="submit"> Continuer en tant qu'invité</button>
+                                <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="guest" type="submit"> Continuer en tant qu'invité</button>
                             </form>
                         </div>
                         </form>

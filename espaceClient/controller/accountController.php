@@ -10,9 +10,6 @@ require 'class/Files.php';
 
 session_start();
 
-var_dump($_SESSION);
-var_dump($_POST);
-
 if($_SESSION['type'] == 'partners'){
     $account = new Partner;
 } elseif($_SESSION['type'] == 'hotels'){

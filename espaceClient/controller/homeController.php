@@ -1,7 +1,5 @@
 <?php session_start();
 
-var_dump($_SESSION);
-
 require 'class/Files.php';
 require 'modele/Database.php';
 require 'modele/Account.php';

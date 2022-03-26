@@ -436,3 +436,13 @@ select:hover {
   border-radius: 10%;
   padding: 20px;
 }
+
+/* customer account page */
+
+.customerDetailsRow .shadow {
+  border: 1pc solid #4E629C;
+  margin: 2em 0;
+  padding: 10px;
+  border-radius: 10%;
+
+}

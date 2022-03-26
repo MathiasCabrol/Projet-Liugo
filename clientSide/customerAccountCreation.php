@@ -1,4 +1,4 @@
-<?php require 'controller/accountController.php';
+<?php require 'controller/subscriptionController.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">

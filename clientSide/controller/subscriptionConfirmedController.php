@@ -23,9 +23,7 @@ if (isset($_GET['token'])) {
 //Si il n'y a pas d'erreur, j'envois mes données
 if (count($errorList) == 0) {
     $customerInfos = $customer->getIdAndEmailFromToken();
-    var_dump($customerInfos->email);
     $customer->setEmail($customerInfos->email);
-    var_dump($customer->setTokenNull());
     if ($customer->setTokenNull()) {
         $_SESSION['id'] = $customerInfos->id;
         $_SESSION['login'] = $customerInfos->email;

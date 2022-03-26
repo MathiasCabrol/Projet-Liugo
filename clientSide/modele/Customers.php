@@ -7,6 +7,7 @@ class Customer extends Database {
     private string $email;
     private string $password;
     private string $token;
+    private int $id;
 
     public function checkIfAccountExists():object {
         $query = 'SELECT COUNT(`id`) AS `check` FROM `customers` WHERE :email = `email`';
@@ -57,13 +58,22 @@ class Customer extends Database {
         return $selectedId;
     }
 
-    public function getIdByMail(){
+    public function getIdByMail():int{
         $query = 'SELECT `id` FROM `customers` WHERE `email` = :email';
         $queryStatement = $this->db->prepare($query);
-        $queryStatement->bindValue('email', $this->email, PDO::PARAM_STR);
+        $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         $queryStatement->execute();
         $userId = $queryStatement->fetchColumn();
         return $userId;
+    }
+
+    public function getCustomerDetails():object{
+        $query = 'SELECT `lastname`, `firstname`, `email`, `phone` FROM `customers` WHERE `id` = :customerid';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':customerid', $this->id, PDO::PARAM_INT);
+        $queryStatement->execute();
+        $userInformations = $queryStatement->fetch(PDO::FETCH_OBJ);
+        return $userInformations;
     }
 
     public function setTokenNull():bool{
@@ -91,27 +101,31 @@ class Customer extends Database {
         return $connexionId;
     }
 
-    public function setFirstName($newFirstName){
+    public function setFirstName($newFirstName):void{
         $this->firstName = $newFirstName;
     }
 
-    public function setLastName($newLastName){
+    public function setLastName($newLastName):void{
         $this->lastName = $newLastName;
     }
 
-    public function setPhone($newPhone){
+    public function setPhone($newPhone):void{
         $this->phone = $newPhone;
     }
 
-    public function setEmail($newEmail){
+    public function setEmail($newEmail):void{
         $this->email = $newEmail;
     }
 
-    public function setPassword($newPassword){
+    public function setPassword($newPassword):void{
         $this->password = $newPassword;
     }
 
-    public function setToken($newToken) {
+    public function setToken($newToken):void {
         $this->token = $newToken;
+    }
+
+    public function setId($newId):void {
+        $this->id = $newId;
     }
 }

@@ -18,8 +18,6 @@ $boolRegex = '/^[0-1]$/';
 //Début de session
 session_start();
 
-var_dump($_SESSION);
-
 //Instance de la classe de gestion de fichiers
 $fileCheck = new Files;
 
@@ -65,7 +63,6 @@ if (isset($_GET['action']) && $_SERVER['PHP_SELF'] == '/espaceClient/services.ph
                 //Suppression de l'image liée à ce service
                 $fileCheck->deleteCategoryFile($serviceId, $dirName);
                 //Suppresion des images liées aux boutons de ce service
-                var_dump($selectedButtons);
                 foreach ($selectedButtons as $subServiceButton) {
                     $fileCheck->deleteButtonFile($subServiceButton->buttonid, $dirName);
                 }
@@ -223,8 +220,6 @@ if (isset($_POST['saveChanges'])) {
         }
     }
 
-    var_dump($errorList);
-
     //On compte le nombre d'erreurs liées au formulaire
     if (count($errorList) == 0) {
         //Ajout du service
@@ -274,7 +269,6 @@ if (isset($_POST['saveChanges'])) {
                     $subServiceId = $subService->getSubServiceId();
                     //Si l'utilisateur souhaite ajouter un bouton
                     if ($buttonQuestion[$i] == '1') {
-                        var_dump('bonjour');
                         //Instanciation du modèle bouton sous-service
                         $subServiceButton = new SubServiceButton;
                         $subServiceButton->setButtonValue($buttonName[$i]);

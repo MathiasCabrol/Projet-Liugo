@@ -41,7 +41,7 @@ private int $serviceId;
     }
 
     public function getAllPartnersServices($page){
-        $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title`, `P`.`email` AS `partnerEmail`, `P`.`name` AS `partnerName`, `P`.`id_cities` AS `cityId` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `id_type` = 1 ORDER BY title DESC LIMIT :number, 10';
+        $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title`, `P`.`email` AS `partnerEmail`, `P`.`name` AS `partnerName`, `P`.`id_cities` AS `cityId` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `id_type` = 1 ORDER BY `P`.`name` ASC LIMIT :number, 10';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':number', ($page - 1) * 10, PDO::PARAM_INT);
         $queryStatement->execute();

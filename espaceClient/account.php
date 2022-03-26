@@ -81,7 +81,7 @@
                             </div>
                             <div class="modal-body">
                                 <h5 class="my-2">Êtes-vous sûr de vouloir supprimer votre compte ?</h5>
-                                <p class="my-5">Toutes les infformations enregistrés ainsi que les services créés seront supprimés définitivement, souhaitez-vous continuer ?</p>
+                                <p class="my-5">Toutes les informations enregistrés ainsi que les services créés seront supprimés définitivement, souhaitez-vous continuer ?</p>
                                 <form action="" method="POST">
                                     <input type="submit" name="deleteConfirm" value="confirmer" class="btn btn-danger">
                                     <input type="submit" name="deleteCancel" value="annuler" class="btn btn-primary">

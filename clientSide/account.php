@@ -25,7 +25,55 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-10 text-center">
+                <h2 class="didot">Informations du compte</h2>
+                <div class="row customerDetailsRow">
+                    <div class="col-12 col-md-6 col-lg-6 text-center">
+                        <div class="shadow specificInfo">
+                            <p>Nom</p>
+                            <p><?= $customerDetails->lastname ?></p>
+                        </div>
+                        <div class="shadow specificInfo">
+                            <p>Prénom</p>
+                            <p><?= $customerDetails->firstname ?></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6 text-center">
+                        <div class="shadow specificInfo">
+                            <p>Adresse e-mail</p>
+                            <p><?= $customerDetails->email ?></p>
+                        </div>
+                        <div class="shadow specificInfo">
+                            <p>Numéro de téléphone</p>
+                            <p><?= $customerDetails->phone ?></p>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" name="delete" class="btn btn-danger btn-outline-light" data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer le compte</button>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header deleteModalHeader">
+                        <h5 class="modal-title" id="deleteModalLabel">Suppression de compte</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="my-2">Êtes-vous sûr de vouloir supprimer votre compte ?</h5>
+                        <p class="my-5">Toutes les informations enregistrés ainsi que les services créés seront supprimés définitivement, souhaitez-vous continuer ?</p>
+                        <form action="" method="POST">
+                            <input type="submit" name="deleteConfirm" value="confirmer" class="btn btn-danger">
+                            <input type="submit" name="deleteCancel" value="annuler" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php include 'footer.php' ?>
 </body>
 <!-- Bootstrap Javascript -->
