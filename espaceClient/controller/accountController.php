@@ -5,6 +5,7 @@ require 'modele/Account.php';
 require 'modele/Hotels.php';
 require 'modele/Partners.php';
 require 'modele/Cities.php';
+require 'modele/Booking.php';
 require 'class/Files.php';
 
 
@@ -38,6 +39,14 @@ if(isset($_POST['deleteConfirm'])){
     session_destroy();
     header('Location: ../proSide/homepage.php');
     exit;
+}
+
+if(isset($_GET['action']) && $_GET['action'] == 'stats'){
+    $booking = new Booking;
+
+$booking->setPartnerId(htmlspecialchars($_SESSION['id']));
+$confirmedBookingsData = $booking->getConfirmedBookingsData();
+$canceledBookingsData = $booking->getCanceledBookingsData();
 }
 
 

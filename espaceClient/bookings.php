@@ -1,6 +1,7 @@
-<?php require 'controller/bookingsCOntroller.php'; ?>
+<?php require 'controller/bookingsController.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="../assets/css/style.css" rel="stylesheet">
     <title>Réservations</title>
 </head>
+
 <body class="hotelBody">
     <?php include 'navbar.php' ?>
     <div class="container">
@@ -17,59 +19,41 @@
                 <h1 class="hotelTitle mt-5 ">Mes Réservations</h1>
             </div>
             <div class="col-12 col-md-8 col-lg-8 text-center mt-5 mb-5 hotelIntro">
-                <p>Vous pourrez retrouver ici le récapitulatof de l'ensemble des réservations éffectuées par vos clients dans les établissements partenaires</p>
+                <p>Vous pourrez retrouver ici le récapitulatif de l'ensemble des réservations éffectuées par vos clients dans les établissements partenaires</p>
                 <p>Vous pouvez voir vos commissions évoluer en temps réel et télécharger le document si nécéssaire.</p>
                 <hr class="hotelSeparation mt-5">
             </div>
-            <div class="col-12 col-md-8 text-center">
-                <h2 class="tangerine text-white">Réservations maintenues</h2>
-                <table class="mt-5 reservationTable">
-                    <tr>
-                        <td>Nombre total de réservations</td>
-                        <td><?= $confirmedBookingsData->numberOfBookings ?> </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre total de pax</td>
-                        <td><?= $confirmedBookingsData->numberOfPeople ?></td>
-                    </tr>
-                    <tr>
-                        <td>Chiffre d’affaire total généré</td>
-                        <td><?= $confirmedBookingsData->totalPrice ?>€</td>
-                    </tr>
-                    <tr>
-                        <td>Commission totale générée</td>
-                        <td><?= $confirmedBookingsData->totalPrice * 0.05 ?>€</td>
-                    </tr>
-                </table>
+            <div class="col-12 col-md-8 col-lg-8 text-center">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="mt-5">Rechercher par date</p>
+                        <input class="w-100" type="date" name="reservationSearch" id="reservationSearch">
+                        <button class="btn btn-outline-light priceButton border rounded mt-2">Rechercher</button>
+                    </div>
+                    <div class="col-6">
+                        <p class="mt-5">Rechercher par nom</p>
+                        <input class="w-100" type="search" name="reservationSearch" id="reservationSearch">
+                        <button class="btn btn-outline-light priceButton border rounded mt-2">Rechercher</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-md-8 text-center">
-                <h2 class="tangerine text-white mt-5">Réservations annulées</h2>
-                <table class="mt-5 reservationTable">
-                    <tr>
-                        <td>Nombre total de réservations</td>
-                        <td><?= $canceledBookingsData->numberOfBookings ?> </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre total de pax</td>
-                        <td><?= $canceledBookingsData->numberOfPeople == 0 ? 0 : $canceledBookingsData->numberOfPeople ?></td>
-                    </tr>
-                    <tr>
-                        <td>Chiffre d’affaire total annulé</td>
-                        <td><?= $canceledBookingsData->totalPrice == 0 ? 0 : $canceledBookingsData->totalPrice ?></td>
-                    </tr>
-                    <tr>
-                        <td>Commission totale annulée</td>
-                        <td><?= $canceledBookingsData->totalPrice * 0.05 ?></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-12 text-center">
-                <button type="button" class="downloadButton mt-5 btn btn-outline-light">Exporter au format PDF</button>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="row justify-content-center">
+                            <div class="col-10 bookingInformationCol">
+                                <div class="coloredHeader"></div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>        
+    </div>
 
     <?php include 'footer.php' ?>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </html>

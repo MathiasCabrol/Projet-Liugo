@@ -28,6 +28,14 @@ class Booking {
         return $result;
     }
 
+    public function getBookingsInformations():array{
+        $query = 'SELECT `bookingnumber`, `date`, `hour`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0';
+        $queryStatement = $this->db->query($query);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+
     public function setPartnerId($newPartnerId){
         $this->idpartner = $newPartnerId;
     }

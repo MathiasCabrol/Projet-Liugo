@@ -724,3 +724,13 @@ styling */
     background-color: red;
 }
 
+.bookingInformationCol {
+    background-color: white;
+    border-radius: 10%;
+    border: 1px solid black;
+}
+
+.coloredHeader {
+    height: 20%;
+    background-color: #E8D5A3;
+}
