@@ -1,9 +1,9 @@
 <?php
 
-require 'regex/formRegex.php';
-require 'modele/Database.php';
-require 'modele/Hotel.php';
-require 'modele/Customers.php';
+require 'clientSide/regex/formRegex.php';
+require 'clientSide/modele/Database.php';
+require 'clientSide/modele/Hotel.php';
+require 'clientSide/modele/Customers.php';
 
 session_start();
 
@@ -59,7 +59,7 @@ if (isset($_POST['login'])) {
                         //Si c'est le cas, l'id de l'établissement ets inséré dans une variable de session
                         $_SESSION['hotelId'] = $hotelId;
                         //redirection vers la page d'accueil
-                        header('Location: customerHomepage.php');
+                        header('Location: clientSide/customerHomepage.php');
                         exit;
                     }
                 } else {
@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
                      * Si l'id de l'hôtel n'est aps renseigné, alors le client n'a pas flashé le QR code et est donc renvboyé 
                      * vers la page des activités
                      */
-                    header('Location: activities.php');
+                    header('Location: clientSide/activities.php');
                 }
             }
         }

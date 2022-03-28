@@ -21,6 +21,6 @@ if (isset($_POST['deleteConfirm'])) {
 
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     session_destroy();
-    header('Location: customerLandingPage.php');
+    header('Location: ../index.php');
     exit;
 }

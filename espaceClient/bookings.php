@@ -1,3 +1,4 @@
+<?php require 'controller/bookingsCOntroller.php'; ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -17,71 +18,48 @@
             </div>
             <div class="col-12 col-md-8 col-lg-8 text-center mt-5 mb-5 hotelIntro">
                 <p>Vous pourrez retrouver ici le récapitulatof de l'ensemble des réservations éffectuées par vos clients dans les établissements partenaires</p>
-                <p>Vous avez la possibilté de les trier par semaine/mois/année en fonction de vos besoin. Vous pouvez voir vos commissions évoluer en temps réel et télécharger le document si nécéssaire.</p>
+                <p>Vous pouvez voir vos commissions évoluer en temps réel et télécharger le document si nécéssaire.</p>
                 <hr class="hotelSeparation mt-5">
             </div>
             <div class="col-12 col-md-8 text-center">
-                <h2 class="tangerine text-white">Semaine en cours</h2>
+                <h2 class="tangerine text-white">Réservations maintenues</h2>
                 <table class="mt-5 reservationTable">
                     <tr>
                         <td>Nombre total de réservations</td>
-                        <td>125</td>
+                        <td><?= $confirmedBookingsData->numberOfBookings ?> </td>
                     </tr>
                     <tr>
                         <td>Nombre total de pax</td>
-                        <td>400</td>
+                        <td><?= $confirmedBookingsData->numberOfPeople ?></td>
                     </tr>
                     <tr>
                         <td>Chiffre d’affaire total généré</td>
-                        <td>150.000€</td>
+                        <td><?= $confirmedBookingsData->totalPrice ?>€</td>
                     </tr>
                     <tr>
                         <td>Commission totale générée</td>
-                        <td>7500€</td>
+                        <td><?= $confirmedBookingsData->totalPrice * 0.05 ?>€</td>
                     </tr>
                 </table>
             </div>
             <div class="col-12 col-md-8 text-center">
-                <hr class="hotelSeparation mt-5">
-                <h2 class="tangerine text-white">Mois en cours</h2>
+                <h2 class="tangerine text-white mt-5">Réservations annulées</h2>
                 <table class="mt-5 reservationTable">
                     <tr>
                         <td>Nombre total de réservations</td>
-                        <td>500</td>
+                        <td><?= $canceledBookingsData->numberOfBookings ?> </td>
                     </tr>
                     <tr>
                         <td>Nombre total de pax</td>
-                        <td>1600</td>
+                        <td><?= $canceledBookingsData->numberOfPeople == 0 ? 0 : $canceledBookingsData->numberOfPeople ?></td>
                     </tr>
                     <tr>
-                        <td>Chiffre d’affaire total généré</td>
-                        <td>600.000€</td>
+                        <td>Chiffre d’affaire total annulé</td>
+                        <td><?= $canceledBookingsData->totalPrice == 0 ? 0 : $canceledBookingsData->totalPrice ?></td>
                     </tr>
                     <tr>
-                        <td>Commission totale générée</td>
-                        <td>30.000€</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-12 col-md-8 text-center">
-            <hr class="hotelSeparation mt-5">
-                <h2 class="tangerine text-white">Année en cours</h2>
-                <table class="mt-5 reservationTable">
-                    <tr>
-                        <td>Nombre total de réservations</td>
-                        <td>5000</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre total de pax</td>
-                        <td>16.000</td>
-                    </tr>
-                    <tr>
-                        <td>Chiffre d’affaire total généré</td>
-                        <td>6.000.000€</td>
-                    </tr>
-                    <tr>
-                        <td>Commission totale générée</td>
-                        <td>300.000€</td>
+                        <td>Commission totale annulée</td>
+                        <td><?= $canceledBookingsData->totalPrice * 0.05 ?></td>
                     </tr>
                 </table>
             </div>

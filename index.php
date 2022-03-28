@@ -1,4 +1,4 @@
-<?php require 'controller/customerController.php';
+<?php require 'clientSide/controller/customerController.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -19,7 +19,8 @@
 
 <body class="mainSection">
     <header>
-        <div class="container">
+        <div class="container-fluid">
+        <a class="btn btn-outline-light priceButton proButton border rounded shadow" href="proSide/homepage.php">Vous êtes un professionnel ?</a>
             <div class="row justify-content-center">
                 <div class="col-10 col-md-4 col-lg-4 text-center mt-3">
                     <img class="logo" src="../assets/marque/Logo_Liugo.png" alt="Logo Liugo">
@@ -94,7 +95,7 @@
         </div>
     </div>
     <div class="absoluteFooter">
-        <?php include 'footer.php' ?>
+        <?php include 'clientSide/footer.php' ?>
     </div>
 </body>
 <!-- Bootstrap Javascript -->

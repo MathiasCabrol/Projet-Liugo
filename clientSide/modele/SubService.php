@@ -14,7 +14,7 @@ class SubService extends Database {
     }
 
     public function getAllSubServicesFromServiceId($serviceId){
-        $query = 'SELECT `SS`.`id` AS `subServiceId`, `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `subServiceStartingHour`, `SS`.`finishingHour` AS `subServiceFinishingHour`, `SS`.`price` AS `subServicePrice`, `SS`.`addButton` AS `addButton`, `SSB`.`id` AS `buttonId`, `SSB`.`buttonValue` AS `buttonValue` FROM `subservices` AS `SS` INNER JOIN `subservicesbutton` AS `SSB` ON `SS`.`id` = `SSB`.`id_subservices` WHERE `SS`.`id_services` = :serviceid';
+        $query = 'SELECT `SS`.`id` AS `subServiceId`, `SS`.`title` AS `subServiceTitle`, `SS`.`startingHour` AS `subServiceStartingHour`, `SS`.`finishingHour` AS `subServiceFinishingHour`, `SS`.`price` AS `subServicePrice` FROM `subservices` AS `SS` WHERE `SS`.`id_services` = :serviceid';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $serviceId, PDO::PARAM_INT);
         $queryStatement->execute();

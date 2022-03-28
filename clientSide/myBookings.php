@@ -56,7 +56,6 @@
                         <div class="col-8 text-center mb-5">
                             <form action="" method="post">
                                 <input type="hidden" name="bookingId" value="<?= $nextBooking->id ?>">
-                                <input class="btn btn-primary btn-outline-light" type="submit" name="modify" value="Modifier">
                                 <input class="btn btn-danger btn-outline-light" type="submit" name="cancel" value="Annuler">
                             </form>
                         </div>

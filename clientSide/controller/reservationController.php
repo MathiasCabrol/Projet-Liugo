@@ -128,17 +128,22 @@ if (isset($_POST['date'])) {
                         $bookingCreation->setBookingNumber($bookingNumber);
                     }
                 }
-                $bookingCreation->setDate($date);
-                $bookingCreation->setHour($hour . ':00');
-                $bookingCreation->setPax($pax);
-                $bookingCreation->setPrice($subServicePrice);
-                $bookingCreation->setSubServiceId($subServiceId);
-                $bookingCreation->setPartnerId($partnerId);
-                $bookingCreation->setCustomerId(htmlspecialchars($_POST['customerId']));
-                if ($bookingCreation->createBooking()) {
-                    $lastCreatedBookingId = $bookingCreation->getLastCreatedBooking();
-                    echo 'bookingConfirmation.php?bookingId=' . $lastCreatedBookingId;
-                    exit;
+                if (time() < strtotime($date)) {
+                    $bookingCreation->setDate($date);
+                    $bookingCreation->setHour($hour . ':00');
+                    $bookingCreation->setPax($pax);
+                    $bookingCreation->setPrice($subServicePrice);
+                    $bookingCreation->setSubServiceId($subServiceId);
+                    $bookingCreation->setPartnerId($partnerId);
+                    $bookingCreation->setCustomerId(htmlspecialchars($_POST['customerId']));
+                    if ($bookingCreation->createBooking()) {
+                        $lastCreatedBookingId = $bookingCreation->getLastCreatedBooking();
+                        echo 'bookingConfirmation.php?bookingId=' . $lastCreatedBookingId;
+                        exit;
+                    }
+                } else {
+                    $dateError = 'Merci de renseigner une date future.';
+                    echo 0;
                 }
             }
         }

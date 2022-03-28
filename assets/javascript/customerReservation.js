@@ -98,6 +98,7 @@ document.addEventListener('click', event => {
         let serviceId = url.searchParams.get("serviceId");
         //Variable indiquant la div de réservation la plus proche
         let parentDivContainer = event.target.closest('.reservationCol')
+        let dateInput = parentDivContainer.querySelector('.reservationDate')
         let chosenDate = parentDivContainer.querySelector('.reservationDate').value
         let chosenHour = parentDivContainer.querySelector('select[name="hourSlot"]').value
         let chosenNumberOfPeople = parentDivContainer.querySelector('select[name="clientsNumber"]').value
@@ -118,6 +119,11 @@ document.addEventListener('click', event => {
             fetch("./controller/reservationController.php", { method: 'POST', body: formData })
                 .then(response => response.text()) // si je recois du json je met .json() a la place
                 .then(response => {
+                    if(response == 0){
+                        let errorMessageToAppend = `<p class="errorMessage">Veuillez indiquer une date future.</p>`
+                        dateInput.insertAdjacentHTML("afterend", errorMessageToAppend)
+                        return
+                    }
                     window.location.href = response
                 })
         }

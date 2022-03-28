@@ -16,9 +16,11 @@ $page = $_SERVER['REQUEST_URI'];
                     <li class="nav-item">
                         <a class="nav-link hotelLink<?= $page == "/Liugo/espaceClientHotel/services.php" ? ' hotelActive' : '' ?>" href="services.php">Mes services</a>
                     </li>
+                    <?php if($_SESSION['type'] == 'partners'){ ?>
                     <li class="nav-item">
                         <a class="nav-link hotelLink<?= $page == "/Liugo/espaceClientHotel/bookings.php" ? ' hotelActive' : '' ?>" href="bookings.php">Mes réservations</a>
                     </li>
+                    <?php } ?>
                     <li class="nav-item">
                         <a class="nav-link hotelLink<?= $page == "/Liugo/espaceClientHotel/account.php" ? ' hotelActive' : '' ?>" href="account.php">Mon compte</a>
                     </li>

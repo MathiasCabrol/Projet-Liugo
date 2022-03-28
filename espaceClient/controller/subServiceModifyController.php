@@ -11,6 +11,12 @@ $boolRegex = '/^[0-1]$/';
 
 session_start();
 
+if($_SESSION['type'] == 'partners'){
+    $dir = 'partners';
+} else if($_SESSION['type'] == 'hotels'){
+    $dir = 'hotels';
+}
+
 $subService = new SubService;
 $errorMessage = 'Une erreur s\'est produite, veuillez réessayer';
 
@@ -90,8 +96,8 @@ if (isset($_POST['saveModification'])) {
 
         if(!$_FILES['buttonFile']['error'] && count($errorList) == 0){
             $fileCheck = new Files;
-            $fileCheck->deleteButtonFile($buttonId);
-            $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'], $_FILES['buttonFile']['name'], $buttonId);
+            $fileCheck->deleteButtonFile($buttonId, $dir);
+            $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'], $_FILES['buttonFile']['name'], $buttonId, $dir);
         } else {
             $errorList['buttonFile'] = 'Le fichier n\'a pas été téléchargé';
         }
