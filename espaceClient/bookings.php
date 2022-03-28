@@ -24,32 +24,52 @@
                 <hr class="hotelSeparation mt-5">
             </div>
             <div class="col-12 col-md-8 col-lg-8 text-center">
-                <div class="row">
-                    <div class="col-6">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 col-lg-6">
                         <p class="mt-5">Rechercher par date</p>
-                        <input class="w-100" type="date" name="reservationSearch" id="reservationSearch">
-                        <button class="btn btn-outline-light priceButton border rounded mt-2">Rechercher</button>
-                    </div>
-                    <div class="col-6">
-                        <p class="mt-5">Rechercher par nom</p>
-                        <input class="w-100" type="search" name="reservationSearch" id="reservationSearch">
-                        <button class="btn btn-outline-light priceButton border rounded mt-2">Rechercher</button>
+                        <form action="" method="post">
+                            <input class="w-100" type="date" name="dateSearch" id="reservationSearch">
+                            <?php if (isset($dateErrorMessage)) { ?>
+                                <p class="errorMessage"><?= $dateErrorMessage ?></p>
+                            <?php } ?>
+                            <button type="submit" class="btn btn-outline-light priceButton border rounded mt-2">Rechercher</button>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-12 col-md-6 col-lg-6">
-                        <div class="row justify-content-center">
-                            <div class="col-10 bookingInformationCol">
-                                <div class="coloredHeader"></div>
-                                <p></p>
-                            </div>
-                        </div>
+                        <p class="mt-5">Rechercher par nom</p>
+                        <form action="" method="post">
+                            <input class="w-100" type="search" name="nameSearch" id="reservationSearch">
+                            <?php if (isset($nameErrorMessage)) { ?>
+                                <p class="errorMessage"><?= $nameErrorMessage ?></p>
+                            <?php } ?>
+                            <button type="submit" class="btn btn-outline-light priceButton border rounded mt-2">Rechercher</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-12">
+            <div class="row">
+                <?php foreach ($bookingsDisplayed as $booking) { ?>
+                    <div class="col-12 col-md-6 col-lg-6 my-5">
+                        <div class="row justify-content-center">
+                            <div class="col-10 bookingInformationCol text-center">
+                                <div class="coloredHeader text-white didot"><?= $booking->bookingnumber ?></div>
+                                <p><?= $booking->customerLastname ?> <?= $booking->customerFirstname ?></p>
+                                <p><?= $booking->subserviceTitle ?></p>
+                                <p>Le <?= $booking->date ?> à <?= $booking->hour ?></p>
+                                <p>Contacts : </p>
+                                <p><?= $booking->customerEmail ?></p>
+                                <p><?= $booking->customerPhone ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
     </div>
 
     <?php include 'footer.php' ?>

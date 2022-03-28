@@ -3,6 +3,8 @@
 class Booking {
     private int $price;
     private int $idpartner;
+    private string $date;
+    private string $name;
 
     public function __construct()
     {
@@ -36,7 +38,33 @@ class Booking {
         return $result;
     }
 
+    public function getBookingsInformationsByDate():array{
+        $query = 'SELECT `bookingnumber`, `date`, `hour`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0 AND `date` = :date';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':date', $this->date, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    public function getBookingsInformationsByName():array{
+        $query = 'SELECT `bookingnumber`, `date`, `hour`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0 AND `C`.`lastname` LIKE CONCAT("%", :name, "%")';
+        $queryStatement = $this->db->prepare($query);
+        $queryStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $queryStatement->execute();
+        $result = $queryStatement->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+
     public function setPartnerId($newPartnerId){
         $this->idpartner = $newPartnerId;
+    }
+
+    public function setDate($newDate){
+        $this->date = $newDate;
+    }
+
+    public function setName($newName){
+        $this->name = $newName;
     }
 }
