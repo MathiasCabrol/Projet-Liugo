@@ -35,6 +35,10 @@ public function returnFile($keyword)
     return $file;
 }
 
+/**
+ * Fonction qui permet de supprimer le fichier dans le dossier category (Photos de services)
+ * @return bool
+ */
 public function deleteCategoryFile($id, $directory)
 {
     $path = $directory . '/' . $_SESSION['login'] . '\/category/';
@@ -45,6 +49,10 @@ public function deleteCategoryFile($id, $directory)
     return unlink($path . $fileToDelete);
 }
 
+/**
+ * Fonction qui permet de supprimer le fichier dans le dossier buttonFiles (Fichiers téléchargeables de boutons)
+ * @return bool
+ */
 public function deleteButtonFile($id, $directory)
 {
     $path = $directory . '/' . $_SESSION['login'] . '\/buttonFiles/';
@@ -55,6 +63,10 @@ public function deleteButtonFile($id, $directory)
     return unlink($path . $fileToDelete);
 }
 
+/**
+ * Fonction qui permet d'enregistrer la photo du service
+ * @return bool
+ */
 public function registerCategoryFile($oldPath, $oldFileName, $id, $directory)
 {
     $path = $directory . '/' . $_SESSION['login'] . '\/category/';
@@ -62,6 +74,10 @@ public function registerCategoryFile($oldPath, $oldFileName, $id, $directory)
     return rename($oldPath, $path . 'categoryPhoto' . $id . '.' . end($temp));
 }
 
+/**
+ * Fonction qui permet d'enregistrer le fichier du bouton
+ * @return bool
+ */
 public function registerButtonFile($oldPath, $oldFileName, $id, $directory)
 {
     $path = $directory . '/' . $_SESSION['login'] . '\/buttonFiles/';
@@ -69,6 +85,7 @@ public function registerButtonFile($oldPath, $oldFileName, $id, $directory)
     return rename($oldPath, $path . 'buttonFile' . $id . '.' . end($temp));
 }
 
+//Fonction permettant de supprimer en utilisant la récursivité le dossier et son contenu
 public function rrmdir($directory)
 {
     if (is_dir($directory)) {
@@ -104,6 +121,10 @@ public function fileRegistration($fileName, $path): string
     return $result;
 }
 
+/**
+ * Fonction permettant de renommer un fichier
+ * @return string
+ */
 public function renameFile($fileName, $path, $id) {
     $temp = explode(".", $_FILES[$fileName]['name']);
     $newfilename = $fileName . $id . '.' . end($temp);

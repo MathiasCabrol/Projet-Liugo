@@ -24,6 +24,7 @@ if (isset($_GET['id'])) {
     $serviceId = htmlspecialchars($_GET['id']);
     $_SESSION['serviceId'] = htmlspecialchars($_GET['id']);
 }
+
 $serviceId = $_SESSION['serviceId'];
 $newService->setServiceId($serviceId);
 $serviceInfos = $newService->displayService();
@@ -31,12 +32,14 @@ $newSubService = new SubService;
 $subServiceInfos = $newSubService->getAllSubServices($serviceInfos->serviceId);
 $newSubServiceButton = new SubServiceButton;
 foreach ($subServiceInfos as $subService) {
+    //Insertion de la valeur des boutons respectifs dans un tableau avec en index l'id du service correspondant
     if ($subService->addButton) {
         $newSubServiceButton->setIdSubService($subService->subServiceId);
         $buttonValue[$subService->subServiceId] = $newSubServiceButton->getButtonValue();
     }
 }
 
+//Si l'utilisateur souhaite supprimer le sous-service
 if (isset($_GET['delete'])) {
     if ($_GET['delete'] == '1') {
         $infoMessage = 'Le sous-service a bien été supprimé';
@@ -86,15 +89,20 @@ if (isset($_GET['action'])) {
     }
 }
 
+//Si le service est modifié
 if (isset($_POST['saveChanges'])) {
     $fileCheck = new Files;
     $errorList = [];
     $fileError = [];
     $fileName = 'categoryPhoto';
+    //Si le nouveau fichier ne contient pas d'erreur
     if (!$_FILES[$fileName]['error']) {
+        //Suppression du fichier précédent
         $fileCheck->deleteCategoryFile($serviceId, $dirName);
+        //Ajout du nouveau fichier
         $fileCheck->registerCategoryFile($_FILES[$fileName]['tmp_name'], $_FILES[$fileName]['name'], $serviceId, $dirName);
     } else {
+        //Sinon on génère un message d'erreur dans un tableau avec en index le nom du fichier
         $fileError[$fileName] = $errorMessage;
     }
 
@@ -108,12 +116,16 @@ if (isset($_POST['saveChanges'])) {
         $errorList['serviceTitle'] = 'Merci d\'entrer un titre de service';
     }
 
+    //Si aucune erreur n'est présente
     if (count($errorList) == 0) {
         $newService->setServiceId($serviceId);
         $newService->setServiceTitle($serviceTitle);
-        if ($newService->updateServiceTitle()) {
+        //Mise à jour du service
+        if ($newService->updateServiceTitle()){ 
+            //Message de confirmation
             $successMessage = 'Le service a bien été modifié';
         } else {
+            //Message d'erreur
             $errorMessage = 'Une erreur est survenue lors de la modification du service.';
         }
     }

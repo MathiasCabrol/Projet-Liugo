@@ -67,16 +67,20 @@ if (isset($_POST['save'])) {
         $errorList['ssPrice'] = 'Merci d\'entrer un prix';
     }
 
+    //Vérifications du champ de de sélection du bouton dans le formulaire
     if(isset($_POST['selectButton'])){
         if (preg_match($boolRegex, $_POST['selectButton'])) {
             $buttonBool = htmlspecialchars($_POST['selectButton']);
+            //Si l'utilisateur décide d'ajouter un bouton
             if($_POST['selectButton'] == '1'){
+                //Si la valeur du bouton a été renseignée
                 if(isset($_POST['ssButtonValue'])){
                     if (preg_match($titleRegex, $_POST['ssButtonValue'])){
                         $buttonValue = htmlspecialchars($_POST['ssButtonValue']);
                     } else {
                         $errorList['ssButtonValue'] = 'Merci d\'entrer une valeur de bouton valide.';
                     }
+                //Si la valeur du bouton est vide, afficher un message d'erreur
                 } else {
                     $errorList['ssButtonValue'] = 'Merci d\'entrer une valeur de bouton.';
                 }
@@ -94,6 +98,7 @@ if (isset($_POST['save'])) {
         $erroList['buttonFiles'] = 'Le fichier n\'a pas été téléchargé.';
     }
 
+    //Si aucune erreur n'est détectée
     if(count($errorList) == 0){
         $subService->setTitle($ssTitle);
         $subService->setStartingHour($ssStartingHour);
@@ -101,18 +106,25 @@ if (isset($_POST['save'])) {
         $subService->setPrice($ssPrice);
         $subService->setIdService(htmlspecialchars($_SESSION['serviceId']));
         $subService->setAddButton($buttonBool);
+        //Si le sous-service est bien ajouté et que l'utilisateur décide d'ajouter un bouton
         if($subService->addSubService() && $_POST['selectButton'] == '1'){
+            //Récupération de l'id du dernier sous-service enregistré
             $lastInsertedId = $subService->getLastInsertedSubService();
             $subServiceButton = new SubServiceButton;
             $subServiceButton->setIdSubService($lastInsertedId);
             $subServiceButton->setButtonValue($buttonValue);
+            //Insertion dce la valeur du bouton
             if($subServiceButton->insertButtonValue()){
+                //Récupéraiton de l'id du dernier bouton enregistré
                 $buttonId = $subServiceButton->getLastInsertedButton();
                 $fileCheck = new Files;
+                //Si aucune erreur n'est détectée sur le fichier
                 if(!$_FILES['buttonFile']['error']){
+                    //Enregistrement du fichier
                     $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'], $_FILES['buttonFile']['name'], $buttonId, $directory);
                 }
             }
+            //Message de réussite de l'ajout pour vue
             $successMessage = 'Le sous-service a bien été ajouté';
         }
 

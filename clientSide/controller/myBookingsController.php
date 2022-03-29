@@ -62,7 +62,9 @@ if(isset($_POST['modify'])){
 if(isset($_POST['cancel'])){
     $bookingToCancel = new Booking;
     $bookingToCancel->setId(htmlspecialchars($_POST['bookingId']));
+    //Si la réservation est bien annulée
     if($bookingToCancel->cancelBooking()){
+        //Récupération du numéro de réservation pour affichage de la confirmation d'annulation
         $canceledBookingNumber = $bookingToCancel->getReservationNumberFromId();
         header('Location: myBookings.php');
         exit;

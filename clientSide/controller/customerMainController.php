@@ -10,10 +10,11 @@ $hotel = new Hotel;
 $service = new Service;
 
 $hotel->setId(htmlspecialchars($_SESSION['hotelId']));
-//Récuoération des informations de l'établissement hôtelier pour affichage
+//Récupération des informations de l'établissement hôtelier pour affichage
 $selectedHotel = $hotel->getHotelInfosFromId();
 $selectedDescription = $hotel->getDescription();
 $hotelPhone = $selectedHotel->phone;
+//INsertion des points pour la lisibilité
 $hotelPhone = implode(".", str_split($hotelPhone, 2));
 
 //Récupération des informations des différents services de l'hotel

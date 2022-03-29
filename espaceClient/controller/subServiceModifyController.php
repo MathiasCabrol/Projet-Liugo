@@ -20,11 +20,14 @@ if($_SESSION['type'] == 'partners'){
 $subService = new SubService;
 $errorMessage = 'Une erreur s\'est produite, veuillez réessayer';
 
+//Si le paramètre id existe
 if (isset($_GET['id'])) {
     $ssId = htmlspecialchars($_GET['id']);
     $subService->setId($ssId);
+    //Si l'id correspond bien 
     if ($subService->checkIfSubServiceExists()) {
         $selectedSubService = $subService->getSubServiceById($ssId);
+        //Si un bouton est bien associé au sous-services
         if($selectedSubService->addButton){
             $subServiceButton = new SubServiceButton;
             $subServiceButton->setIdSubService($ssId);
@@ -32,11 +35,13 @@ if (isset($_GET['id'])) {
             $buttonId = $subServiceButton->getSingleButtonIDBySS();
         }
     }
+//Si l'id n'est pas paramètré, on redirige vers la page d'accueil
 } else {
     header('Location: home.php');
     exit;
 }
 
+//Si le sous-service en modifié
 if (isset($_POST['saveModification'])) {
     $errorList = [];
     //Vérifications du champ de titre de service dans le formulaire
@@ -94,14 +99,18 @@ if (isset($_POST['saveModification'])) {
             $errorList['ssButtonValue'] = 'Merci d\'entrer une valeur de bouton';
         }
 
+        //Si aucune erreur de fichier n'est détectée et que le formualaire est entièrement vérifié
         if(!$_FILES['buttonFile']['error'] && count($errorList) == 0){
             $fileCheck = new Files;
+            //Suppression du fichier du bouton
             $fileCheck->deleteButtonFile($buttonId, $dir);
+            //Enregistrement du nouveau fichier
             $fileCheck->registerButtonFile($_FILES['buttonFile']['tmp_name'], $_FILES['buttonFile']['name'], $buttonId, $dir);
         } else {
             $errorList['buttonFile'] = 'Le fichier n\'a pas été téléchargé';
         }
     }
+    //Si l'utilisateur choisi de ne pas ajouter de bouton
     if(count($errorList) == 0) {
         $subService->setTitle($ssTitle);
         $subService->setStartingHour($ssStartingHour);

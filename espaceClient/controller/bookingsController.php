@@ -10,9 +10,10 @@ require 'modele/Booking.php';
 
 $booking = new Booking;
 
-
+//Récupération des informations de toutes les réservations
 $bookingsDisplayed = $booking->getBookingsInformations();
 
+//Si l'utilisateur effectue une recherche par date
 if (isset($_POST['dateSearch'])) {
     if (preg_match($dateRegex, $_POST['dateSearch'])) {
         $searchedDate = htmlspecialchars($_POST['dateSearch']);
@@ -23,6 +24,7 @@ if (isset($_POST['dateSearch'])) {
     }
 }
 
+//Si l'utilisateur effectue une recherche par nom
 if (isset($_POST['nameSearch'])) {
     if (preg_match($nameRegex, $_POST['nameSearch'])) {
         $searchedName = htmlspecialchars($_POST['nameSearch']);

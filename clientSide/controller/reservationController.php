@@ -128,7 +128,9 @@ if (isset($_POST['date'])) {
                         $bookingCreation->setBookingNumber($bookingNumber);
                     }
                 }
+                //Si la date indiquée lors de la réservation est supérieure à la date actuelle
                 if (time() < strtotime($date)) {
+                    //Setters
                     $bookingCreation->setDate($date);
                     $bookingCreation->setHour($hour . ':00');
                     $bookingCreation->setPax($pax);
@@ -136,11 +138,15 @@ if (isset($_POST['date'])) {
                     $bookingCreation->setSubServiceId($subServiceId);
                     $bookingCreation->setPartnerId($partnerId);
                     $bookingCreation->setCustomerId(htmlspecialchars($_POST['customerId']));
+                    //Si la réservation est bien crée
                     if ($bookingCreation->createBooking()) {
+                        //Récupération de l'id de la dernière réservation enregistrée
                         $lastCreatedBookingId = $bookingCreation->getLastCreatedBooking();
+                        //Envoi du lien en réponse AJAX
                         echo 'bookingConfirmation.php?bookingId=' . $lastCreatedBookingId;
                         exit;
                     }
+                //Si la date indiquée est inférieure à la date renseignée, on affiche un message d'erreur
                 } else {
                     $dateError = 'Merci de renseigner une date future.';
                     echo 0;

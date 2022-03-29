@@ -11,42 +11,52 @@ require 'class/Files.php';
 
 session_start();
 
-if($_SESSION['type'] == 'partners'){
+//Si le compte est un partenaire, on instancie l'objet Partner
+if ($_SESSION['type'] == 'partners') {
     $account = new Partner;
-} elseif($_SESSION['type'] == 'hotels'){
+    //Si le compte est un partenaire, on instancie l'objet Hotel
+} elseif ($_SESSION['type'] == 'hotels') {
     $account = new Hotel;
 }
 
+//On récupère le nom de la session qui correspond également au nom du dossier
 $dirName = $_SESSION['type'];
 
 $account->setId(htmlspecialchars($_SESSION['id']));
+//Récupération des données du compte
 $selectedAccountInfos = $account->getAccountInfosById();
 $city = new City;
 $city->setId($selectedAccountInfos->id_cities);
+//Récupération du nom de la ville qui correspond à l'id
 $selectedCity = $city->getCityNameFromId();
 
-
-if(isset($_GET['action']) && $_GET['action'] == 'logout'){
+//Si l'utilisateur souhaite se déconnecter
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    //Destruction de la session
     session_destroy();
+    //Redirection
     header('Location: ../proSide/homepage.php');
     exit;
 }
 
-if(isset($_POST['deleteConfirm'])){
+//Si l'utilisateur souhaite supprimer son compte
+if (isset($_POST['deleteConfirm'])) {
+    //Suppression du compte
     $account->deleteAccount();
     $fileCheck = new Files;
+    //Suppression des fichiers ainsi que du dossier concernant l'utilisateur
     $fileCheck->rrmdir($dirName . '/' . $_SESSION['login']);
     session_destroy();
     header('Location: ../proSide/homepage.php');
     exit;
 }
 
-if(isset($_GET['action']) && $_GET['action'] == 'stats'){
+//Si l'utilisateur souhaite consulter le sstatistiques
+if (isset($_GET['action']) && $_GET['action'] == 'stats') {
     $booking = new Booking;
-
-$booking->setPartnerId(htmlspecialchars($_SESSION['id']));
-$confirmedBookingsData = $booking->getConfirmedBookingsData();
-$canceledBookingsData = $booking->getCanceledBookingsData();
+    $booking->setPartnerId(htmlspecialchars($_SESSION['id']));
+    //Récupération des données des réservations confirmées
+    $confirmedBookingsData = $booking->getConfirmedBookingsData();
+    //Récupération des données des réservations annulées
+    $canceledBookingsData = $booking->getCanceledBookingsData();
 }
-
-

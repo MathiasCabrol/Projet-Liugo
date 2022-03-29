@@ -93,8 +93,10 @@ if (isset($_POST['inscription'])) {
                 //Si L'adresse e-mail ne correspond à aucun compte existant dans la bdd, insérer les données
                 if (!$checkAccountExists->check) {
                     $token = new Token;
+                    //Génération d'un token aléatoire de vérification
                     $generatedToken = $token->createToken();
                     $customer->setToken($generatedToken);
+                    //Si le compte est bein créé
                     if($customer->createAccount()){
                         /**
                          * Envoi du mail contenant le lien de confirmation

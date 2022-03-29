@@ -23,9 +23,11 @@ $account->setId($_SESSION['id']);
 
 
 if (isset($_POST['name'])) {
+    //Vérification REGEX
     if (preg_match($regexName, $_POST['name'])) {
         $name = htmlspecialchars($_POST['name']);
         $account->setName($name);
+        //Mise à jour de l'information
         $account->updateAccountName();
     } else {
         $errorList['name'] = 'Merci d\'entrer un nom valide';
@@ -40,9 +42,11 @@ if (isset($_POST['name'])) {
  **/
 
 if (isset($_POST['email'])) {
+    //Vérification REGEX
     if (preg_match($regexMail, $_POST['email'])) {
         $email = htmlspecialchars($_POST['email']);
         $account->setEmail($email);
+        //Mise à jour de l'information
         $account->updateAccountEmail();
     } else {
         $errorList['email'] = 'Merci d\'entrer un email valide';
@@ -52,9 +56,11 @@ if (isset($_POST['email'])) {
 }
 
 if (isset($_POST['phone'])) {
+    //Vérification REGEX
     if (preg_match($regexPhone, $_POST['phone'])) {
         $phone = htmlspecialchars($_POST['phone']);
         $account->setPhone($phone);
+        //Mise à jour de l'information
         $account->updateAccountPhone();
     } else {
         $errorList['phone'] = 'Merci d\'entrer un numéro de téléphone valide';
@@ -64,9 +70,11 @@ if (isset($_POST['phone'])) {
 }
 
 if (isset($_POST['address'])) {
+    //Vérification REGEX
     if (preg_match($regexAddress, $_POST['address'])) {
         $address = htmlspecialchars($_POST['address']);
         $account->setAddress($address);
+        //Mise à jour de l'information
         $account->updateAccountAddress();
     } else {
         $errorList['address'] = 'Merci d\'entrer une addresse valide';
@@ -77,10 +85,12 @@ if (isset($_POST['address'])) {
 
 if (isset($_POST['postcode'])) {
     if(isset($_POST['cityId'])){
+        //Vérification REGEX
         if (preg_match($regexPostcode, $_POST['postcode'])) {
             $postcode = htmlspecialchars($_POST['postcode']);
             $account->setPostCode($postcode);
             $account->setIdCities(htmlspecialchars($_POST['cityId']));
+            //Mise à jour de l'information
             $account->updateAccountPostCode();
         } else {
             $errorList['postcode'] = 'Merci d\'entrer un code postal valide';
@@ -92,11 +102,12 @@ if (isset($_POST['postcode'])) {
     $errorList['postcode'] = 'Merci d\'entrer un code postal valide';
 }
 
+//Génération du SELECT avec choix de nom de ville en AJAX en fonction du code postal
 if(isset($_POST['postCodeValue'])){
     $jsonCity = new City;
     $jsonCity->setPostCode(htmlspecialchars($_POST['postCodeValue']));
     $postCodeCity = $jsonCity->getCorespondingCity();
-    // encode array to json
+    //Création et envoie en réponse d'un JSON
 
     $jsonTable = array();
 
