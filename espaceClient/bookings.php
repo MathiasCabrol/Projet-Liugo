@@ -58,6 +58,8 @@
                             <div class="col-10 bookingInformationCol text-center">
                                 <div class="coloredHeader text-white didot"><?= $booking->bookingnumber ?></div>
                                 <p><?= $booking->customerLastname ?> <?= $booking->customerFirstname ?></p>
+                                <p>Pour <?= $booking->pax ?> personnes</p>
+                                <p>Cout de la réservation : <?= $booking->price * $booking->pax ?>€</p>
                                 <p><?= $booking->subserviceTitle ?></p>
                                 <p>Le <?= $booking->date ?> à <?= $booking->hour ?></p>
                                 <p>Contacts : </p>

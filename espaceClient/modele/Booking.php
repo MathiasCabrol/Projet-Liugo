@@ -31,7 +31,7 @@ class Booking {
     }
 
     public function getBookingsInformations():array{
-        $query = 'SELECT `bookingnumber`, DATE_FORMAT(`date`, "%d/%m/%Y") AS `date`, SUBSTR(`hour`, 1, 5) AS `hour`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0';
+        $query = 'SELECT `bookingnumber`, DATE_FORMAT(`date`, "%d/%m/%Y") AS `date`, SUBSTR(`hour`, 1, 5) AS `hour`, `bookings`.`pax` AS `pax`, `bookings`.`price` AS `price`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0';
         $queryStatement = $this->db->query($query);
         $queryStatement->execute();
         $result = $queryStatement->fetchAll(PDO::FETCH_OBJ);
@@ -39,7 +39,7 @@ class Booking {
     }
 
     public function getBookingsInformationsByDate():array{
-        $query = 'SELECT `bookingnumber`, DATE_FORMAT(`date`, "%d/%m/%Y") AS `date`, SUBSTR(`hour`, 1, 5) AS `hour`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0 AND `date` = :date';
+        $query = 'SELECT `bookingnumber`, DATE_FORMAT(`date`, "%d/%m/%Y") AS `date`, SUBSTR(`hour`, 1, 5) AS `hour`, `bookings`.`pax` AS `pax`, `bookings`.`price` AS `price`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0 AND `date` = :date';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':date', $this->date, PDO::PARAM_STR);
         $queryStatement->execute();
@@ -48,7 +48,7 @@ class Booking {
     }
 
     public function getBookingsInformationsByName():array{
-        $query = 'SELECT `bookingnumber`, DATE_FORMAT(`date`, "%d/%m/%Y") AS `date`, SUBSTR(`hour`, 1, 5) AS `hour`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0 AND `C`.`lastname` LIKE CONCAT("%", :name, "%")';
+        $query = 'SELECT `bookingnumber`, DATE_FORMAT(`date`, "%d/%m/%Y") AS `date`, SUBSTR(`hour`, 1, 5) AS `hour`, `bookings`.`pax` AS `pax`, `bookings`.`price` AS `price`, `C`.`lastname` AS `customerLastname`, `C`.`firstname` AS `customerFirstname`, `C`.`email` AS `customerEmail`, `C`.`phone` AS `customerPhone`, `SS`.`title` AS `subserviceTitle` FROM `bookings` INNER JOIN `customers` AS `C` ON `bookings`.`id_customers` = `C`.`id` INNER JOIN `subservices` AS `SS` ON `bookings`.`id_subservices` = `SS`.`id` WHERE `bookings`.`canceled` = 0 AND `C`.`lastname` LIKE CONCAT("%", :name, "%")';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
         $queryStatement->execute();

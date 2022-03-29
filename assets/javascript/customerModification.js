@@ -23,7 +23,6 @@ let specificInfoDiv = document.querySelectorAll(".specificInfo")
 specificInfoDiv.forEach(element => {
     //Ajout d'un écouteur d'évènement sur chaque élément
     element.addEventListener("click", event => {
-        console.log('bonjour')
         //Récupération des éléments nécésssaires à la suite
         let divContainer = event.target.closest("div")
         let infosToDelete = divContainer.querySelector(".inline")

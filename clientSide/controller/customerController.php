@@ -15,7 +15,7 @@ if (isset($_POST['guest'])) {
     if ($hotel->checkIfHotelExists()) {
         $_SESSION['hotelId'] = $hotelId;
         $_SESSION['type'] = 'guest';
-        header('Location: customerHomepage.php');
+        header('Location: clientSide/customerHomepage.php');
         exit;
     } else {
         //Sinon afficher une erreur sur la page demandant de flasher à nouveau le QR

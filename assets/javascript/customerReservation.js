@@ -47,11 +47,9 @@ document.addEventListener("input", event => {
                             //Si le fichier json contient la propriété "bookedHours", cela signifie que le traitement en php
                             //A détécté que d'autres réservations sont présentes au même jour pour ce service
                             if (response.bookedHours) {
-                                console.log('Bonjour')
                                 //Dans la boucle, si la variable i qui correspond à l'heure de réservation existe dans les heures déja réservées
                                 //On rend l'option innacessible
                                 if (response.bookedHours.find(element => element = i) != undefined) {
-                                    console.log('Bonjour')
                                     htmlToAppend += `<option value="${i + ':00'}" disabled>${i + ':00'}</option>`
                                     //Sinon l'option s'affiche normalement
                                 } else {

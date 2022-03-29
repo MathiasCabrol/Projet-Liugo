@@ -8,6 +8,10 @@ require 'modele/City.php';
 
 session_start();
 
+if(isset($_GET['canceled'])){
+    $canceledBookingNumberToDisplay = htmlspecialchars($_GET['canceled']);
+}
+
 //On récupère toutes les réservations éffectuées par le client
 $bookings = new Booking;
 $subService = new SubService;
@@ -66,7 +70,7 @@ if(isset($_POST['cancel'])){
     if($bookingToCancel->cancelBooking()){
         //Récupération du numéro de réservation pour affichage de la confirmation d'annulation
         $canceledBookingNumber = $bookingToCancel->getReservationNumberFromId();
-        header('Location: myBookings.php');
+        header('Location: myBookings.php?canceled=' . $canceledBookingNumber);
         exit;
     }
 }

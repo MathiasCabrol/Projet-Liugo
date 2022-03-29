@@ -28,7 +28,7 @@
             <div class="col-12 col-md-8 col-lg-8">
                 <p class="mt-5">Découvrez les activités proposées par nos partenaires</p>
                 <img class="customerPhoto" src="<?= '../espaceClient/hotels/' . $selectedHotel->email . '/home/activityPhoto' ?>">
-                <button class="btn btn-outline-light blueBackground categoryButton">Explorer</button>
+                <a href="activities.php" class="btn btn-outline-light blueBackground categoryButton">Explorer</a>
             </div>
         </div>
         <?php } ?>

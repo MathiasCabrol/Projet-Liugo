@@ -44,7 +44,7 @@
                         <!-- Button col -->
                         <div class="col-12 text-center">
                             <form action="" method="post">
-                                <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="guest" type="submit"> Continuer en tant qu'invité</button>
+                                <button id="saveButton" class="btn btn-outline-light priceButton border rounded shadow my-3" name="guest" type="submit">Continuer en tant qu'invité</button>
                             </form>
                         </div>
                         </form>
@@ -55,7 +55,7 @@
                             <button class="didot btn btn-outline-light customerAccountButton" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
                         </div>
                         <div class="col-12 text-center my-1">
-                            <a class="didot accountCreationLink" href="customerAccountCreation.php">Créer un compte</a>
+                            <a class="didot accountCreationLink" href="clientSide/customerAccountCreation.php">Créer un compte</a>
                         </div>
                     </div>
                 </div>

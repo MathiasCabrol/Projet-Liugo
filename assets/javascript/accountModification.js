@@ -159,7 +159,6 @@ CreateFormElement = (param) => {
     select.classList.add("w-100")
     select.id = "citySelect"
     cityNameToDelete.insertAdjacentElement('afterend', select)
-    console.log(param)
     for (let i = 0; i < param.length; i++) {
         let option = document.createElement("option")
         option.value = param[i].id

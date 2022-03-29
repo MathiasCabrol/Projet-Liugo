@@ -26,8 +26,8 @@
             </div>
         </div>
     </div>
-    <?php if(isset($canceledBookingNumber)){ ?>
-        <p class="errorMessage">La réservation numéro <?= $canceledBookingNumber ?> a bien été annulée.</p>
+    <?php if(isset($canceledBookingNumberToDisplay)){ ?>
+        <p class="errorMessage">La réservation numéro <?= $canceledBookingNumberToDisplay ?> a bien été annulée.</p>
     <?php } ?>
     <section>
         <div class="container">
