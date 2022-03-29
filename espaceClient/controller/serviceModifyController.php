@@ -103,7 +103,8 @@ if (isset($_POST['saveChanges'])) {
         $fileCheck->registerCategoryFile($_FILES[$fileName]['tmp_name'], $_FILES[$fileName]['name'], $serviceId, $dirName);
     } else {
         //Sinon on génère un message d'erreur dans un tableau avec en index le nom du fichier
-        $fileError[$fileName] = $errorMessage;
+        $fileError[$fileName] = 'Vous pouvez insérer un fichier si vous souhaitez modifier l\'image associée.';
+        $errorMessage = $fileError[$fileName];
     }
 
     if (!empty($_POST['serviceTitle'])) {
