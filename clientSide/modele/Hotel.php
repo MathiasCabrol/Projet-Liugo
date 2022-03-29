@@ -3,7 +3,7 @@
 class Hotel extends Database {
     private int $id;
 
-    public function checkIfHotelExists(){
+    public function checkIfHotelExists():int{
         $query = 'SELECT COUNT(`id`) AS `result` FROM `hotels` WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
@@ -21,7 +21,7 @@ class Hotel extends Database {
         return $result;
     }
 
-    public function getHotelEmailFromId(){
+    public function getHotelEmailFromId():object{
         $query = 'SELECT `email` FROM `hotels` WHERE `id` = :id';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':id', $this->id, PDO::PARAM_INT);

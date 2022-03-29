@@ -13,7 +13,7 @@ private int $serviceId;
         return $services;
     }
 
-    public function getServiceById(){
+    public function getServiceById():object{
         $query = 'SELECT `S`.`id` AS `serviceId`, `S`.`title` AS `serviceTitle`, `P`.`id` AS `partnerId`, `P`.`name` AS `partnerName`, `P`.`email` AS `partnerEmail`, `P`.`phone` AS `partnerPhone` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `S`.`id` = :serviceid';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
@@ -22,7 +22,7 @@ private int $serviceId;
         return $service;
     }
 
-    public function getPartnerId(){
+    public function getPartnerId():int{
         $query = 'SELECT `id_partners` FROM `services` WHERE `id` = :serviceid';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
@@ -31,7 +31,7 @@ private int $serviceId;
         return $partnerId;
     }
 
-    public function getPartnerName(){
+    public function getPartnerName():object{
         $query = 'SELECT `partners`.`name` AS `name` FROM `services` INNER JOIN `partners` ON `partners`.`id` = `services`.`id_partners` WHERE `services`.`id` = :serviceid';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
@@ -40,7 +40,7 @@ private int $serviceId;
         return $partnerName;
     }
 
-    public function getAllPartnersServices($page){
+    public function getAllPartnersServices($page):array{
         $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title`, `P`.`email` AS `partnerEmail`, `P`.`name` AS `partnerName`, `P`.`id_cities` AS `cityId` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `id_type` = 1 ORDER BY `P`.`name` ASC LIMIT :number, 10';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':number', ($page - 1) * 10, PDO::PARAM_INT);
@@ -49,7 +49,7 @@ private int $serviceId;
         return $servicesByPage;
     }
 
-    public function getSubServiceLowerPriceFromService(){
+    public function getSubServiceLowerPriceFromService():object{
         $query = 'SELECT `SS`.`price` AS `lowestPrice` FROM `services` AS `S` INNER JOIN `subservices` AS `SS` ON `S`.`id` = `SS`.`id_services` WHERE `S`.`id` = :serviceid ORDER BY `SS`.`price` ASC LIMIT 1';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
@@ -67,7 +67,7 @@ private int $serviceId;
         return $result;
     }
     
-    public function checkIfServiceLinkedToHotel() {
+    public function checkIfServiceLinkedToHotel():int {
         $query = 'SELECT `hotels`.`id` FROM `services` INNER JOIN `hotels` ON `services`.`id_hotels` = `hotels`.`id` WHERE `services`.`id` = :serviceid';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceid', $this->serviceId, PDO::PARAM_INT);
@@ -76,7 +76,7 @@ private int $serviceId;
         return $hotelId;
     }
 
-    public function searchService($search, $page){
+    public function searchService($search, $page):array{
         $query = 'SELECT `S`.`id` AS `id`, `S`.`title` AS `title`, `P`.`email` AS `partnerEmail`, `P`.`name` AS `partnerName`, `P`.`id_cities` AS `cityId` FROM `services` AS `S` INNER JOIN `partners` AS `P` ON `P`.`id` = `S`.`id_partners` WHERE `S`.`slug` LIKE CONCAT("%", :search, "%") ORDER BY title DESC LIMIT :number, 10';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':search', $search, PDO::PARAM_STR);
@@ -86,7 +86,7 @@ private int $serviceId;
         return $searchedService;
     }
 
-    public function checkIfServiceExists() {
+    public function checkIfServiceExists():int {
         $query = 'SELECT COUNT(`id`) AS `result` FROM `services` AS `S` WHERE `S`.`id` = :serviceId';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':serviceId', $this->serviceId, PDO::PARAM_INT);

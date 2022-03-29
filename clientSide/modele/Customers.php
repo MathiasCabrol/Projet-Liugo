@@ -27,7 +27,7 @@ class Customer extends Database {
         return $result;
     }
 
-    public function getIdAndEmailFromToken(){
+    public function getIdAndEmailFromToken():object{
         $query = 'SELECT `id`, `email` FROM `customers` WHERE `token` = :token';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':token', $this->token, PDO::PARAM_STR);
@@ -48,7 +48,7 @@ class Customer extends Database {
         return $queryStatement->execute();
     }
 
-    public function getId() {
+    public function getId():object {
         $query = 'SELECT `id` FROM `customers` WHERE :email = `email` AND :password = `password`';
         $queryStatement = $this->db->prepare($query);
         $queryStatement->bindValue(':email', $this->email, PDO::PARAM_STR);

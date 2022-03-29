@@ -20,10 +20,13 @@ $account->setId($_SESSION['id']);
     //! Attention celui-ci doit ensuite être inséré dans un input créé en js pour valider l'identité
  **/
 
+//Si l'adresse e_mail a été modifiée 
 if (isset($_POST['email'])) {
+    //On effectue la vérification en REGEX
     if (preg_match($regexMail, $_POST['email'])) {
         $email = htmlspecialchars($_POST['email']);
         $account->setEmail($email);
+        //Mise à jour des données
         echo $account->updateAccountEmail();
     } else {
         $errorList['email'] = 'Merci d\'entrer un email valide';
@@ -32,10 +35,13 @@ if (isset($_POST['email'])) {
     $errorList['email'] = 'Merci d\'entrer un email';
 }
 
+//Si le téléphone a été modifiée 
 if (isset($_POST['phone'])) {
+    //On effectue la vérification en REGEX
     if (preg_match($regexPhone, $_POST['phone'])) {
         $phone = htmlspecialchars($_POST['phone']);
         $account->setPhone($phone);
+        //Mise à jour des données
         echo $account->updateAccountPhone();
     } else {
         $errorList['phone'] = 'Merci d\'entrer un numéro de téléphone valide';
