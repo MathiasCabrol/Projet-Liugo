@@ -22,11 +22,6 @@
       <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.linkedin.com/in/mathias-cabrol-2911b4198/" role="button">
         <i class="fab fa-linkedin-in"></i>
       </a>
-
-      <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://github.com/MathiasCabrol" role="button">
-        <i class="fab fa-github"></i>
-      </a>
     </section>
     <!-- Section: Social media -->
   </div>
